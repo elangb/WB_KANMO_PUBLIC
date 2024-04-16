@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<audio id="playRec" controls>
+<source type="audio/wav" autoplay="true">
+Your browser does not support the audio element.
+</audio>
+
+<script>
+    // Replace ./data.json with your JSON feed
+    //https://studio.uidesk.id:4430/stream.php?file=/var/spool/asterisk/monitor/2023/02/15/exten-10001-10002-20230215-151123-1676448683.152.wav
+    var object_array = [];
+    function custom_sort(a, b) {
+        return new Date(b.calldate).getTime() - new Date(a.calldate).getTime();
+    }
+    
+    fetch('https://uidesk.id/Asterisk/be-data.php').then(response => {
+      return response.json();
+    }).then(data => {
+      // Work with JSON data here
+      object_array = data;
+      console.log(object_array.sort(custom_sort));
+      var json = object_array.sort(custom_sort);
+      
+      
+      
+      var data_filter = object_array.filter( element => element.dst =="10001")
+      //console.log(data_filter)
+      for (i = 0; i < 1; i++) {
+          console.log(data_filter[i].calldate);
+           const d = new Date(data_filter[i].calldate);
+           
+           monthNya=parseFloat(d.getMonth() + 1)
+           if(monthNya < 10){
+               monthNya="0"+monthNya
+           }else{
+                monthNya=monthNya
+           }
+           console.log(data_filter[i].recordingfile_url);
+           var audio = document.getElementById('playRec');
+            audio.src = data_filter[i].recordingfile_url;
+            audio.load();
+          
+      }
+      //console.log(data);
+    }).catch(err => {
+      // Do something for an error here
+    });
+  </script>
+
+</body>
+</html>

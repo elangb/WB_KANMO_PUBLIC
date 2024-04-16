@@ -1,0 +1,573 @@
+<!doctype html>
+<html lang="en">
+
+    
+
+<head>
+        
+        <meta charset="utf-8" />
+        <title>Wallboard KANMO</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="Kanmo Dashboard" name="description" />
+        <meta content="Pichforest" name="author" />
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+        <!-- plugin css -->
+        <link href="assets/libs/jsvectormap/css/jsvectormap.min.css" rel="stylesheet" type="text/css" />
+
+        <!-- Bootstrap Css -->
+        <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+        <!-- Icons Css -->
+        <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+        <!-- App Css-->
+        <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <style>
+            #elem {
+                animation: blink 0.3s infinite
+              }
+              
+              @keyframes blink {
+                from {
+                  opacity: 0
+                }
+              
+                to {
+                  opacity: 1
+                }
+              }
+        </style>
+    </head>
+
+    
+    <body onload="myFunction()">
+
+    <!-- <body data-layout="horizontal"> -->
+
+        <!-- Begin page -->
+        <div id="layout-wrapper">
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div>
+                <div>
+                    <div class="container-fluid">
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+							  <br>
+                                <div class="page-title-box d-flex align-items-center justify-content-between">
+                                    <h4 class="mb-0"><img src="kanmon.png" width="200"></h4>
+
+                                    <div class="page-title-right">
+                                        <ol class="breadcrumb m-0">
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);"><input type="date" name="start_date" value="" class="form-control"></a></li>
+                                           
+                                        </ol>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end page title -->
+
+                        <div class="row">
+                            <div class="col-xxl-12 col-lg-12">
+                                <div class="card">
+                                    <div class="card-header bg-transparent">
+                                        <div class="d-flex align-items-start">
+                                            <div class="flex-grow-1">
+                                                <h5 class="card-title mb-0">WALLBOARD KANMO CONTACT CENTER  <div id="dateNya"></div></h5>
+                                            </div>
+                                            <div class="flex-shrink-0">
+                                                <div class="dropdown">
+                                                    <a class="dropdown-toggle text-reset" href="#"
+                                                        data-bs-toggle="dropdown" aria-haspopup="true"
+                                                        aria-expanded="false">
+                                                        <span class="fw-semibold"><div id="timeNya"></div></span> 
+                                                    </a>
+            
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-4 col-sm-6">
+                                        <div class="row">
+                                            <div class="col-xl-12 col-sm-12">
+                                                <center>
+                                                    <div class="card">
+                                                        <div class="card-body"><div class="flex-grow-1">
+                                                            <h5 class="card-title mb-0">CALL</h5>
+                                                        </div></div>
+                                                    </div>
+                                                </center>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xl-6 col-sm-6">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="flex-shrink-0 me-3">
+                                                                <div class="avatar-sm">
+                                                                    <div class="avatar-title bg-soft-primary text-primary rounded-circle font-size-18">
+                                                                        <img id="waitingImg" src="icon/Waiting1.png" width="65">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                           
+                                                            
+                                                            <div class="flex-grow-1 overflow-hidden">
+                                                                <p class="mb-1 text-truncate text-muted">TOTAL CALLS</p>
+                                                                <h2 class="font-size-21 mb-0" id="calltotal">0</h2>
+                                                            </div>
+                                                        </div>
+                                                    </div><!-- end card body -->
+                                                </div><!-- end card -->
+                                            </div><!-- end col -->
+                                            <div class="col-xl-6 col-sm-6">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="flex-shrink-0 me-3">
+                                                                <div class="avatar-sm">
+                                                                    <div class="avatar-title bg-soft-primary text-primary rounded-circle font-size-18">
+                                                                        <img src="icon/AHT.png" width="65">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div class="flex-grow-1 overflow-hidden">
+                                                               
+                                                                    <p class="mb-1 text-truncate text-muted">AHT TEAMS</p>
+                                                                    <h2 class="font-size-21 mb-0" id="ahtcallanswer">0</h2>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                    </div><!-- end card body -->
+                                                </div><!-- end card -->
+                                            </div>
+                                            <div class="col-xl-6 col-sm-6">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="flex-shrink-0 me-3">
+                                                                <div class="avatar-sm">
+                                                                    <div class="avatar-title bg-soft-primary text-primary rounded-circle font-size-18">
+                                                                        <img src="icon/Answer.png" width="65">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div class="flex-grow-1 overflow-hidden">
+                                                               
+                                                                    <p class="mb-1 text-truncate text-muted">CALLS HANDLED</p>
+                                                                    <h2 class="font-size-21 mb-0" id="handlecallanswer">0</h2>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                    </div><!-- end card body -->
+                                                </div><!-- end card -->
+                                            </div>
+                                            <div class="col-xl-6 col-sm-6">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="flex-shrink-0 me-3">
+                                                                <div class="avatar-sm">
+                                                                    <div class="avatar-title bg-soft-primary text-primary rounded-circle font-size-18">
+                                                                        <img src="icon/ABDN.png" width="65">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div class="flex-grow-1 overflow-hidden">
+                                                               
+                                                                    <p class="mb-1 text-truncate text-muted">MISSED</p>
+                                                                    <h2 class="font-size-21 mb-0" id="callabdn">0</h2>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                    </div><!-- end card body -->
+                                                </div><!-- end card -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-sm-6">
+                                        <div class="row">
+                                            <div class="col-xl-12 col-sm-12">
+                                                <center>
+                                                    <div class="card">
+                                                        <div class="card-body"><div class="flex-grow-1">
+                                                            <h5 class="card-title mb-0">EMAILS</h5>
+                                                        </div></div>
+                                                    </div>
+                                                </center>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xl-6 col-sm-6">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="flex-shrink-0 me-3">
+                                                                <div class="avatar-sm">
+                                                                    <div class="avatar-title bg-soft-primary text-primary rounded-circle font-size-18">
+                                                                        <img id="waitingImg" src="icon/emailreceived.png" width="65">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                           
+                                                            
+                                                            <div class="flex-grow-1 overflow-hidden">
+                                                                <p class="mb-1 text-truncate text-muted">TOTAL EMAILS</p>
+                                                                <h2 class="font-size-21 mb-0" id="emailtotal">0</h2>
+                                                            </div>
+                                                        </div>
+                                                    </div><!-- end card body -->
+                                                </div><!-- end card -->
+                                            </div><!-- end col -->
+                                            <div class="col-xl-6 col-sm-6">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="flex-shrink-0 me-3">
+                                                                <div class="avatar-sm">
+                                                                    <div class="avatar-title bg-soft-primary text-primary rounded-circle font-size-18">
+                                                                        <img src="icon/AHT.png" width="65">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div class="flex-grow-1 overflow-hidden">
+                                                               
+                                                                    <p class="mb-1 text-truncate text-muted">AHT TEAM</p>
+                                                                    <h2 class="font-size-21 mb-0" id="ahtemail">0</h2>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                    </div><!-- end card body -->
+                                                </div><!-- end card -->
+                                            </div>
+                                            <div class="col-xl-6 col-sm-6">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="flex-shrink-0 me-3">
+                                                                <div class="avatar-sm">
+                                                                    <div class="avatar-title bg-soft-primary text-primary rounded-circle font-size-18">
+                                                                        <img src="icon/emailresponse.png" width="65">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div class="flex-grow-1 overflow-hidden">
+                                                               
+                                                                    <p class="mb-1 text-truncate text-muted">EMAILS REPLIED</p>
+                                                                    <h2 class="font-size-21 mb-0" id="emailreplied">0</h2>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                    </div><!-- end card body -->
+                                                </div><!-- end card -->
+                                            </div>
+                                            <div class="col-xl-6 col-sm-6">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="flex-shrink-0 me-3">
+                                                                <div class="avatar-sm">
+                                                                    <div class="avatar-title bg-soft-primary text-primary rounded-circle font-size-18">
+                                                                        <img src="icon/notreplied.png" width="65">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div class="flex-grow-1 overflow-hidden">
+                                                               
+                                                                    <p class="mb-1 text-truncate text-muted">NOT REPLIED</p>
+                                                                    <h2 class="font-size-21 mb-0" id="notreplied">0</h2>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                    </div><!-- end card body -->
+                                                </div><!-- end card -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-sm-6">
+                                        <div class="row">
+                                            <div class="col-xl-12 col-sm-12">
+                                                <center>
+                                                    <div class="card">
+                                                        <div class="card-body"><div class="flex-grow-1">
+                                                            <h5 class="card-title mb-0">TICKETING</h5>
+                                                        </div></div>
+                                                    </div>
+                                                </center>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xl-6 col-sm-6">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="flex-shrink-0 me-3">
+                                                                <div class="avatar-sm">
+                                                                    <div class="avatar-title bg-soft-primary text-primary rounded-circle font-size-18">
+                                                                        <img id="waitingImg" src="icon/Waiting1.png" width="65">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                           
+                                                            
+                                                            <div class="flex-grow-1 overflow-hidden">
+                                                                <p class="mb-1 text-truncate text-muted">TOTAL TICKETS</p>
+                                                                <h2 class="font-size-21 mb-0" id="tickettotal">0</h2>
+                                                            </div>
+                                                        </div>
+                                                    </div><!-- end card body -->
+                                                </div><!-- end card -->
+                                            </div><!-- end col -->
+                                            <div class="col-xl-6 col-sm-6">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="flex-shrink-0 me-3">
+                                                                <div class="avatar-sm">
+                                                                    <div class="avatar-title bg-soft-primary text-primary rounded-circle font-size-18">
+                                                                        <img src="icon/AHT.png" width="65">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div class="flex-grow-1 overflow-hidden">
+                                                               
+                                                                    <p class="mb-1 text-truncate text-muted">AHT TEAM</p>
+                                                                    <h2 class="font-size-21 mb-0" id="ahtticket">0</h2>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                    </div><!-- end card body -->
+                                                </div><!-- end card -->
+                                            </div>
+                                            <div class="col-xl-6 col-sm-6">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="flex-shrink-0 me-3">
+                                                                <div class="avatar-sm">
+                                                                    <div class="avatar-title bg-soft-primary text-primary rounded-circle font-size-18">
+                                                                        <img src="icon/Answer.png" width="65">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div class="flex-grow-1 overflow-hidden">
+                                                               
+                                                                    <p class="mb-1 text-truncate text-muted">TICKETS SOLVED</p>
+                                                                    <h2 class="font-size-21 mb-0" id="ticketsolved">0</h2>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                    </div><!-- end card body -->
+                                                </div><!-- end card -->
+                                            </div>
+                                            <div class="col-xl-6 col-sm-6">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="flex-shrink-0 me-3">
+                                                                <div class="avatar-sm">
+                                                                    <div class="avatar-title bg-soft-primary text-primary rounded-circle font-size-18">
+                                                                        <img src="icon/Answer.png" width="65">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div class="flex-grow-1 overflow-hidden">
+                                                               
+                                                                    <p class="mb-1 text-truncate text-muted">PENDING</p>
+                                                                    <h2 class="font-size-21 mb-0" id="ticketpending">0</h2>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                    </div><!-- end card body -->
+                                                </div><!-- end card -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                </div>
+
+                               
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                                                    <!-- end col -->
+            
+                            <div class="col-xxl-12 col-lg-12">
+                                
+                               
+                                <div class="card card-h-0">
+                                    <div class="card-header border-bottom-0">
+                                        <div class="d-flex align-items-start">
+                                            <div class="flex-grow-1">
+                                                <h5 class="card-title">AGENTS</h5>
+                                            </div>
+    
+                                            
+                                        </div>
+                                    </div>
+
+                                   
+                                </div>
+                               
+                                <!-- end card -->
+                                <div class="row">
+                                    <div class="card">
+                                        <div class="col-xl-12">
+                                            <div class="card-body">     
+                                                                         
+                                                <div class="table-responsive">
+                                                    <table class="table mb-0">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>No</th>
+                                                                <th>Agent Name</th>
+                                                                <th>Group</th>
+                                                                <th>Status</th>
+                                                                <th>AHT Call</th>
+                                                                <th>AHT Emails</th>
+                                                                <th>AHT Ticketing</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <th scope="row">1</th>
+                                                                <td>Siti Muntama</td>
+                                                                <td>5440481</td>
+                                                                <td>On Call</td>
+                                                                <td>05:00</td>
+                                                                <td>05:00</td>
+                                                                <td>05:00</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">2</th>
+                                                                <td>Siti Muntama</td>
+                                                                <td>5440481</td>
+                                                                <td>On Call</td>
+                                                                <td>05:00</td>
+                                                                <td>05:00</td>
+                                                                <td>15:00</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">3</th>
+                                                                <td>Siti Muntama</td>
+                                                                <td>5440481</td>
+                                                                <td>On Call</td>
+                                                                <td>05:00</td>
+                                                                <td>05:00</td>
+                                                                <td>01:14</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">4</th>
+                                                                <td>Siti Muntama</td>
+                                                                <td>5440481</td>
+                                                                <td>On Call</td>
+                                                                <td>05:00</td>
+                                                                <td>05:00</td>
+                                                                <td>45:00</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">5</th>
+                                                                <td>Siti Muntama</td>
+                                                                <td>5440481</td>
+                                                                <td>Online</td>
+                                                                <td>05:00</td>
+                                                                <td>05:00</td>
+                                                                <td>00:40</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">6</th>
+                                                                <td>Siti Muntama</td>
+                                                                <td>5440481</td>
+                                                                <td>Offline</td>
+                                                                <td>AUX</td>
+                                                                <td>0</td>
+                                                                <td>01:10</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">7</th>
+                                                                <td>Siti Muntama</td>
+                                                                <td>5440481</td>
+                                                                <td>Offline</td>
+                                                                <td>AUX</td>
+                                                                <td>0</td>
+                                                                <td>02:20</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table><!-- end table -->
+                                                </div><!-- end table responsive -->
+                                            </div><!-- end card body -->
+                                        </div>
+                                    </div>
+                                </div>
+                               
+                                <!-- end card -->
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+
+                       
+                        <!-- end row -->
+                        
+                      
+                    </div>
+                    <!-- container-fluid -->
+                </div>
+                <!-- End Page-content -->
+            
+                
+            </div>
+            <!-- end main content-->
+            
+
+        </div>
+        <!-- END layout-wrapper -->
+
+       
+
+        <!-- Right bar overlay-->
+        <div class="rightbar-overlay"></div>
+
+        <!-- JAVASCRIPT
+        <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/libs/metismenujs/metismenujs.min.js"></script>
+        <script src="assets/libs/simplebar/simplebar.min.js"></script>
+        <script src="assets/libs/feather-icons/feather.min.js"></script> -->
+
+        <!-- apexcharts 
+        <script src="assets/libs/apexcharts/apexcharts.min.js"></script>-->
+
+        <!-- Vector map
+        <script src="assets/libs/jsvectormap/js/jsvectormap.min.js"></script>
+        <script src="assets/libs/jsvectormap/maps/world-merc.js"></script>-->
+        <!-- analytics dashboard init -->
+        <!--<script src="assets/js/pages/dashboard-analytics.init.js"></script>-->
+
+        <script type='text/javascript' src='js/default.js'></script>
+
+    </body>
+
+
+</html>
