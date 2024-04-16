@@ -152,6 +152,12 @@ function fetchDataTotalTicket(){
   //var selectedValue = value;
   var selectedValue = $("#floatingSelect").val();
   var TotalTicket;
+  $("#TotalTicket").html(0);
+  $("#TotalProgress").html(0);
+  $("#TotalOpen").html(0);
+  $("#TotalSolved").html(0);
+  $("#TotalPending").html(0);
+
     $.ajax({
         type: "POST",
         url: "https://kanmo.uidesk.id/crm/apps/WebServiceGetDataMaster.asmx/UIDESK_TrmMasterCombo",
@@ -182,11 +188,19 @@ function fetchDataTotalTicket(){
              
             }
              //get sla closed
+            
+              var slaClosed=parseInt( $("#TotalSolved").html())/parseInt( $("#TotalTicket").html())*100;
              
-              var slaClosed =parseInt( $("#TotalSolved").html())/parseInt( $("#TotalTicket").html())*100;
-              if (isNaN(slaClosed)) slaClosed = 0;
+              if (slaClosed === Infinity) {
+                slaClosed = 0;
+              }else{
+                slaClosed=parseInt( $("#TotalSolved").html())/parseInt( $("#TotalTicket").html())*100;
+                
+              }
               
-              $('#TotalSlaClosed').html((slaClosed)+" %");
+              if (isNaN(slaClosed)) slaClosed = 0;
+
+              $('#TotalSlaClosed').html((slaClosed.toFixed(2))+" %");
           
 
         },
