@@ -1,6 +1,7 @@
 var myVarX;
 var myVarY;
 
+
 function myFunction() {
   fetchData();
   fetchDataTotalTicket();
@@ -26,6 +27,9 @@ function myFunction() {
   $('#callabdn').html('0');
   $('#callanswer').html('0');
   //myVarY = setInterval(getRedirect, 10000);
+  
+  
+
   
 }
 function getRedirect() {
@@ -147,6 +151,7 @@ function fetchData() {
 function fetchDataTotalTicket(){
   //var selectedValue = value;
   var selectedValue = $("#floatingSelect").val();
+  var TotalTicket;
     $.ajax({
         type: "POST",
         url: "https://kanmo.uidesk.id/crm/apps/WebServiceGetDataMaster.asmx/UIDESK_TrmMasterCombo",
@@ -170,12 +175,19 @@ function fetchDataTotalTicket(){
                 $("#TotalOpen").html(json[i].Jumlah);
               }else if(json[i].Jenis == "Closed"){
                 $("#TotalSolved").html(json[i].Jumlah);
+               
               }else if(json[i].Jenis == "Pending"){
                 $("#TotalPending").html(json[i].Jumlah);
               }
-
-
-          }
+             
+            }
+             //get sla closed
+             
+              var slaClosed =parseInt( $("#TotalSolved").html())/parseInt( $("#TotalTicket").html())*100;
+              if (isNaN(slaClosed)) slaClosed = 0;
+              
+              $('#TotalSlaClosed').html((slaClosed)+" %");
+          
 
         },
         error: function (xmlHttpRequest, textStatus, errorThrown) {
@@ -213,6 +225,11 @@ function fetchDataTotalEmail(){
               }else if(json[i].Jenis == "AbandonEmail"){
                 $("#TotalAbnEmail").html(json[i].Jumlah);
               }
+              else if(json[i].Jenis == "NotResponseEmail"){
+                $("#TotalNotResponseEmail").html(json[i].Jumlah);
+              }
+
+              
 
           }
 
@@ -359,6 +376,7 @@ function fetchDataIncomingCall(){
     
     //Get Data Detail
     console.log(data["DataDetail"]);
+    
     $.each(data["DataDetail"], function (i, items) {
         console.log(items.TypeNya);
         if(items.TypeNya == "InboundMissed"){
@@ -370,8 +388,40 @@ function fetchDataIncomingCall(){
 
 
   
+  var jqxhr = $.getJSON("BE/getssh_state.php", function (data) {
+    $.each(data["DataDetail"], function (i, items) {
+      console.log("getssh_state here...");
+        console.log(items['ACD-IN']);
+        console.log(items['QUE']);
+      
+        //$('#acdin').html(items['ACD-IN']);
+        
+        if(items['QUE']>0){
+          $('#TotalQueue').html("<font style='color: red;  color='red'>"+items['QUE']+"</font>");
+        }else{
+          $('#TotalQueue').html(items['QUE']);
+        }
+        
+       
+        
+
+    });
+    })
+    .done(function () {
+      //console.log( "done" );
+      
+    })
+    .fail(function () {
+      //console.log( "error" );
+    })
+    .always(function () {
+      //console.log( "complete" );
+    });
+
+  //get END
 
   var jqxhr = $.getJSON("BE/r_incoming.php", function (data) {
+  
     $.each(data["DataDetail"], function (i, items) {
       console.log("Hai iwallboard summary call asternic");
         console.log(items['Total_Inbound_Calls']);
@@ -381,7 +431,7 @@ function fetchDataIncomingCall(){
         $("#avgwaiting").html(items['Average_Inbound_Ring_Duration'] +' Secs');
         $('#TotalAnswered').html(items['Total_Complete_Calls']);
         $('#TotalAbandon').html("<font style='color: red;  color='red'>"+parseInt(items['Total_Missed_Calls']*1)+"</font>");
-        $('#TotalQueue').html("<font style='color: red;  color='red'>0</font>");
+      
         //$('#callabdn').html(items['early abandoned'][day]);
 
         var slRate = 0;
@@ -422,10 +472,18 @@ function fetchDataIncomingCall(){
         }else{
           valMR=Math.ceil(missRate * 100) / 100;
         }
+
+        if (isNaN(valAR)) valAR = 0;
+        if (isNaN(valABANR)) valABANR = 0;
+        if (isNaN(valMR)) valMR = 0;
+
         $('#SLA').html(valSL);
-        $('#AR').html(valAR);
-        $('#ABANR').html(valABANR);
-        $('#MR').html(valMR);
+        $('#AR').html(valAR+"%");
+        $('#ABANR').html(valABANR+"%");
+        $('#MR').html(valMR+"%");
+         
+       
+        
 
     });
     })
@@ -485,6 +543,7 @@ function fetchDataCountCall(){
 
 function getSLA(){
   console.log("GET SLA");
+ 
   var Abandonrate = 0;
   var currentDate = new Date();
 
@@ -497,7 +556,9 @@ function getSLA(){
   var answerRate = 0;
   var abnRate = 0;
   var missRate = 0;
+ 
   var jqxhr = $.getJSON("BE/getsummary_v2.php", function (data) {
+    console.log("DataDetail");
     console.log(data["DataDetail"]);
     $.each(data["DataDetail"], function (i, items) {
         console.log(items['Total Call'][day]);
@@ -507,6 +568,7 @@ function getSLA(){
         answerRate=(parseInt(items['Call Answered'][day])/parseInt(items['Total Call'][day]))*100
         abnRate=(parseInt(items['early abandoned'][day])/parseInt(items['Total Call'][day]))*100
         missRate=(parseInt(items['Abnd. Queue'][day])/parseInt(items['Total Call'][day]))*100
+      
         //$('#SLA').html(Math.ceil(slRate * 100) / 100);
         //$('#calltotal').html(items['Total Call'][day]); Math.ceil(data * 100) / 100;
         
