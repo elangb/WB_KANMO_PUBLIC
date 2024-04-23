@@ -4,7 +4,7 @@ ini_set("error_reporting", E_ALL);
 // Report all errors except E_NOTICE
 error_reporting(E_ALL & ~E_NOTICE);
 date_default_timezone_set('GMT');
-$mysqli = new mysqli("pbx.uidesk.id","root","Uid35k32!Uid35k32!J4y4","asteriskcdrdb");
+$mysqli = new mysqli("206.237.98.116","root","Uid35k32!Uid35k32!J4y4","asteriskcdrdb");
 /*
 
 user : root
@@ -37,7 +37,7 @@ $sql.="billsec, calldate,j1.dial,j2.dial,if(j1.dial is not null and j2.dial is n
 $sql.="if(j1.dial is null and j2.dial is not null,'inbound','') AS inbound, ";
 $sql.="if(j1.dial is not null and j2.dial is not null,'internal','') as internal ";
 $sql.="FROM asteriskcdrdb.cdr LEFT JOIN asterisk.devices as j2 on substring(dstchannel,1,locate(\"-\",dstchannel,1)-1) = j2.dial ";
-$sql.="LEFT JOIN asterisk.devices as j1 on substring(channel,1,locate(\"-\",channel,1)-1) = j1.dial WHERE DATE_FORMAT(calldate, '%Y-%m-%d') = CURDATE() AND billsec>0 AND disposition='ANSWERED' ";
+$sql.="LEFT JOIN asterisk.devices as j1 on substring(channel,1,locate(\"-\",channel,1)-1) = j1.dial WHERE calldate>curdate() AND billsec>0 AND disposition='ANSWERED' ";
 $sql.="HAVING (outbound<>'' OR inbound<>'' OR internal<>'') AND chan2<>'' ORDER BY calldate DESC";
 $result = $mysqli -> query($sql);
 
@@ -129,9 +129,74 @@ $totalcall++;
     // Create the array mapping
     $data['DataDetail'] = array($object1);
     
-//echo json_encode($data);
-// Create the array mapping
-$data['DataDetail'] = array($object1);
-echo json_encode($data, JSON_PRETTY_PRINT);    
+echo json_encode($data);
 ?>
-
+<!--<table width='99%' cellpadding=3 cellspacing=3 border=0>
+    <thead>
+    <tr>
+        <td valign=top width='50%'>
+            <table width='100%' border=0 cellpadding=0 cellspacing=0>
+                <caption><?php echo _('Call Counters')?></caption>
+                <tbody>
+                <tr>
+                   <td><?php echo _('Total Calls')?>:</td>
+                   <td><?php echo $totalcall?></td>
+                </tr>
+                </tr>
+                <tr>
+                   <td><?php echo _('Total Inbound Calls')?>:</td>
+                   <td><?php echo $inbound?></td>
+                </tr>
+                <tr>
+                   <td><?php echo _('Total Outbound Calls')?>:</td>
+                   <td><?php echo $outbound?></td>
+                </tr>
+                <tr>
+                   <td><?php echo _('Total Internal Calls')?>:</td>
+                   <td><?php echo $internal?></td>
+                </tr>
+                <tr>
+                   <td><?php echo _('Unique Callers')?>:</td>
+                   <td><?php echo count($callsfrom); ?></td>
+                </tr>
+                </tbody>
+            </table>
+        </td>
+        <td valign=top width='50%'>
+             <table width='100%' border=0 cellpadding=0 cellspacing=0>
+                <caption><?php echo _("Call Duration")?></caption>
+                <tbody>
+                <tr> 
+                  <td><?php echo _('Total Minutes')?>:</td>
+                  <td><?php echo $totaltime ?></td>
+                </tr>
+                <tr>
+                  <td><?php echo _('Total Inbound Minutes')?>:</td>
+                  <td><?php echo $totalinboundtime ?></td>
+                </tr>
+                <tr>
+                  <td><?php echo _('Total Outbound Minutes')?>:</td>
+                  <td><?php echo $totaloutboundtime ?> </td>
+                </tr>
+                <tr>
+                  <td><?php echo _('Total Internal Minutes')?>:</td>
+                  <td><?php echo $totalinternaltime ?> </td>
+                </tr>
+                <tr>
+                  <td><?php echo _('Average Inbound Call Duration')?>:</td>
+                  <td><?php echo $avgtimein." "._('minutes')  ?> </td>
+                </tr>
+                <tr>
+                  <td><?php echo _('Average Outbound Call Duration')?>:</td>
+                  <td><?php echo $avgtimeout." "._('minutes')  ?> </td>
+                </tr>
+                <tr>
+                  <td><?php echo _('Average Internal Call Duration')?>:</td>
+                  <td><?php echo $avgtimeinternal." "._('minutes')  ?> </td>
+                </tr>
+                </tbody>
+                </table>
+            </td>
+        </tr>
+        </thead>
+        </table>-->

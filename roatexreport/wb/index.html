@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Wallboard Inbound</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <link rel="icon" type="image/ico" href="favicon.ico" />
+
+    <link href="css/stylesheets.css" rel="stylesheet" type="text/css" />
+
+    <script type='text/javascript' src='js/plugins/jquery/jquery.min.js'></script>
+    <script type='text/javascript' src='js/plugins/jquery/jquery-ui.min.js'></script>
+    <script type='text/javascript' src='js/plugins/jquery/jquery-migrate.min.js'></script>
+    <script type='text/javascript' src='js/plugins/jquery/globalize.js'></script>
+    <script type='text/javascript' src='js/plugins/bootstrap/bootstrap.min.js'></script>
+
+    <script type='text/javascript' src='js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js'></script>
+    <script type='text/javascript' src='js/plugins/uniform/jquery.uniform.min.js'></script>
+
+    <script type='text/javascript' src='js/plugins/knob/jquery.knob.js'></script>
+    <script type='text/javascript' src='js/plugins/sparkline/jquery.sparkline.min.js'></script>
+    <script type='text/javascript' src='js/plugins/flot/jquery.flot.js'></script>
+    <script type='text/javascript' src='js/plugins/flot/jquery.flot.resize.js'></script>
+
+    <script type='text/javascript' src='js/plugins.js'></script>
+    <script type='text/javascript' src='js/actions.js'></script>
+    <script type='text/javascript' src='js/charts.js'></script>
+    <script type='text/javascript' src='js/settings.js'></script>
+
+</head>
+
+<body class="bg-img-light-ltr" data-settings="open">
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-3">
+                <div style="padding-top:40px;" class="block block-transparent ">
+                    <img src="logoroatex.png" width="200">
+                    <div class="content">
+                        <img height="70px;" src="img/sunrise.png">
+                        <h1 style="font-weight: 600; font-size:50px;">Inbound<br>10:00</h1><br>
+                        <h1 style="position: relative; top:-30px;;">December 9th 2020</h1>
+                        <hr style="width: 120px; float:left;">
+                    </div>
+                </div>
+                <div class="block block-transparent">
+                    <div class="content">
+                        <div>
+                            <h2 style="font-weight: 600;">Call Received</h2>
+                            <h1 style="font-weight: 600; font-size:120px; color:#ffffff; ">324</h1>
+                            <p
+                                style="font-size:20px;color: #2d384a;position:relative;background-color: white;width: 140px;padding-left: 10px;top:-20px;">
+                                Answered
+                                <strong style="font-weight: 600;"> 32 </strong></p>
+                        </div>
+                        <!--<div class="sparkline">
+                            <span sparkWidth="250" sparkHeight="120" sparkLineColor="#ffffff" sparkFillColor="false"
+                                sparkSpotColor="#ffffff" sparkMinSpotColor="#ffffff" sparkMaxSpotColor="#ffffff"
+                                sparkHighlightSpotColor="#ffffff" sparkHighlightLineColor="#FFF" sparkSpotRadius="3"
+                                sparkLineWidth="2">5,6,7,9,9,5,3,2,2,4,6,7</span>
+                        </div>-->
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-3">
+                <div style="padding-top:20px; " class="block block-transparent">
+                    <center>
+                        <div class="content">
+
+                            <div class="content">
+                                <div class="knob">
+                                    <input style="margin-left:0px;" type="text" data-fgColor="#009688" data-min="0"
+                                        data-max="100" data-width="250" data-height="250" value="87"
+                                        data-angleOffset="-125" data-angleArc="250" / disabled>
+                                </div>
+                            </div>
+                            <div style="position:relative; top:-40px;">
+                                <h2 style="font-weight: 600;">( % ) Service Level</h2>
+                            </div>
+                        </div>
+                    </center>
+                </div>
+
+
+
+                <div class="block block-transparent">
+                    <div class="block block-drop-shadow">
+                        <div class="head bg-dot20">
+                            <h1>Incoming Call Distributions</h1>
+                            <h5>Service distribution channels.</h5>
+                            <div class="head-panel tac">
+                                <div class="sparkline">
+                                    <span sparkType="pie" sparkWidth="150" sparkHeight="150">1,2,2</span>
+                                </div>
+                            </div>
+                            <div class="head-panel">
+                                <div class="hp-info hp-simple pull-left hp-inline">
+                                    <span style="font-size:18px;" class="hp-main"><span class="icon-circle"></span>
+                                        Answered</span>
+                                </div>
+                                <div class="hp-info hp-simple pull-left hp-inline">
+                                    <span style="font-size:18px;" class="hp-main"><span
+                                            class="icon-circle text-info"></span> Abandoned</span>
+                                </div>
+                                <!--<div class="hp-info hp-simple pull-left hp-inline">
+                                    <span style="font-size:18px;" class="hp-main"><span
+                                            class="icon-circle text-primary"></span> Routed
+                                        Dequesed</span>
+                                </div>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+            <div class="col-md-3">
+                <div class="block block-transparent" style="padding-top:70px;">
+                    <center>
+                        <div class="content">
+                            <div>
+                                <h2 style="font-weight: 600;">CALL IN QUEUE</h2>
+                                <h1 style="font-weight: 600; font-size:130px; color:#ffffff; ">12</h1>
+                                <p
+                                    style="font-size:20px;color: #ffffff;position:relative;background-color: #ffffff54; width: 200px;padding-left: 10px;top:-20px;">
+                                    Oldest : <strong style="font-weight: 600;"> 02:34 </strong></p>
+                            </div>
+                        </div>
+                    </center>
+
+                </div>
+
+                <div class="block">
+                    <h2 style="font-weight: 600;">Agent States</h2>
+                    <div class="head bg-dot30">
+                        <div class="head-panel nm">
+                            <div class="hp-info pull-left">
+                                <div class="hp-icon">
+                                    <img height="25px;" src="img/profile-user_notready.png">
+                                </div>
+                                <span style="font-size:20px; padding-bottom:5px; font-weight:700;"
+                                    class="hp-main">120</span>
+                                <span style="font-size:15px;" class="hp-sm">Not Ready</span>
+                            </div>
+                            <div class="hp-info pull-left">
+                                <div class="hp-icon">
+                                    <img height="25px;" src="img/profile-user.png">
+                                </div>
+                                <span style="font-size:20px; padding-bottom:5px; font-weight:700;"
+                                    class="hp-main">75</span>
+                                <span style="font-size:15px;" class="hp-sm">Talking</span>
+                            </div>
+                            <div class="hp-info pull-left">
+                                <div class="hp-icon">
+                                    <img height="25px;" src="img/profile-user_ready.png">
+                                </div>
+                                <span style="font-size:20px; padding-bottom:5px; font-weight:700;"
+                                    class="hp-main">5</span>
+                                <span style="font-size:15px;" class="hp-sm">Ready</span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class=" block block-transparent">
+                    <div style="padding-top:30px;" class="col-md-1 content tac">
+                        <div class="knob ">
+                            <input style="margin-left:0px;" type="text" data-fgColor="#f51214" data-min="0"
+                                data-max="100" data-width="250" data-height="250" value="45" data-angleOffset="-125"
+                                data-angleArc="250" />
+
+                            <h2 style="text-align: center; position:relative; top:-40px;">( % ) <br> Call Abandon Rate
+                            </h2>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-3">
+                
+                <h2 style="font-weight: 600; padding-top:50px;">List Agent</h2>
+                <div style="margin-top:20px;" class="block block-drop-shadow">
+                    <div class="content content-transparent np">
+                        <div class="list list-contacts">
+                            <a href="#" class="list-item">
+                                <div class="list-info">
+                                    <img src="img/example/user/dmitry_s.jpg" class="img-circle img-thumbnail">
+                                </div>
+                                <div class="list-text">
+                                    <span style="font-size:18px;" class="list-text-name">John Doe</span>
+                                    <div style="font-size:13px; color:rgb(128, 83, 0);" class="list-text-info"><i
+                                            class="icon-circle"></i>
+                                        Not Ready
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="#" class="list-item">
+                                <div class="list-info">
+                                    <img src="img/example/user/helen_s.jpg" class="img-circle img-thumbnail">
+                                </div>
+                                <div class="list-text">
+                                    <span style="font-size:18px;" class="list-text-name"> Michel G</span>
+                                    <div style="font-size:13px; color:green;" class="list-text-info"><i
+                                            class="icon-circle"></i>
+                                        Ready
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="#" class="list-item">
+                                <div class="list-info">
+                                    <img src="img/example/user/olga_s.jpg" class="img-circle img-thumbnail">
+                                </div>
+                                <div class="list-text">
+                                    <span style="font-size:18px;" class="list-text-name">Ananta Michel</span>
+                                    <div style="font-size:13px; color:rgb(255, 255, 255);" class="list-text-info"><i
+                                            class="icon-circle"></i>
+                                        Talking
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="#" class="list-item">
+                                <div class="list-info">
+                                    <img src="img/example/user/olga_s.jpg" class="img-circle img-thumbnail">
+                                </div>
+                                <div class="list-text">
+                                    <span style="font-size:18px;" class="list-text-name">Siera Uye</span>
+                                    <div style="font-size:13px; color:rgb(255, 255, 255);" class="list-text-info"><i
+                                            class="icon-circle"></i>
+                                        Talking
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="#" class="list-item">
+                                <div class="list-info">
+                                    <img src="img/example/user/helen_s.jpg" class="img-circle img-thumbnail">
+                                </div>
+                                <div class="list-text">
+                                    <span style="font-size:18px;" class="list-text-name">Jeny Go</span>
+                                    <div style="font-size:13px; color:rgb(255, 255, 255);" class="list-text-info"><i
+                                            class="icon-circle"></i>
+                                        Talking
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="#" class="list-item">
+                                <div class="list-info">
+                                    <img src="img/example/user/alexey_s.jpg" class="img-circle img-thumbnail">
+                                </div>
+                                <div class="list-text">
+                                    <span style="font-size:18px;" class="list-text-name">Yueana Re</span>
+                                    <div style="font-size:13px; color:rgb(255, 255, 255);" class="list-text-info"><i
+                                            class="icon-circle"></i>
+                                        Talking
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

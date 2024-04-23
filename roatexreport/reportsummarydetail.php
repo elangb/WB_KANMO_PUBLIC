@@ -11,7 +11,7 @@
 	<tbody>
 <?php
 include("getagents-lib.php");
-$conn = new mysqli("pbx.uidesk.id","root","Uid35k32!Uid35k32!J4y4","asteriskcdrdb");
+$conn = new mysqli("sip.uidesk.id","root","Zimam@030622!!","asteriskcdrdb");
 
 // Memeriksa koneksi
 if ($conn->connect_error) {

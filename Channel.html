@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+<head>
+        
+        <meta charset="utf-8" />
+        <title>Dashboard All Channel Local</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+        <meta content="Pichforest" name="author" />
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+        <!-- plugin css -->
+        <link href="assets/libs/jsvectormap/css/jsvectormap.min.css" rel="stylesheet" type="text/css" />
+
+        <!-- Bootstrap Css -->
+        <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+        <!-- Icons Css -->
+        <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+        <!-- App Css-->
+        <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+        <script src="js/jquery.min.js"></script>
+        <style>
+            #elem {
+                animation: blink 0.3s infinite
+              }
+              
+              @keyframes blink {
+                from {
+                  opacity: 0
+                }
+              
+                to {
+                  opacity: 1
+                }
+              }
+        </style>
+    </head>
+
+    
+    <body data-layout-mode="dark" data-topbar="dark" data-sidebar="dark">
+
+    <!-- <body data-layout="horizontal"> -->
+
+        <!-- Begin page -->
+        <div id="layout-wrapper">
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div>
+                <div>
+                    <div class="container-fluid">
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+							  <br>
+                                <div class="page-title-box d-flex align-items-center justify-content-between">
+                                    <h4 class="mb-0"><img src="cantas.png" width="200"></h4>
+
+                                    <div class="page-title-right">
+                                        <ol class="breadcrumb m-0">
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">DATA</a></li>
+                                           
+                                        </ol>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end page title -->
+                        <div class="row">
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="date1">Start Date :</label>
+                                    <input type="datetime-local" class="form-control" id="date1"> </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="date1">End Date :</label>
+                                    <input type="datetime-local" class="form-control" id="date2"> </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="date1"> &nbsp;</label>
+                                    <button type="button" class="form-control btn-outline-primary" id="submitData">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-xxl-8 col-lg-8">
+                                <div class="card">
+                                    <div class="card-header bg-transparent">
+                                        <div class="d-flex align-items-start">
+                                            <div class="flex-grow-1">
+                                                <h5 class="card-title mb-0"><img width="32px" src="icon/call.png"> Summary Call Interaction</h5>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xxl-4 col-lg-4">
+                                            
+                                            <h4 class="text-primary my-1"><span class="badge badge-soft-success ms-2" id="totalcall">0</span><span class="text-muted d-inline-block fw-normal font-size-13 ms-2">Total incoming call</span></h4>
+                                        </div>
+                                        <div class="col-xxl-4 col-lg-4">
+                                            <h4 class="text-primary my-1"><span class="badge badge-soft-success ms-2" id="totalcallanswered">0</span><span class="text-muted d-inline-block fw-normal font-size-13 ms-2">Total call answered</span></h4>
+                                        </div>
+                                        <div class="col-xxl-4 col-lg-4">
+                                            <h4 class="text-primary my-1"><span class="badge badge-soft-success ms-2" id="totalcallunanswered">0</span><span class="text-muted d-inline-block fw-normal font-size-13 ms-2">Total call unanswered</span></h4>
+                                        </div>
+                                       
+                                    </div>
+                                   <div style="height: 50px;"></div>
+                                   <div class="row">
+                                        <div class="col-xxl-4 col-lg-4">
+                                            <h4 class="text-primary my-1"><span class="badge badge-soft-success ms-2" id="totalcallsolvedclosed">0</span><span class="text-muted d-inline-block fw-normal font-size-13 ms-2">Total ticket solved/closed</span></h4>
+                                        </div>
+                                        <div class="col-xxl-4 col-lg-4">
+                                            <h4 class="my-1"><span class="badge badge-soft-success ms-2" id="totalcalloversla">0</span><span class="text-muted d-inline-block fw-normal font-size-13 ms-2">Total ticket over SLA</span>
+                                            </h4>
+                                        </div>
+                                        <div class="col-xxl-4 col-lg-4">
+                                            <h4 class="my-1"><span class="badge badge-soft-danger ms-2" id="totalsl">0 %</span><span class="text-muted d-inline-block fw-normal font-size-13 ms-2">Service Level (SL)</span></h4>
+                                        </div>
+                                   </div>
+                                   <div style="height: 50px;"></div>
+                                </div>
+                            </div>
+                            <div class="col-xxl-4 col-lg-4">
+                                <div class="card">
+                                    <div>
+                                        &nbsp;&nbsp;&nbsp;<label for="date1">Top 5 Topic/Subtopic</label>
+                                        <ul class="list-group list-group-flush" id="listCall">
+                                            
+                                           
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       
+                        <!-- end row Start Email-->
+                        <div class="row">
+                            <div class="col-xxl-8 col-lg-8">
+                                <div class="card">
+                                    <div class="card-header bg-transparent">
+                                        <div class="d-flex align-items-start">
+                                            <div class="flex-grow-1">
+                                                <h5 class="card-title mb-0"><img width="32px" src="icon/email.png"> Summary Email Interaction</h5>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xxl-4 col-lg-4">
+                                            
+                                            <h4 class="text-primary my-1"><span class="badge badge-soft-success ms-2" id="totalemail">0</span><span class="text-muted d-inline-block fw-normal font-size-13 ms-2">Total incoming email</span></h4>
+                                        </div>
+                                        <div class="col-xxl-4 col-lg-4">
+                                            <h4 class="text-primary my-1"><span class="badge badge-soft-success ms-2" id="totalemailsolvedclosed">0</span><span class="text-muted d-inline-block fw-normal font-size-13 ms-2">Total email solved/closed</span></h4>
+                                        </div>
+                                       
+                                        <div class="col-xxl-4 col-lg-4">
+                                            <h4 class="my-1"><span class="badge badge-soft-success ms-2" id="totalemailoversla">0</span><span class="text-muted d-inline-block fw-normal font-size-13 ms-2">Total email over SLA</span>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                   <div style="height: 50px;"></div>
+                                   <div class="row">
+                                        
+                                    <div class="col-xxl-6 col-lg-6">
+                                        <h4 class="my-1"><span class="badge badge-soft-success ms-2" id="totalemailfrt">00:00:00</span><span class="text-muted d-inline-block fw-normal font-size-13 ms-2">First Response Time (FRT)</span>
+                                        </h4>
+                                    </div>
+                                        <div class="col-xxl-6 col-lg-6">
+                                            <h4 class="my-1"><span class="badge badge-soft-info ms-2" id="totalemailaht">00:00:00</span><span class="text-muted d-inline-block fw-normal font-size-13 ms-2">Average Handling Time (AHT)</span></h4>
+                                        </div>
+                                   </div>
+                                   <div style="height: 50px;"></div>
+                                </div>
+                            </div>
+                            <div class="col-xxl-4 col-lg-4">
+                                <div class="card">
+                                    <div>
+                                        &nbsp;&nbsp;&nbsp;<label for="date1">Top 5 Topic/Subtopic</label>
+                                        <ul class="list-group list-group-flush" id="listEmail">
+                                            
+                                           
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- end row Start WA-->
+                        <div class="row">
+                            <div class="col-xxl-8 col-lg-8">
+                                <div class="card">
+                                    <div class="card-header bg-transparent">
+                                        <div class="d-flex align-items-start">
+                                            <div class="flex-grow-1">
+                                                <h5 class="card-title mb-0"><img width="32px" src="icon/whatsapp.png"> Summary Whatsapp Interaction</h5>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xxl-4 col-lg-4">
+                                            
+                                            <h4 class="text-primary my-1"><span class="badge badge-soft-success ms-2" id="totalwa">0</span><span class="text-muted d-inline-block fw-normal font-size-13 ms-2">Total incoming whatsapp</span></h4>
+                                        </div>
+                                        <div class="col-xxl-4 col-lg-4">
+                                            <h4 class="text-primary my-1"><span class="badge badge-soft-success ms-2" id="totalwasolvedclosed">0</span><span class="text-muted d-inline-block fw-normal font-size-13 ms-2">Total whatsapp solved/closed</span></h4>
+                                        </div>
+                                        <div class="col-xxl-4 col-lg-4">
+                                            <h4 class="text-primary my-1"><span class="badge badge-soft-success ms-2" id="totalwaoversla">0</span><span class="text-muted d-inline-block fw-normal font-size-13 ms-2">Total whatsapp over SLA</span></h4>
+                                        </div>
+                                       
+                                    </div>
+                                   <div style="height: 50px;"></div>
+                                   <div class="row">
+                                        
+                                        <div class="col-xxl-6 col-lg-6">
+                                            <h4 class="my-1"><span class="badge badge-soft-success ms-2" id="totalwafrt">00:00:00</span><span class="text-muted d-inline-block fw-normal font-size-13 ms-2">First Response Time (FRT)</span>
+                                            </h4>
+                                        </div>
+                                        <div class="col-xxl-6 col-lg-6">
+                                            <h4 class="my-1"><span class="badge badge-soft-info ms-2" id="totalwaaht">00:00:00</span><span class="text-muted d-inline-block fw-normal font-size-13 ms-2">Average Handling Time (AHT)</span></h4>
+                                        </div>
+                                   </div>
+                                   <div style="height: 50px;"></div>
+                                </div>
+                            </div>
+                            <div class="col-xxl-4 col-lg-4">
+                                <div class="card">
+                                    <div>
+                                        &nbsp;&nbsp;&nbsp;<label for="date1">Top 5 Topic/Subtopic</label>
+                                        <ul class="list-group list-group-flush" id="listWhatsapp">
+                                            
+                                           
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- container-fluid -->
+                </div>
+                <!-- End Page-content -->
+            
+                
+            </div>
+            <!-- end main content-->
+            
+
+        </div>
+        <!-- END layout-wrapper -->
+
+       
+
+        <!-- Right bar overlay-->
+        <div class="rightbar-overlay"></div>
+
+        <!-- JAVASCRIPT
+        <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/libs/metismenujs/metismenujs.min.js"></script>
+        <script src="assets/libs/simplebar/simplebar.min.js"></script>
+        <script src="assets/libs/feather-icons/feather.min.js"></script> -->
+
+        <!-- apexcharts 
+        <script src="assets/libs/apexcharts/apexcharts.min.js"></script>-->
+
+        <!-- Vector map
+        <script src="assets/libs/jsvectormap/js/jsvectormap.min.js"></script>
+        <script src="assets/libs/jsvectormap/maps/world-merc.js"></script>-->
+        <!-- analytics dashboard init -->
+        <!--<script src="assets/js/pages/dashboard-analytics.init.js"></script>-->
+
+        <script type='text/javascript' src='js/channel.js'></script>
+
+    </body>
+
+
+</html>
