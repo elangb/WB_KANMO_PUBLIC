@@ -29,6 +29,7 @@ function myFunction() {
   //myVarY = setInterval(getRedirect, 10000);
   
   
+  
 
   
 }
@@ -105,6 +106,7 @@ function fetchData() {
     console.log("Hai iwallboard Aux Agent");
     var Abandonrate = 0;
     var selectedValue = $("#floatingSelect").val();
+    
     console.log('https://kanmo.uidesk.id/crm/apps/WebServiceGetDataMaster.asmx/UIDESK_TrmMasterCombo?TrxID='+selectedValue+'&TrxUserName=Inquiry&TrxAction=UIDESK132');
     fetch('https://kanmo.uidesk.id/crm/apps/WebServiceGetDataMaster.asmx/UIDESK_TrmMasterCombo?TrxID='+selectedValue+'&TrxUserName=Inquiry&TrxAction=UIDESK132')
     .then(response => response.text())
@@ -521,7 +523,7 @@ function fetchDataIncomingCall(){
 function fetchDataCountCall(){
   //var selectedValue = value;
   var selectedValue = $("#floatingSelect").val();
-  var jqxhr = $.getJSON("BE/getcountstatus.php", function (data) {
+  var jqxhr = $.getJSON("BE/getcountstatus.php?param=" + encodeURIComponent(selectedValue), function (data) {
     console.log("Hai iwallboard Count");
     
     //Get Data Detail
