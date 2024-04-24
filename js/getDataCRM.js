@@ -27,9 +27,19 @@ function myFunction() {
   $('#callabdn').html('0');
   $('#callanswer').html('0');
   //myVarY = setInterval(getRedirect, 10000);
-  
-  
-  
+
+  var selectedValue = $("#floatingSelect").val();
+  if(selectedValue == "MP"){
+   
+      $("#divCall").hide();
+      $("#divEmail").hide();
+      $("#divInbount").hide();
+      
+  }else{
+     $("#divCall").show();
+      $("#divEmail").show();
+      $("#divInbount").show();
+  }
 
   
 }
