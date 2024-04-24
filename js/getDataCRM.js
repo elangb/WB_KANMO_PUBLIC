@@ -34,11 +34,15 @@ function myFunction() {
       $("#divCall").hide();
       $("#divEmail").hide();
       $("#divInbount").hide();
+      $("#divAgentDetail").hide();
+      
       
   }else{
      $("#divCall").show();
       $("#divEmail").show();
       $("#divInbount").show();
+      $("#divAgentDetail").show();
+      
   }
 
   
@@ -332,7 +336,10 @@ function fetchDataTotalAux(){
 }
 
 function fetchDataAverage(){
-  var jqxhr = $.getJSON("BE/r_dashboard.php", function (data) {
+ 
+  var selectedValue = $("#floatingSelect").val();
+  
+  var jqxhr = $.getJSON("BE/r_dashboard.php?param=" + encodeURIComponent(selectedValue), function (data) {
     console.log("Hai iwallboard dashboard");
     
     //Get Data Detail
@@ -364,7 +371,8 @@ function fetchDataAverage(){
 }
 
 function fetchDataState(){
-  var jqxhr = $.getJSON("BE/r_agent_state.php", function (data) {
+  var selectedValue = $("#floatingSelect").val();
+  var jqxhr = $.getJSON("BE/r_agent_state.php?param=" + encodeURIComponent(selectedValue), function (data) {
     console.log("Hai iwallboard dashboard agent state");
     
     //Get Data Detail
@@ -397,7 +405,7 @@ function fetchDataState(){
 function fetchDataIncomingCall(){
   //var selectedValue = value;
   var selectedValue = $("#floatingSelect").val();
-  var jqxhr = $.getJSON("BE/getsummary.php", function (data) {
+  var jqxhr = $.getJSON("BE/getsummary.php?param=" + encodeURIComponent(selectedValue), function (data) {
     console.log("Hai iwallboard missed");
     
     //Get Data Detail
@@ -414,7 +422,7 @@ function fetchDataIncomingCall(){
 
 
   
-  var jqxhr = $.getJSON("BE/getssh_state.php", function (data) {
+  var jqxhr = $.getJSON("BE/getssh_state.php?param=" + encodeURIComponent(selectedValue), function (data) {
     $.each(data["DataDetail"], function (i, items) {
       console.log("getssh_state here...");
         console.log(items['ACD-IN']);
@@ -445,9 +453,9 @@ function fetchDataIncomingCall(){
     });
 
   //get END
-
-  var jqxhr = $.getJSON("BE/r_incoming.php", function (data) {
   
+  var jqxhr = $.getJSON("BE/r_incoming.php?param=" + encodeURIComponent(selectedValue), function (data) {
+   
     $.each(data["DataDetail"], function (i, items) {
       console.log("Hai iwallboard summary call asternic");
         console.log(items['Total_Inbound_Calls']);
@@ -582,8 +590,9 @@ function getSLA(){
   var answerRate = 0;
   var abnRate = 0;
   var missRate = 0;
- 
-  var jqxhr = $.getJSON("BE/getsummary_v2.php", function (data) {
+  var selectedValue = $("#floatingSelect").val();
+  var jqxhr = $.getJSON("BE/getsummary_v2.php?param=" + encodeURIComponent(selectedValue), function (data) {
+    
     console.log("DataDetail");
     console.log(data["DataDetail"]);
     $.each(data["DataDetail"], function (i, items) {

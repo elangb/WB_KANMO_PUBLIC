@@ -38,7 +38,14 @@ $sql.="if(j1.dial is null and j2.dial is not null,'inbound','') AS inbound, ";
 $sql.="if(j1.dial is not null and j2.dial is not null,'internal','') as internal ";
 $sql.="FROM asteriskcdrdb.cdr LEFT JOIN asterisk.devices as j2 on substring(dstchannel,1,locate(\"-\",dstchannel,1)-1) = j2.dial ";
 $sql.="LEFT JOIN asterisk.devices as j1 on substring(channel,1,locate(\"-\",channel,1)-1) = j1.dial WHERE DATE_FORMAT(calldate, '%Y-%m-%d') = CURDATE() AND billsec>0 AND disposition='ANSWERED' ";
+
+if ($_GET['param'] =='NESPRESSO')
+    $sql.= "AND  (channel LIKE '%101010%' OR channel LIKE '%101011%' OR  channel LIKE '%101012%' OR channel LIKE '%101013%' OR channel LIKE '%101014%' )";
+else
+    $sql.= "AND  (channel LIKE '%201010%' OR channel LIKE '%201011%' OR  channel LIKE '%201012%' OR channel LIKE '%201013%' OR channel LIKE '%201014%' )";
+    
 $sql.="HAVING (outbound<>'' OR inbound<>'' OR internal<>'') AND chan2<>'' ORDER BY calldate DESC";
+
 $result = $mysqli -> query($sql);
 
 $data = [];

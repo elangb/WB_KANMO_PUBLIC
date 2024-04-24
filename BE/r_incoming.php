@@ -24,11 +24,18 @@ if ($mysqli -> connect_errno) {
   $otherchanfield = "dstchannel";
   $rep_title      = "Incoming / Outgoing";
 
+  $paramValue ='' ;
+//die($paramValue);
+
+
   $query = "SELECT substring($chanfield,1,locate(\"-\",$chanfield,length($chanfield)-8)-1) AS chan1,";
   $query.= "billsec,duration,duration-billsec as ringtime,src,dst,calldate,disposition,accountcode FROM asteriskcdrdb.cdr ";
   $query.= "WHERE DATE_FORMAT(calldate, '%Y-%m-%d') = CURDATE() AND (duration-billsec) >=0 ";
-  $query.= "HAVING chan1 in ('SIP/201010','SIP/201011','SIP/201012','SIP/201013','SIP/201014','SIP/101010','SIP/101011','SIP/101012','SIP/101013') order by null";
-
+  
+  if ($_GET['param'] =='NESPRESSO')
+    $query.= "HAVING chan1 in ('SIP/101010','SIP/101011','SIP/101012','SIP/101013') order by null";
+  else
+    $query.= "HAVING chan1 in ('SIP/201010','SIP/201011','SIP/201012','SIP/201013','SIP/201014') order by null";
   
 
   $total_calls = 0;
@@ -67,7 +74,13 @@ if ($mysqli -> connect_errno) {
       $query = "SELECT substring($chanfield,1,locate(\"-\",$chanfield,length($chanfield)-8)-1) AS chan1,";
       $query.= "billsec,duration,duration-billsec as ringtime,src,dst,calldate,disposition,accountcode FROM asteriskcdrdb.cdr ";
       $query.= "WHERE DATE_FORMAT(calldate, '%Y-%m-%d') = CURDATE() AND (duration-billsec) >=0  ";
-      $query.= "HAVING chan1 in ('SIP/201010','SIP/201011','SIP/201012','SIP/201013','SIP/201014','SIP/101010','SIP/101011','SIP/101012','SIP/101013')  order by null";
+
+      if ($_GET['param'] =='NESPRESSO')
+        $query.= "HAVING chan1 in ('SIP/101010','SIP/101011','SIP/101012','SIP/101013') order by null";
+      else
+        $query.= "HAVING chan1 in ('SIP/201010','SIP/201011','SIP/201012','SIP/201013','SIP/201014') order by null";
+    
+     // $query.= "HAVING chan1 in ('SIP/201010','SIP/201011','SIP/201012','SIP/201013','SIP/201014','SIP/101010','SIP/101011','SIP/101012','SIP/101013')  order by null";
       //echo $query;
       $result = $mysqli -> query($query);
   
