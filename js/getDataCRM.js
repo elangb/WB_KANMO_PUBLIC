@@ -35,6 +35,14 @@ function myFunction() {
       $("#divEmail").hide();
       $("#divInbount").hide();
       $("#divAgentDetail").hide();
+      $("#DivMaxWaitingTime").hide();
+      $("#DivAvgTalkingTime").hide();
+      $("#DivAvgWaitingTime").hide();
+      $("#DivTalking").hide();
+      
+      
+      
+      
       
       
   }else{
@@ -42,6 +50,10 @@ function myFunction() {
       $("#divEmail").show();
       $("#divInbount").show();
       $("#divAgentDetail").show();
+      $("#DivMaxWaitingTime").show();
+      $("#DivAvgTalkingTime").show();
+      $("#DivAvgWaitingTime").show();
+      $("#DivTalking").show();
       
   }
 
@@ -230,6 +242,7 @@ function fetchDataTotalTicket(){
 //GET DATA EMAIL
 function fetchDataTotalEmail(){
   //var selectedValue = value;
+  //alert("");
   var selectedValue = $("#floatingSelect").val();
     $.ajax({
         type: "POST",
@@ -293,7 +306,7 @@ function fetchDataTotalAux(){
             table += '<tr>' +                                               
             '<th scope="col">Break Down AUX</th>' +
             '<th scope="col">Login Time</th>' +
-            '<th scope="col">Handle Market Place</th>' +
+            // '<th scope="col">Handle Market Place</th>' +
             '<th scope="col">Follow Up Email</th>' +
             '<th scope="col">Training</th>' +
             '<th scope="col">Prayer</th>' +
@@ -309,7 +322,7 @@ function fetchDataTotalAux(){
                 table += '<tr>';
                 table += '<td>' + json[i].AuxUserName + '</td>';
                 table += '<td>' + json[i].LoginTime + '</td>';
-                table += '<td>' + json[i].HandleMarket + '</td>';
+                // table += '<td>' + json[i].HandleMarket + '</td>';
                 table += '<td>' + json[i].FollowUp + '</td>';
                 table += '<td>' + json[i].Training + '</td>';
                 table += '<td>' + json[i].Prayer + '</td>';
@@ -372,33 +385,68 @@ function fetchDataAverage(){
 
 function fetchDataState(){
   var selectedValue = $("#floatingSelect").val();
-  var jqxhr = $.getJSON("BE/r_agent_state.php?param=" + encodeURIComponent(selectedValue), function (data) {
-    console.log("Hai iwallboard dashboard agent state");
-    
-    //Get Data Detail
-    console.log(data["DataDetail"]);
-    $.each(data["DataDetail"], function (i, items) {
-      $("#stateready").html(items['READY']);
-      $("#statetalking").html(items['ACD-IN']);
-      $("#stateaux").html(items['UNAVAILABLE']);   
-         
-    })
+  if (selectedValue == "MP" ){
+
+    $.ajax({
+      type: "POST",
+      url: "https://kanmo.uidesk.id/crm/apps/WebServiceGetDataMaster.asmx/UIDESK_TrmMasterCombo",
+      data: "{TrxID:'"+ selectedValue +"', TrxUserName: '', TrxAction: 'UIDESK136'}",
+      contentType: "application/json; charset=utf-8",
+      dataType: "json",
+      success: function (data) {
+
+          var json = JSON.parse(data.d);
+          var i, x, resultSourceEnquiryReason = "";
+          console.log(json);
+          for (i = 0; i < json.length; i++) {
+            
+            if(json[i].Jenis == "Ready")
+              $("#stateready").html(json[i].Jumlah);
+            else
+              $("#stateaux").html(json[i].Jumlah);   
+
+           
+            
+
+        }
+
+      },
+      error: function (xmlHttpRequest, textStatus, errorThrown) {
+          console.log(xmlHttpRequest.responseText);
+          console.log(textStatus);
+          console.log(errorThrown);
+      }
   })
-  .done(function () {
-    //console.log( "done" );
-    
-  })
-  .fail(function () {
-    //console.log( "error" );
-  })
-  .always(function () {
-    //console.log( "complete" );
-  });
-  // Perform other work here ...
-  // Set another completion function for the request above
-  jqxhr.always(function () {
-    //console.log( "second complete" );
-  });
+
+  }else{
+      var jqxhr = $.getJSON("BE/r_agent_state.php?param=" + encodeURIComponent(selectedValue), function (data) {
+        console.log("Hai iwallboard dashboard agent state");
+        
+        //Get Data Detail
+        console.log(data["DataDetail"]);
+        $.each(data["DataDetail"], function (i, items) {
+          $("#stateready").html(items['READY']);
+          $("#statetalking").html(items['ACD-IN']);
+          $("#stateaux").html(items['UNAVAILABLE']);   
+            
+        })
+      })
+      .done(function () {
+        //console.log( "done" );
+        
+      })
+      .fail(function () {
+        //console.log( "error" );
+      })
+      .always(function () {
+        //console.log( "complete" );
+      });
+      // Perform other work here ...
+      // Set another completion function for the request above
+      jqxhr.always(function () {
+        //console.log( "second complete" );
+      });
+}
  
 }
 
