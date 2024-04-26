@@ -39,6 +39,9 @@ function myFunction() {
       $("#DivAvgTalkingTime").hide();
       $("#DivAvgWaitingTime").hide();
       $("#DivTalking").hide();
+      $("#DivBreakdownAuxMP").show();
+      $("#DivBreakdownAuxNonMP").hide();
+      
       
       
       
@@ -54,6 +57,8 @@ function myFunction() {
       $("#DivAvgTalkingTime").show();
       $("#DivAvgWaitingTime").show();
       $("#DivTalking").show();
+      $("#DivBreakdownAuxMP").hide();
+      $("#DivBreakdownAuxNonMP").show();
       
   }
 
@@ -316,7 +321,7 @@ function fetchDataTotalAux(){
             '<th scope="col">Break Down AUX</th>' +
             '<th scope="col">Login Time</th>' +
             // '<th scope="col">Handle Market Place</th>' +
-            '<th scope="col">Follow Up Email</th>' +
+            '<th scope="col">Handle Email</th>' +
             '<th scope="col">Training</th>' +
             '<th scope="col">Prayer</th>' +
             '<th scope="col">Lunch</th>' +
@@ -346,7 +351,11 @@ function fetchDataTotalAux(){
             table += '</table>';
             
             // Menempatkan tabel ke dalam elemen dengan ID "table-container"
+            //if (selectedValue =="MP")
+              $('#table-container-MP').html(table);
+            //else
             $('#table-container').html(table);
+
 
         },
         error: function (xmlHttpRequest, textStatus, errorThrown) {
