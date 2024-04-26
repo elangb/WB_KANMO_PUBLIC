@@ -386,6 +386,7 @@ function fetchDataAverage(){
 function fetchDataState(){
   var selectedValue = $("#floatingSelect").val();
   if (selectedValue == "MP" ){
+    
 
     $.ajax({
       type: "POST",
