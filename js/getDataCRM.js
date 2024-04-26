@@ -244,6 +244,15 @@ function fetchDataTotalEmail(){
   //var selectedValue = value;
   //alert("");
   var selectedValue = $("#floatingSelect").val();
+
+  
+    $("#TotalAnsweredEmail").html(0);
+    $("#TotalIncomingEmail").html(0);
+    $("#TotalQueEmail").html(0);
+    $("#TotalAbnEmail").html(0);
+    $("#TotalNotResponseEmail").html(0);
+  
+
     $.ajax({
         type: "POST",
         url: "https://kanmo.uidesk.id/crm/apps/WebServiceGetDataMaster.asmx/UIDESK_TrmMasterCombo",
