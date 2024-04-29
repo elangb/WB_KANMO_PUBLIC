@@ -33,10 +33,10 @@ $paramValue ='' ;
 if ($_GET['param'] =='NESPRESSO')
   $paramValue ='60010';
 else
-$paramValue ='60012';
+  $paramValue ='60012';
 
   
-$sqlNya="select agent as AgentName,COUNT(id) as IncomingCall,0 as OutgoingCall,SEC_TO_TIME(SUM(waittime)) as WaitingTime,SEC_TO_TIME(SUM(talktime)) as TalkingTime,'Ready' as StatusAgent from queue_stats_mv where DATE(datetime)=DATE(NOW()) and queue=$paramValue group by agent order by id desc;";
+$sqlNya="select agent as AgentName,COUNT(id) as IncomingCall,0 as OutgoingCall,SEC_TO_TIME(SUM(waittime)) as WaitingTime,SEC_TO_TIME(SUM(talktime)) as TalkingTime,'Ready' as StatusAgent from queue_stats_mv where DATE(datetime)=DATE(NOW()) and queue=$paramValue and agent <>'NONE' group by agent order by id desc;";
 $result = $mysqli -> query($sqlNya);
 
 $data = [];
