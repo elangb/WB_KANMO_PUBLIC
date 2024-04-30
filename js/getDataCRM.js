@@ -342,8 +342,8 @@ function fetchDataTotalAux(){
                 table += '<td>' + json[i].Prayer + '</td>';
                 table += '<td>' + json[i].Lunch + '</td>';
                 table += '<td>' + json[i].Toilet + '</td>';
-                table += '<td>' + json[i].Toilet + '</td>';
-                table += '<td>' + json[i].Toilet + '</td>';
+                table += '<td>' + json[i].ReadyTime + '</td>';
+                table += '<td>' + json[i].HoldTime + '</td>';
                 table += '</tr>';
 
             }
