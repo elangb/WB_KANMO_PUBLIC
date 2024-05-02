@@ -31,14 +31,14 @@ select 'CallAbandoned' TypeNya,COUNT(*) as ValNya from asteriskcdrdb.cdr where D
 $paramValue ='' ;
 //die($paramValue);
 if ($_GET['param'] =='NESPRESSO')
-  $paramValue ='60010';
+  $paramValue ='60010,60011';
 else
-  $paramValue ='60012';
+  $paramValue ='60012,60013';
 
   
-$sqlNya="select agent as AgentName,COUNT(id) as IncomingCall,0 as OutgoingCall,SEC_TO_TIME(SUM(waittime)) as WaitingTime,SEC_TO_TIME(SUM(talktime)) as TalkingTime,'Ready' as StatusAgent from queue_stats_mv where DATE(datetime)=DATE(NOW()) and queue=$paramValue and agent <>'NONE' group by agent order by id desc;";
+$sqlNya="select agent as AgentName,COUNT(id) as IncomingCall,0 as OutgoingCall,SEC_TO_TIME(SUM(waittime)) as WaitingTime,SEC_TO_TIME(SUM(talktime)) as TalkingTime,'Ready' as StatusAgent from queue_stats_mv where DATE(datetime)=DATE(NOW()) and queue in($paramValue) and agent <>'NONE' group by agent order by id desc;";
 $result = $mysqli -> query($sqlNya);
-
+//die($sqlNya);
 $data = [];
 while ($row = $result->fetch_assoc()) {
    

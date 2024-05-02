@@ -1,9 +1,45 @@
 var myVarX;
 var myVarY;
 var dataAgent;
+var autoreplace = false;
+
+function replaceText() {
+    
+  if(autoreplace == true){
+   // alert("aa")
+    fetchData();
+    fetchDataTotalTicket();
+    fetchDataIncomingCall();
+    fetchDataTotalEmail();
+    fetchDataTotalAux();
+    fetchDataCountCall();
+    fetchDataAverage();
+    fetchDataState();
+    getSLA();
+    $('#calloutbound').html('0');
+    $('#staffedoutbound').html('0');
+    $('#auxagent').html('0');
+    $('#waiting').html('0');
+    $('#acdin').html('0');
+    $('#avail').html('0');
+    $('#callabdn').html('0');
+    $('#callanswer').html('0');
+
+    
+
+  }
+}
+
 
 
 function myFunction() {
+
+ autoreplace=true;
+ //alert("");
+ setInterval(replaceText,  8 * 60 * 1000);
+ //setInterval(replaceText,  5000);
+
+
   fetchData();
   fetchDataTotalTicket();
   fetchDataIncomingCall();
@@ -542,6 +578,9 @@ function fetchDataIncomingCall(){
         AbandonCalls=items.total_data;
       if (items.lastapp == "early abandoned")
          Earlyabandoned =items.total_data;
+      if (items.lastapp == "OUTBOUND")
+         OutgoingCalls =items.total_data;
+         
 
         
     
@@ -550,6 +589,8 @@ function fetchDataIncomingCall(){
     $('#TotalIncoming').html(TotalData);
     $('#TotalAnswered').html(TotalAnswered);
     $('#TotalAbandon').html("<font style='color: red;  color='red'>"+parseInt(AbandonCalls)+"</font>");
+    $('#TotalOutgoing').html(OutgoingCalls);
+    
     
 
     
@@ -573,13 +614,13 @@ function fetchDataIncomingCall(){
       if (RoundedmissRate === Infinity) 
           RoundedmissRate = 0;
       
-       $('#MR').html(RoundedmissRate+"%");
+      // $('#MR').html(RoundedmissRate+"%");
 
        //abn
        //MissedCalls = parseInt(AbandonCalls) + parseInt(Earlyabandoned);
        abnRate=((isNaN(AbandonCalls) ? 0 : AbandonCalls)/(isNaN(TotalData) ? 0 : TotalData))*100
-       var abnRounded = Math.round( Math.round(isNaN(abnRate) ? 0 : isFinite(abnRate) ? 0 : abnRate ));
-       $('#ABANR').html(abnRounded+"%");
+       var abnRounded = Math.round(abnRate);
+       $('#ABANR').html(abnRounded +"%");
 
       // $('#MR').html(valMR+"%");
        //missRate=(parseInt(items['Total_Missed_Calls'])/parseInt(items['Total_Inbound_Calls']))*100
