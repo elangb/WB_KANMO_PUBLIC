@@ -719,7 +719,7 @@ function agentList() {
   getDateTime();
   console.log("Hai iwallboard summary call asternic");
   //var selectedValue = value;
-  var jqxhr = $.getJSON("BE/r_incoming.php", function (data) {
+  var jqxhr = $.getJSON("BE/r_incoming_new.php", function (data) {
     $.each(data["DataDetail"], function (i, items) {
       console.log("Hai iwallboard summary call asternic");
         console.log(items['Total_Inbound_Calls']);
