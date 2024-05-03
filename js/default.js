@@ -179,19 +179,25 @@ var pieOptions = {
         horizontalAlign: "center",
         verticalAlign: "middle",
         floating: !1,
-        fontSize: "14px",
+        fontSize: "8px",
         offsetX: 0
     },
   responsive: [{
       breakpoint: 480,
       options: {
-          chart: {
-              width: 200
+        plugins: {
+          datalabels: {
+            display: true,
+            align: 'bottom',
+            backgroundColor: '#ccc',
+            borderRadius: 3,
+            font: {
+              size: 8,
+            },
           },
-          legend: {
-              position: 'bottom'
-          }
-      }
+        },
+      },
+      
   }]
 };
 
@@ -720,13 +726,41 @@ function agentList() {
   console.log("Hai iwallboard summary call asternic");
   //var selectedValue = value;
   var jqxhr = $.getJSON("BE/r_incoming_new.php", function (data) {
-    $.each(data["DataDetail"], function (i, items) {
-      console.log("Hai iwallboard summary call asternic");
-        console.log(items['Total_Inbound_Calls']);
-        console.log(items['Total_Complete_Calls']);
-        $('#calltotal').html(items['Total_Inbound_Calls']);
-        $('#callanswer').html(items['Total_Complete_Calls']);
-        $('#rona').html("<font style='color: red; font-size: 38px;' color='red'>"+items['Total_Missed_Calls']+"</font>");
+    $.each(data, function (i, items) {
+      
+        var Earlyabandoned =0;
+        var TotalData=0;
+        var TotalAnswered=0;
+        var AbandonCalls=0;
+        var MissedCalls=0;
+        var OutgoingCalls=0;
+        var ScrCalls =0
+    
+        $.each(data, function (i, items) {
+          //alert(items.lastapp + items.total_data);
+          if (items.lastapp == "Total Call")
+              TotalData = items.total_data;
+          if (items.lastapp == "Call Answered")
+             TotalAnswered = items.total_data;
+          if (items.lastapp == "Abnd. Ringing")
+            AbandonCalls=items.total_data;
+          if (items.lastapp == "early abandoned")
+             Earlyabandoned =items.total_data;
+          if (items.lastapp == "OUTBOUND")
+             OutgoingCalls =items.total_data;
+             
+    
+            
+        
+        })
+        MissedCalls = (AbandonCalls) +(Earlyabandoned);
+        //$datas['SCR'][$i] = round((($datas['Call Answered'][$i] > 0)? (($datas['Call Answered'][$i]-$datas['Abnd. Ringing'][$i]) / $datas['Total Call'][$i]) : 0), 2)*100;
+        ScrCalls    = Math.round(((TotalAnswered > 0)? ((TotalAnswered-AbandonCalls) / TotalData) : 0), 2)*100
+
+        $('#calltotal').html(TotalData);
+        $('#callanswer').html(TotalAnswered);
+        $('#rona').html("<font style='color: red; font-size: 38px;' color='red'>"+MissedCalls+"</font>");
+        $('#scr').html(ScrCalls+"%");
         //$('#callabdn').html(items['early abandoned'][day]);
        
     });

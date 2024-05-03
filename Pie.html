@@ -663,9 +663,10 @@
         <!-- apexcharts -->
         <script src="assets/libs/apexcharts/apexcharts.min.js"></script>
        <script>
+
         var pieData = {
             series: [10, 0, 0],
-            labels: ["ACD IN", "NOT READY", "AVAIL"]
+            labels: ["ACD INaaa", "NOT READY", "AVAILaaaa"]
           };
         var options={
             chart: {
@@ -677,7 +678,10 @@
                     donut: {
                         size: "70%"
                     }
-                }
+                },
+                font: {
+                        size: 25,
+                },
             },
             dataLabels: {
                 formatter(val, opts) {
