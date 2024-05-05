@@ -24,6 +24,34 @@ function replaceText() {
     $('#avail').html('0');
     $('#callabdn').html('0');
     $('#callanswer').html('0');
+    var selectedValue = $("#floatingSelect").val();
+  if(selectedValue == "MP"){
+   
+      $("#divCall").hide();
+      $("#divEmail").hide();
+      $("#divInbount").hide();
+      $("#divAgentDetail").hide();
+      $("#DivMaxWaitingTime").hide();
+      $("#DivAvgTalkingTime").hide();
+      $("#DivAvgWaitingTime").hide();
+      $("#DivTalking").hide();
+      $("#DivBreakdownAuxMP").show();
+      $("#DivBreakdownAuxNonMP").hide();
+      
+      
+  }else{
+     $("#divCall").show();
+      $("#divEmail").show();
+      $("#divInbount").show();
+      $("#divAgentDetail").show();
+      $("#DivMaxWaitingTime").show();
+      $("#DivAvgTalkingTime").show();
+      $("#DivAvgWaitingTime").show();
+      $("#DivTalking").show();
+      $("#DivBreakdownAuxMP").hide();
+      $("#DivBreakdownAuxNonMP").show();
+      
+  }
 
     
 
@@ -36,7 +64,7 @@ function myFunction() {
 
  autoreplace=true;
  //alert("");
- setInterval(replaceText,  8 * 60 * 1000);
+ setInterval(replaceText,  1 * 60 * 1000);
  //setInterval(replaceText,  5000);
 
 
@@ -78,13 +106,6 @@ function myFunction() {
       $("#DivTalking").hide();
       $("#DivBreakdownAuxMP").show();
       $("#DivBreakdownAuxNonMP").hide();
-      
-      
-      
-      
-      
-      
-      
   }else{
      $("#divCall").show();
       $("#divEmail").show();
@@ -175,6 +196,7 @@ function fetchData() {
     var Abandonrate = 0;
     var selectedValue = $("#floatingSelect").val();
     
+    
     console.log('https://kanmo.uidesk.id/crm/apps/WebServiceGetDataMaster.asmx/UIDESK_TrmMasterCombo?TrxID='+selectedValue+'&TrxUserName=Inquiry&TrxAction=UIDESK132');
     fetch('https://kanmo.uidesk.id/crm/apps/WebServiceGetDataMaster.asmx/UIDESK_TrmMasterCombo?TrxID='+selectedValue+'&TrxUserName=Inquiry&TrxAction=UIDESK132')
     .then(response => response.text())
@@ -215,6 +237,10 @@ function fetchData() {
     .catch(error => {
         console.error('Error fetching XML data:', error);
     });
+    $("#myTableBodyInquiry tr").slice(0, 5).remove();
+    $("#myTableBodyComplaint tr").slice(0, 5).remove();
+    
+
   
 }
 
@@ -456,8 +482,9 @@ function fetchDataState(){
           var i, x, resultSourceEnquiryReason = "";
           console.log(json);
           for (i = 0; i < json.length; i++) {
-            
+            //alert(json[i].Jumlah)
             if(json[i].Jenis == "Ready")
+
               $("#stateready").html(json[i].Jumlah);
             else
               $("#stateaux").html(json[i].Jumlah);   
@@ -619,7 +646,7 @@ function fetchDataIncomingCall(){
        //abn
        //MissedCalls = parseInt(AbandonCalls) + parseInt(Earlyabandoned);
        abnRate=((isNaN(AbandonCalls) ? 0 : AbandonCalls)/(isNaN(TotalData) ? 0 : TotalData))*100
-       var abnRounded = Math.round(abnRate);
+       var abnRounded = Math.round(isNaN(abnRate)?0:abnRate);
        $('#ABANR').html(abnRounded +"%");
 
       // $('#MR').html(valMR+"%");
@@ -705,47 +732,100 @@ function fetchDataCountCall(){
                                          
    // Menempatkan tabel ke dalam elemen dengan ID "table-container"
    $('#table-count').html(table);
-   var _table='';
-   if(data.length == 0){
+   
+   if(data["DataDetail"] == undefined){
+    var _table='';
 
           $.each(dataAgent, function (i, dt) {
-            _table += '<tr>';
-            _table += '<td>' + dt.AuxUserName + '</td>';
-            _table += '<td> 0</td>';
-            _table += '<td>0</td>';
-            _table += '<td>0</td>';
-            _table += '<td>0</td>';
-            _table += '<td>0</td>';
-            _table += '</tr>';
+            $.ajax({
+              type: "POST",
+              url: "https://kanmo.uidesk.id/crm/apps/WebServiceGetDataMaster.asmx/UIDESK_TrmMasterCombo",
+              data: "{TrxID:'', TrxUserName: '"+ dt.AuxUserName +"', TrxAction: 'UIDESK137'}",
+              contentType: "application/json; charset=utf-8",
+              dataType: "json",
+              success: function (data) {
+                   
+                    var json = JSON.parse(data.d);
+                   // $.each(json, function (i, d) {
+                    
+                              _table += '<tr>';
+                              _table += '<td>' + json[0].agent_name + '</td>';
+                              _table += '<td> 0</td>';
+                              _table += '<td>0</td>';
+                              _table += '<td>0</td>';
+                              _table += '<td>0</td>';
+                              _table += '<td>'+json[0].Status+'</td>';
+                              _table += '</tr>';
+          
+                              $('#tbDetail').append(_table);
+                    //})
+          
+          
+              },
+              error: function (xmlHttpRequest, textStatus, errorThrown) {
+                  console.log(xmlHttpRequest.responseText);
+                  console.log(textStatus);
+                  console.log(errorThrown);
+              }
+            })
 
         })
-          $('#tbDetail').append(_table);
+         // $('#tbDetail').append(_table);
 
    }else{
-   
-    $.each(dataAgent, function (i, dt) {
-      
-        if (isRowExists(dt.AuxUserName.replace('_',' ')) == false)
-        {
-                _table += '<tr>';
-                    _table += '<td>' + dt.AuxUserName + '</td>';
-                    _table += '<td> 0</td>';
-                    _table += '<td>0</td>';
-                    _table += '<td>0</td>';
-                    _table += '<td>0</td>';
-                    _table += '<td>0</td>';
-                    _table += '</tr>';
 
-        } 
-
-     })
-
-     $('#tbDetail').append(_table);
-   }
-
-  })
+    
   
+        var AgentName='';
+        $.each(dataAgent, function (i, dt) {
+          
+            if (isRowExists(dt.AuxUserName.replace('_',' ')) == false)
+
+            {
+              
+              var _table ="";
+              $.ajax({
+                type: "POST",
+                url: "https://kanmo.uidesk.id/crm/apps/WebServiceGetDataMaster.asmx/UIDESK_TrmMasterCombo",
+                data: "{TrxID:'', TrxUserName: '"+ dt.AuxUserName +"', TrxAction: 'UIDESK137'}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                     
+                      var json = JSON.parse(data.d);
+                     // $.each(json, function (i, d) {
+                      
+                                _table += '<tr>';
+                                _table += '<td>' + json[0].agent_name + '</td>';
+                                _table += '<td> 0</td>';
+                                _table += '<td>0</td>';
+                                _table += '<td>0</td>';
+                                _table += '<td>0</td>';
+                                _table += '<td>'+json[0].Status+'</td>';
+                                _table += '</tr>';
+            
+                                $('#tbDetail').append(_table);
+                      //})
+            
+            
+                },
+                error: function (xmlHttpRequest, textStatus, errorThrown) {
+                    console.log(xmlHttpRequest.responseText);
+                    console.log(textStatus);
+                    console.log(errorThrown);
+                }
+              })
+            } 
+
+        })
+        
+      
+        } 
+    
+  })
 }
+  
+
 function isRowExists(name) {
   
   var exists = false;
@@ -759,6 +839,44 @@ function isRowExists(name) {
     
   return exists;
 }
+function AddDatafromsql(name) {
+ 
+  var _table ="";
+  $.ajax({
+    type: "POST",
+    url: "https://kanmo.uidesk.id/crm/apps/WebServiceGetDataMaster.asmx/UIDESK_TrmMasterCombo",
+    data: "{TrxID:'', TrxUserName: '"+ name +"', TrxAction: 'UIDESK137'}",
+    contentType: "application/json; charset=utf-8",
+    dataType: "json",
+    success: function (data) {
+         
+          var json = JSON.parse(data.d);
+          $.each(json, function (i, d) {
+          
+                    _table += '<tr>';
+                    _table += '<td>' + d[i].agent_name + '</td>';
+                    _table += '<td> 0</td>';
+                    _table += '<td>0</td>';
+                    _table += '<td>0</td>';
+                    _table += '<td>0</td>';
+                    _table += '<td>'+d[i].Status+'</td>';
+                    _table += '</tr>';
+
+                    $('#tbDetail').append(_table);
+          })
+
+
+    },
+    error: function (xmlHttpRequest, textStatus, errorThrown) {
+        console.log(xmlHttpRequest.responseText);
+        console.log(textStatus);
+        console.log(errorThrown);
+    }
+  })
+    
+  
+}
+
 function getSLA(){
   console.log("GET SLA");
  

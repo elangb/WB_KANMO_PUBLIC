@@ -37,6 +37,8 @@ else
 
   
 $sqlNya="select agent as AgentName,COUNT(id) as IncomingCall,0 as OutgoingCall,SEC_TO_TIME(SUM(waittime)) as WaitingTime,SEC_TO_TIME(SUM(talktime)) as TalkingTime,'Ready' as StatusAgent from queue_stats_mv where DATE(datetime)=DATE(NOW()) and queue in($paramValue) and agent <>'NONE' group by agent order by id desc;";
+
+//die($sqlNya);
 $result = $mysqli -> query($sqlNya);
 //die($sqlNya);
 $data = [];
