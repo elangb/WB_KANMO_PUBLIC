@@ -1,12 +1,14 @@
 var myVarX;
 var myVarY;
 var dataAgent;
+var dataJson;
 var autoreplace = false;
 
 function replaceText() {
     
   if(autoreplace == true){
    // alert("aa")
+   AddDatafromsql();
     fetchData();
     fetchDataTotalTicket();
     fetchDataIncomingCall();
@@ -67,7 +69,7 @@ function myFunction() {
  setInterval(replaceText,  1 * 60 * 1000);
  //setInterval(replaceText,  5000);
 
-
+  AddDatafromsql();
   fetchData();
   fetchDataTotalTicket();
   fetchDataIncomingCall();
@@ -695,6 +697,8 @@ function fetchDataIncomingCall(){
 //Get Count Agent
 function fetchDataCountCall(){
   //var selectedValue = value;
+ 
+
   var selectedValue = $("#floatingSelect").val();
   var jqxhr = $.getJSON("BE/getcountstatus.php?param=" + encodeURIComponent(selectedValue), function (data) {
     console.log("Hai iwallboard Count");
@@ -733,96 +737,52 @@ function fetchDataCountCall(){
    // Menempatkan tabel ke dalam elemen dengan ID "table-container"
    $('#table-count').html(table);
    
-   if(data["DataDetail"] == undefined){
-    var _table='';
+     // alert(dt);
+     var _table = '';
+    if (data["DataDetail"] == undefined || data["DataDetail"].length == 0){
 
-          $.each(dataAgent, function (i, dt) {
-            $.ajax({
-              type: "POST",
-              url: "https://kanmo.uidesk.id/crm/apps/WebServiceGetDataMaster.asmx/UIDESK_TrmMasterCombo",
-              data: "{TrxID:'', TrxUserName: '"+ dt.AuxUserName +"', TrxAction: 'UIDESK137'}",
-              contentType: "application/json; charset=utf-8",
-              dataType: "json",
-              success: function (data) {
-                   
-                    var json = JSON.parse(data.d);
-                   // $.each(json, function (i, d) {
-                    
-                              _table += '<tr>';
-                              _table += '<td>' + json[0].agent_name + '</td>';
-                              _table += '<td> 0</td>';
-                              _table += '<td>0</td>';
-                              _table += '<td>0</td>';
-                              _table += '<td>0</td>';
-                              _table += '<td>'+json[0].Status+'</td>';
-                              _table += '</tr>';
-          
-                              $('#tbDetail').append(_table);
-                    //})
-          
-          
-              },
-              error: function (xmlHttpRequest, textStatus, errorThrown) {
-                  console.log(xmlHttpRequest.responseText);
-                  console.log(textStatus);
-                  console.log(errorThrown);
-              }
-            })
-
-        })
-         // $('#tbDetail').append(_table);
-
-   }else{
-
-    
+      $.each(dataJson, function (i, d) {
+        _table += '<tr>';
+        _table += '<td>' + d.agent_name + '</td>';
+        _table += '<td>0</td>';
+         _table += '<td>0</td>';
+         _table += '<td>0</td>';
+         _table += '<td>0</td>';
+         _table += '<td>' + d.Status + '</td>';
+         _table += '</tr>';
+        
   
-        var AgentName='';
-        $.each(dataAgent, function (i, dt) {
+      })
+      $('#tbDetail').append(_table);
+
+    }else{
+
+      $.each(dataJson, function (i, dt) {
           
-            if (isRowExists(dt.AuxUserName.replace('_',' ')) == false)
+            if (isRowExists(dt.agent_name.replace('_',' ')) == false)
 
             {
-              
-              var _table ="";
-              $.ajax({
-                type: "POST",
-                url: "https://kanmo.uidesk.id/crm/apps/WebServiceGetDataMaster.asmx/UIDESK_TrmMasterCombo",
-                data: "{TrxID:'', TrxUserName: '"+ dt.AuxUserName +"', TrxAction: 'UIDESK137'}",
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (data) {
-                     
-                      var json = JSON.parse(data.d);
-                     // $.each(json, function (i, d) {
-                      
-                                _table += '<tr>';
-                                _table += '<td>' + json[0].agent_name + '</td>';
-                                _table += '<td> 0</td>';
-                                _table += '<td>0</td>';
-                                _table += '<td>0</td>';
-                                _table += '<td>0</td>';
-                                _table += '<td>'+json[0].Status+'</td>';
-                                _table += '</tr>';
-            
-                                $('#tbDetail').append(_table);
-                      //})
-            
-            
-                },
-                error: function (xmlHttpRequest, textStatus, errorThrown) {
-                    console.log(xmlHttpRequest.responseText);
-                    console.log(textStatus);
-                    console.log(errorThrown);
-                }
-              })
+             
+                 _table += '<tr>';
+                _table += '<td>' + dt.agent_name + '</td>';
+                 _table += '<td>0</td>';
+                 _table += '<td>0</td>';
+                 _table += '<td>0</td>';
+                 _table += '<td>0</td>';
+                 _table += '<td>' + dt.Status + '</td>';
+                 _table += '</tr>';
+               
+                   
             } 
 
-        })
-        
-      
-        } 
+      })
+      $('#tbDetail').append(_table);
+     
+    }
+
+  })   
     
-  })
+
 }
   
 
@@ -839,31 +799,21 @@ function isRowExists(name) {
     
   return exists;
 }
-function AddDatafromsql(name) {
- 
-  var _table ="";
+  function AddDatafromsql() {
+
+    var selectedValue = $("#floatingSelect").val();
+    dataJson="";
+  
   $.ajax({
     type: "POST",
     url: "https://kanmo.uidesk.id/crm/apps/WebServiceGetDataMaster.asmx/UIDESK_TrmMasterCombo",
-    data: "{TrxID:'', TrxUserName: '"+ name +"', TrxAction: 'UIDESK137'}",
+    data: "{TrxID:'" + selectedValue + "', TrxUserName: '', TrxAction: 'UIDESK138'}",
     contentType: "application/json; charset=utf-8",
     dataType: "json",
     success: function (data) {
          
           var json = JSON.parse(data.d);
-          $.each(json, function (i, d) {
-          
-                    _table += '<tr>';
-                    _table += '<td>' + d[i].agent_name + '</td>';
-                    _table += '<td> 0</td>';
-                    _table += '<td>0</td>';
-                    _table += '<td>0</td>';
-                    _table += '<td>0</td>';
-                    _table += '<td>'+d[i].Status+'</td>';
-                    _table += '</tr>';
-
-                    $('#tbDetail').append(_table);
-          })
+          dataJson = json;
 
 
     },
@@ -874,7 +824,7 @@ function AddDatafromsql(name) {
     }
   })
     
-  
+ 
 }
 
 function getSLA(){
