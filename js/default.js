@@ -753,13 +753,15 @@ function agentList() {
             
         
         })
+        
+
         MissedCalls = (AbandonCalls) +(Earlyabandoned);
         //$datas['SCR'][$i] = round((($datas['Call Answered'][$i] > 0)? (($datas['Call Answered'][$i]-$datas['Abnd. Ringing'][$i]) / $datas['Total Call'][$i]) : 0), 2)*100;
         ScrCalls    = Math.round(((TotalAnswered > 0)? ((TotalAnswered-AbandonCalls) / TotalData) : 0), 2)*100
 
         $('#calltotal').html(TotalData);
         $('#callanswer').html(TotalAnswered);
-        $('#rona').html("<font style='color: red; font-size: 38px;' color='red'>"+MissedCalls+"</font>");
+        $('#rona').html("<font style='color: red; font-size: 38px;' color='red'>"+AbandonCalls+"</font>");
         $('#scr').html(ScrCalls+"%");
         //$('#callabdn').html(items['early abandoned'][day]);
        
