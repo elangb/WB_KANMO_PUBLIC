@@ -28,16 +28,16 @@
   
       // Mengambil data dari value "Member:"
       $memberData = "";
-      foreach ($data['DataDetail'] as $detail) {
-          $detailText = $detail['dataque'];
-          //echo $memberData;
-          $startIndex = strpos($detailText, 'Members:');
-          if ($startIndex !== false) {
-              $memberData = substr($detailText, $startIndex + strlen('Members:'));
+      // foreach ($data['DataDetail'] as $detail) {
+      //     $detailText = $detail['dataque'];
+      //     //echo $memberData;
+      //     $startIndex = strpos($detailText, 'Members:');
+      //     if ($startIndex !== false) {
+      //         $memberData = substr($detailText, $startIndex + strlen('Members:'));
               
-              break;
-          }
-      }
+      //         break;
+      //     }
+      // }
       
       //echo $memberData; // Output data member
       if ($_GET['param'] =='KANMO')

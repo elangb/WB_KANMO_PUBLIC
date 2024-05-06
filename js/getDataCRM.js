@@ -203,6 +203,7 @@ function fetchData() {
     fetch('https://kanmo.uidesk.id/crm/apps/WebServiceGetDataMaster.asmx/UIDESK_TrmMasterCombo?TrxID='+selectedValue+'&TrxUserName=Inquiry&TrxAction=UIDESK132')
     .then(response => response.text())
     .then(xmlString => {
+      const jsonObject="";
         // Parse the XML string into an XMLDocument
         const parser = new DOMParser();
         const xmlDoc = parser.parseFromString(xmlString, 'text/xml');
@@ -215,7 +216,7 @@ function fetchData() {
         const jsonString = xmlDoc.getElementsByTagName("string")[0].textContent;
 
         // Parse the JSON string into a JavaScript object
-        const jsonObject = JSON.parse(jsonString);
+         jsonObject = JSON.parse(jsonString);
 
         console.log(jsonObject);
 
@@ -469,7 +470,7 @@ function fetchDataAverage(){
 
 function fetchDataState(){
   var selectedValue = $("#floatingSelect").val();
-  if (selectedValue == "MP" ){
+ 
     
 
     $.ajax({
@@ -504,35 +505,6 @@ function fetchDataState(){
       }
   })
 
-  }else{
-      var jqxhr = $.getJSON("BE/r_agent_state.php?param=" + encodeURIComponent(selectedValue), function (data) {
-        console.log("Hai iwallboard dashboard agent state");
-        
-        //Get Data Detail
-        console.log(data["DataDetail"]);
-        $.each(data["DataDetail"], function (i, items) {
-          $("#stateready").html(items['READY']);
-          $("#statetalking").html(items['ACD-IN']);
-          $("#stateaux").html(items['UNAVAILABLE']);   
-            
-        })
-      })
-      .done(function () {
-        //console.log( "done" );
-        
-      })
-      .fail(function () {
-        //console.log( "error" );
-      })
-      .always(function () {
-        //console.log( "complete" );
-      });
-      // Perform other work here ...
-      // Set another completion function for the request above
-      jqxhr.always(function () {
-        //console.log( "second complete" );
-      });
-}
  
 }
 
