@@ -152,7 +152,7 @@ var storedDataAUX = parseInt(localStorage.getItem('DATAAUX'));
 var storedDataREADY = parseInt(localStorage.getItem('DATAAVAIL'));
 var pieData = {
   series: [storedDataACDIN, storedDataAUX, storedDataREADY],
-  labels: ["ACD IN", "NOT READY", "AVAIL"]
+  labels: ["ACD IN", "AUX", "AVAIL"]
 };
 
 // Define chart options
