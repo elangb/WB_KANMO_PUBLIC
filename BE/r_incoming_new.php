@@ -36,7 +36,10 @@ if ($mysqli -> connect_errno) {
                             $query= "SELECT qstats.reportmonthly.labelreport as lastapp,DAY(datetime) AS hari
                             , COUNT(jumlah) AS total_data,SUM(Seconds) as Seconds from( select event,datetime,real_uniqueid as jumlah,0 Seconds from qstats.queue_stats_mv where (queue='60012' or queue='60013')
                              union 
-                            select disposition as event,calldate,uniqueid as jumlah,0 AS seconds from asteriskcdrdb.cdr where dst in ('60012','60013') union select 'CONNECTA' as event,calldate,uniqueid as jumlah,billsec AS seconds from asteriskcdrdb.cdr where dst in ('60012','60013') 
+                            select disposition,calldate,uniqueid as jumlah,0 Seconds from asteriskcdrdb.cdr
+							where disposition in ('NO ANSWER','BUSY') 
+							AND substring(dstchannel,1,locate('-',dstchannel,length(dstchannel)-8)-1) in ('SIP/201010','SIP/201011','SIP/201012','SIP/201013','SIP/201014') 
+							AND DATE_FORMAT(calldate, '%Y-%m-%d') = CURDATE() 
                             union 
                             select 'FIXANSWERED',a.calldate,a.uniqueid,0 Seconds from( select recordingfile,SUM(duration) as Ringtime,calldate,uniqueid from( SELECT substring(dstchannel,1,locate('-',dstchannel,length(dstchannel)-8)-1) AS chan1,asteriskcdrdb.cdr.* FROM asteriskcdrdb.cdr WHERE (duration-billsec) >=0 HAVING chan1 in ('SIP/201010','SIP/201011','SIP/201012','SIP/201013','SIP/201014') ) as a where a.disposition='ANSWERED' group by recordingfile ) as a where Ringtime>0 
                             union 
@@ -50,6 +53,13 @@ if ($mysqli -> connect_errno) {
                             union 
                             select 'EARLYa',calldate,uniqueid as jumlah,0 Seconds from asteriskcdrdb.cdr where disposition in ('NO ANSWER') and dst in ('60012','60013') and duration between '0' and '9' 
                             union 
+                            select 'BUSY 1',a.calldate,a.uniqueid,0 Seconds 
+							from( select recordingfile,SUM(duration) as Ringtime,calldate,uniqueid 
+							from( SELECT substring(dstchannel,1,locate('-',dstchannel,length(dstchannel)-8)-1) AS chan1,asteriskcdrdb.cdr.* FROM asteriskcdrdb.cdr 
+							WHERE (duration-billsec) >=0 HAVING chan1 in ('SIP/201010','SIP/201011','SIP/201012','SIP/201013','SIP/201014') ) as a 
+							where a.disposition in ('NO ANSWER','BUSY 1') group by recordingfile ) as a where Ringtime>0
+							 AND DATE_FORMAT(calldate, '%Y-%m-%d') = CURDATE()
+							 union
                             SELECT 'TOTALCALL',calldate,uniqueid as jumlah,0 Seconds FROM asteriskcdrdb.cdr 
                             WHERE (duration-billsec) >=0 AND substring(dstchannel,1,locate('-',dstchannel,length(dstchannel)-8)-1) in ('SIP/201010','SIP/201011','SIP/201012','SIP/201013','SIP/201014') 
                             union 
@@ -58,6 +68,7 @@ if ($mysqli -> connect_errno) {
                             AND DATE_FORMAT(datetime, '%Y-%m-%d') = CURDATE() 
                             GROUP BY DAY(datetime),qstats.reportmonthly.labelreport 
                             ORDER BY qstats.reportmonthly.urutan,DAY(datetime)";
+                          
                                
                             }else{
 
