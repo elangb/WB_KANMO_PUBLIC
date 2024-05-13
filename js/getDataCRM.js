@@ -575,7 +575,7 @@ function fetchDataIncomingCall(){
           TotalData = items.total_data;
       if (items.lastapp == "Call Answered")
          TotalAnswered = items.total_data;
-      if (items.lastapp == "Abnd. Ringing")
+      if (items.lastapp == "Abandon")
         AbandonCalls=items.total_data;
       if (items.lastapp == "early abandoned")
          Earlyabandoned =items.total_data;
