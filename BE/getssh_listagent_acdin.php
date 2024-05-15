@@ -4,7 +4,7 @@
  ini_set('display_startup_errors', 0);
    //error_reporting(E_ALL);
    $key ="Uid35k32!J4y4J4y4";
-   $ssh1 = new Net_SSH2('pbx.uidesk.id', 3389);   // Domain or IP
+   $ssh1 = new Net_SSH2('202.43.173.61', 3389);   // Domain or IP
    if (!$ssh1->login('root', $key))   exit('Login Failed'); 
  $numbers1 = array(10010);
  $ready=0;
@@ -14,7 +14,7 @@
  $outputArray = array();
  
  
-$get100111= $ssh1->exec('sudo asterisk -x "queue show"');
+$get100111= $ssh1->exec('sudo asterisk -x "queue show 9000"');
      
 
 // Split data into lines

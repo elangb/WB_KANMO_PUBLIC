@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Two Timers</title>
+  <!-- plugin css -->
+        <link href="../assets/libs/jsvectormap/css/jsvectormap.min.css" rel="stylesheet" type="text/css" />
+
+        <!-- Bootstrap Css -->
+        <link href="../assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+        <!-- Icons Css -->
+        <link href="../assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+        <!-- App Css-->
+        <link href="../assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+// Timer function for Timer 1
+function startTimer1(display) {
+  var seconds = 0;
+
+  setInterval(function () {
+    seconds++;
+
+    var minutes = Math.floor(seconds / 60);
+    var remainingSeconds = seconds % 60;
+
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    remainingSeconds = remainingSeconds < 10 ? "0" + remainingSeconds : remainingSeconds;
+
+    display.textContent = minutes + ":" + remainingSeconds;
+  }, 1000);
+}
+
+// Timer function for Timer 2
+function startTimer2(display) {
+  var seconds = 0;
+
+  setInterval(function () {
+    seconds++;
+
+    var minutes = Math.floor(seconds / 60);
+    var remainingSeconds = seconds % 60;
+
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    remainingSeconds = remainingSeconds < 10 ? "0" + remainingSeconds : remainingSeconds;
+
+    display.textContent = minutes + ":" + remainingSeconds;
+  }, 1000);
+}
+
+// Start both timers when the page is loaded
+window.onload = function () {
+
+  console.log("Hai iwallboard get Available Times");
+  let NoUrutanAvail=1;
+  var display1 = document.querySelector('#timertest');
+  var display2 = document.querySelector('#timer2');
+  
+  // Variable to store data
+	var dataX = [];
+
+	// Function to update data
+	function updateData() {
+	  
+	  // Perform some operation to update the data
+	   var newData = Math.random(); // Example: Generate random data
+	   var dataListAgentACDIN;
+	  //startTimer2(display2);
+		  var jqxhr = $.getJSON("getssh_listagent_acdin.php", function (data) {
+		  dataListAgentACDIN = "";
+		  $.each(data, function (i, items) {
+			 
+				//console.log(items.statuscall);
+				//console.log(items.local);
+				dataListAgentACDIN ='<li class="px-4 py-2">'+
+				  '<div class="d-flex align-items-center">'+
+					  '<div class="flex-shrink-0 me-3">'+
+						  '<div class="avatar-sm">'+
+							  '<div class="avatar-title bg-light text-primary rounded-circle">'+
+							  items.statuscall +
+							  '</div>'+
+						  '</div>'+
+					  '</div>'+
+					  '<div class="flex-grow-1 overflow-hidden">'+
+						  '<p class="text-muted mb-1 text-truncate">'+ items.local+'</p>'+
+						  '<div class="badge badge-soft-success ms-2">Avail time</div>'+
+					  '</div>'+
+					  '<div class="flex-shrink-0 align-self-start">'+
+						  '<h6> <div id="timertest"></div> <i class="uil uil-arrow-up-right text-success ms-1"></i></h6>'+
+					  '</div>'+
+				  '</div>'+
+			  '</li>';
+			  
+			  console.log(dataListAgentACDIN);
+			  dataX.push(dataListAgentACDIN);
+			 
+		  });
+		  })
+		  .done(function () {
+			//console.log( "done" );
+			 // Push the new data into the array
+			 
+		  })
+		  .fail(function () {
+			//console.log( "error" );
+		  })
+		  .always(function () {
+			//console.log( "complete" );
+		  });
+	  
+	  
+	}
+
+	// SetInterval function
+	setInterval(function() {
+	  // Call the function to update data
+	  updateData();
+	}, 1000); // Run the function every second
+
+	// Function to display data
+	function displayData() {
+	  //console.log("Data:", data);
+	  
+	  $("#listAvailAgent").append(dataX);
+	
+	}
+	function displayDataRemove() {
+	  //console.log("Data:", data);
+	  
+	  $("#listAvailAgent").empty();
+	}
+
+	// Call the function to display data periodically
+	//setInterval(displayDataRemove, 1000);
+	setInterval(displayData, 1000); // Run the function every 5 seconds
+  
+  
+
+	
+  
+};
+
+</script>
+</head>
+<body>
+	<div id="timer1"></div>
+	<div id="timer2"></div>
+	<div data-simplebar style="max-height: 430px;">
+		<ul class="list-unstyled mb-0" id="listAvailAgent">
+			<li class="px-4 py-2">
+				<div class="d-flex align-items-center">
+					<div class="flex-shrink-0 me-3">
+						<div class="avatar-sm">
+							<div class="avatar-title bg-light text-primary rounded-circle">
+								#1
+							</div>
+						</div>
+					</div>
+					<div class="flex-grow-1 overflow-hidden">
+						<p class="text-muted mb-1 text-truncate">Load</p>
+					   
+					</div>
+					<div class="flex-shrink-0 align-self-start">
+						<div class="badge badge-soft-success ms-2">1.2 % <i class="uil uil-arrow-up-right text-success ms-1"></i></div>
+					</div>
+				</div>
+			</li>                                               
+		</ul>
+	</div>
+</body>
+</html>

@@ -1,0 +1,1135 @@
+<!doctype html>
+<html lang="en">
+<head>
+        
+        <meta charset="utf-8" />
+        <title>DASHBOARD AHU ONLINE</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+        <meta content="Pichforest" name="author" />
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+        <!-- plugin css -->
+        <link href="assets/libs/jsvectormap/css/jsvectormap.min.css" rel="stylesheet" type="text/css" />
+
+        <!-- Bootstrap Css -->
+        <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+        <!-- Icons Css -->
+        <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+        <!-- App Css-->
+        <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <style>
+            #elem {
+                animation: blink 0.3s infinite
+              }
+              
+              @keyframes blink {
+                from {
+                  opacity: 0
+                }
+              
+                to {
+                  opacity: 1
+                }
+              }
+        </style>
+    </head>
+
+    
+    <body onload="myFunction()" data-layout-mode="light" data-topbar="light" data-sidebar="light">
+
+    <!-- <body data-layout="horizontal"> -->
+
+        <!-- Begin page -->
+        <div id="layout-wrapper">
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div>
+                <div>
+                    <div class="container-fluid">
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+							  <br>
+                                <div class="page-title-box d-flex align-items-center justify-content-between">
+                                    <h4 class="mb-0"><img src="Logo_Kumham_AHU.png" width="200"></h4>
+
+                                    <div class="page-title-right">
+                                        <ol class="breadcrumb m-0">
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">WALLBOARD</a></li>
+                                           
+                                        </ol>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end page title -->
+                        
+                        <div class="row">
+                            <div class="col-xxl-12 col-lg-12">
+                                    <div class="card">
+                                        <div class="card-header bg-transparent">
+                                            <div class="d-flex align-items-start">
+                                                <div class="flex-grow-1">
+                                                    <h5 class="card-title mb-0">WALLBOARD AHU ONLINE CONTACT CENTER  <div id="dateNya"></div></h5>
+                                                </div>
+                                                <div class="flex-shrink-0">
+                                                    <div class="dropdown">
+                                                        <a class="dropdown-toggle text-reset" href="#"
+                                                            data-bs-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="false">
+                                                            <span class="fw-semibold"><div id="timeNya"></div></span> 
+                                                        </a>
+                
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-body border-bottom py-3">
+                                            <div class="row gx-lg-5">
+                                                <div class="row">
+                                                    <div class="col-xl-4 col-sm-4">
+                                                        <div class="card">
+                                                            <div class="row">
+                                                                <div class="col-xl-12 col-sm-12">
+                                                                    <div class="card-body">
+                                                                        <div class="d-flex align-items-center">
+                                                                            <div class="flex-shrink-0 me-3">
+                                                                                <div class="avatar-sm">
+                                                                                    <div style="margin-left: 30px;" class="avatar-title bg-soft-primary text-primary rounded-circle font-size-18">
+                                                                                        <img src="icon/new/voip.png" width="95">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            
+                                                                            <div class="flex-grow-1 overflow-hidden">
+                                                                                <center>
+                                                                                    
+                                                                                    <h2 style="font-size: 4cap;" class="mb-0" id="staffed">0</h2>
+                                                                                </center>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div><!-- end card body -->
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-4 col-sm-4">
+                                                        <div class="card">
+                                                            <div class="row">
+                                                                <div class="col-xl-12 col-sm-12">
+                                                                    <div class="card-body">
+                                                                        <div class="d-flex align-items-center">
+                                                                            <div class="flex-shrink-0 me-3">
+                                                                                <div class="avatar-sm">
+                                                                                    <div style="margin-left: 30px;" class="avatar-title bg-soft-primary text-primary rounded-circle font-size-18">
+                                                                                        <img src="icon/new/omni.png" width="95">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            
+                                                                            <div class="flex-grow-1 overflow-hidden">
+                                                                                <center>
+                                                                                
+                                                                                    <h2 style="font-size: 4cap;" class="mb-0" id="staffed">0</h2>
+                                                                                </center>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div><!-- end card body -->
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-4 col-sm-4">
+                                                        <div class="card">
+                                                            <div class="row">
+                                                                <div class="col-xl-12 col-sm-12">
+                                                                    <div class="card-body">
+                                                                        <div class="d-flex align-items-center">
+                                                                            <div class="flex-shrink-0 me-3">
+                                                                                <div class="avatar-sm">
+                                                                                    <div style="margin-left: 30px;"  class="avatar-title bg-soft-primary text-primary rounded-circle font-size-18">
+                                                                                        <img src="icon/new/all.png" width="95">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            
+                                                                            <div class="flex-grow-1 overflow-hidden">
+                                                                                <center>
+                                                                                    <h2 style="font-size: 4cap;" class="mb-0" id="staffed">0</h2>
+                                                                                </center>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div><!-- end card body -->
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Social Media-->
+                                                
+                                                <div class="row">
+                                                    <div class="col-3">
+                                                        <div class="card"> 
+                                                            <div class="card-body">
+                                                                <div class="">
+                                                                    <div class="flex-shrink-0 me-3">
+                                                                        <div id="chart"></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        
+                                                        </div>
+                                                       
+                                                    </div>
+                                                    
+                                                    <div class="col-9">
+                                                        <div class="card">
+                                                            <div class="row">
+                                                                <div class="col-xl-1 col-sm-1">
+                                                                    <div class="col-md-auto">
+                                                                        <div><center>
+                                                                            <p class="text-muted mb-2"><p class="text-muted mb-2"><img src="icon/new/call.png" width="90"></p>
+                                                                        </center>
+                                                                            </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xl-2 col-sm-4">
+                                                                    <div class="card">
+                                                                        <div class="row">
+                                                                        
+                                                                            <div class="col-xl-6 col-lg-6">
+                                                                            
+                                                                                <div class="card-body">
+                                                                                    <div class="d-flex align-items-center">
+                                                                                        <div class="flex-shrink-0 me-3">
+                                                                                            <div class="avatar-sm">
+                                                                                                <div class="avatar-title bg-soft-primary text-primary rounded-circle font-size-18">
+                                                                                                    <img src="icon/AHT.png" width="55">
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        
+                                                                                        <div class="flex-grow-1 overflow-hidden">
+                                                                                            <p class="mb-1 text-truncate text-muted">AHT</p>
+                                                                                            <h2 class="font-size-22 mb-0" id="ahtdata">0</h2>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div><!-- end card body -->
+                                                                        
+                                                                        </div>
+                                                                            <div class="col-xl-6 col-sm-6">
+                                                                                <div class="card-body">
+                                                                                    <div class="d-flex align-items-center">
+                                                                                        <div class="flex-shrink-0 me-3">
+                                                                                            <div class="avatar-sm">
+                                                                                                <div class="avatar-title bg-soft-primary text-primary rounded-circle font-size-18">
+                                                                                                    <img src="icon/queline.png" width="55">
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        
+                                                                                        <div class="flex-grow-1 overflow-hidden">
+                                                                                            
+                                                                                                <p class="mb-1 text-truncate text-muted">QUE</p>
+                                                                                                <h2 class="font-size-22 mb-0" id="queline">0</h2>
+                                                                                        
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div><!-- end card body -->
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xl-3 col-sm-3">
+                                                                    <div class="card">
+                                                                        <div class="row">
+                                                                            <div class="col-xl-4 col-sm-4">
+                                                                                
+                                                                                    <div class="card-body">
+                                                                                        <div class="d-flex align-items-center">
+                                                                                            <div class="flex-shrink-0 me-3">
+                                                                                                <div class="avatar-sm">
+                                                                                                    <div class="avatar-title bg-soft-primary text-primary rounded-circle font-size-18">
+                                                                                                        <img id="waitingImg" src="icon/Waiting1.png" width="55">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        
+                                                                                            
+                                                                                            <div class="flex-grow-1 overflow-hidden">
+                                                                                                <p class="mb-1 text-truncate text-muted">CALL</p>
+                                                                                                <h2 class="font-size-22 mb-0" id="calltotal">0</h2>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div><!-- end card body -->
+                                                                            
+                                                                            </div><!-- end col -->
+                                                                            <div class="col-xl-4 col-sm-4">
+                                                                            
+                                                                                    <div class="card-body">
+                                                                                        <div class="d-flex align-items-center">
+                                                                                            <div class="flex-shrink-0 me-3">
+                                                                                                <div class="avatar-sm">
+                                                                                                    <div class="avatar-title bg-soft-primary text-primary rounded-circle font-size-18">
+                                                                                                        <img src="icon/Answer.png" width="55">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            
+                                                                                            <div class="flex-grow-1 overflow-hidden">
+                                                                                            
+                                                                                                    <p class="mb-1 text-truncate text-muted">ANS</p>
+                                                                                                    <h2 class="font-size-22 mb-0" id="callanswer">0</h2>
+                                                                                                
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div><!-- end card body -->
+                                                                                
+                                                                            </div>
+                                                                            <div class="col-xl-4 col-sm-6">
+                                                                                
+                                                                                <div class="card-body">
+                                                                                    <div class="d-flex align-items-center">
+                                                                                        <div class="flex-shrink-0 me-3">
+                                                                                            <div class="avatar-sm">
+                                                                                                <div class="avatar-title bg-soft-primary text-primary rounded-circle font-size-18">
+                                                                                                    <img src="icon/ABDN.png" width="55">
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        
+                                                                                        <div class="flex-grow-1 overflow-hidden">
+                                                                                        
+                                                                                                <p class="mb-1 text-truncate text-muted">ABDN</p>
+                                                                                                <h2 class="font-size-22 mb-0" id="callabdn">0</h2>
+                                                                                            
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div><!-- end card body -->
+                                                                        
+                                                                            </div>
+                                                                            
+                                                                            
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xl-6 col-sm-4">
+                                                                    <div class="card">
+                                                                        <div class="row">
+                                                                            <div class="col-xl-3 col-sm-6">
+                                                                                <div class="card-body">
+                                                                                    <div class="d-flex align-items-center">
+                                                                                        <div class="flex-shrink-0 me-3">
+                                                                                            <div class="avatar-sm">
+                                                                                                <div class="avatar-title bg-soft-primary text-primary rounded-circle font-size-18">
+                                                                                                    <img src="icon/Staffed.png" width="55">
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        
+                                                                                        <div class="flex-grow-1 overflow-hidden">
+                                                                                            <center>
+                                                                                                <p class="mb-1 text-truncate text-muted">AGENT</p>
+                                                                                                <h2 class="font-size-22 mb-0" id="staffed">0</h2>
+                                                                                            </center>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div><!-- end card body -->
+                                                                            </div>
+                                                                            <div class="col-xl-3 col-sm-6">
+                                                                            
+                                                                                    <div class="card-body">
+                                                                                        <div class="d-flex align-items-center">
+                                                                                            <div class="flex-shrink-0 me-3">
+                                                                                                <div class="avatar-sm">
+                                                                                                    <div class="avatar-title bg-soft-primary text-primary rounded-circle font-size-18">
+                                                                                                        <img src="icon/Avail.png" width="55">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            
+                                                                                            
+                                                                                            <div class="flex-grow-1 overflow-hidden">
+                                                                                                <p class="mb-1 text-truncate text-muted">AVAIL</p>
+                                                                                                <h2 class="font-size-22 mb-0" id="avail">0</h2>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div><!-- end card body -->
+                                                                            
+                                                                            </div>
+                                                                            <div class="col-xl-3 col-sm-6">
+                                                                            
+                                                                                <div class="card-body">
+                                                                                    <div class="d-flex align-items-center">
+                                                                                        <div class="flex-shrink-0 me-3">
+                                                                                            <div class="avatar-sm">
+                                                                                                <div class="avatar-title bg-soft-primary text-primary rounded-circle font-size-18">
+                                                                                                    <img src="icon/ACDIN.png" width="55">
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        
+                                                                                        
+                                                                                        <div class="flex-grow-1 overflow-hidden">
+                                                                                            <p class="mb-1 text-truncate text-muted">ACD IN</p>
+                                                                                            <h2 class="font-size-22 mb-0" id="acdin">0</h2>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div><!-- end card body -->
+                                                                            
+                                                                        </div>
+                                                                            <div class="col-xl-3 col-sm-6">
+                                                                                
+                                                                                    <div class="card-body">
+                                                                                        <div class="d-flex align-items-center">
+                                                                                            <div class="flex-shrink-0 me-3">
+                                                                                                <div class="avatar-sm">
+                                                                                                    <div class="avatar-title bg-soft-primary text-primary rounded-circle font-size-18">
+                                                                                                        <img src="icon/AUXN.png" width="55">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            
+                                                                                            
+                                                                                            <div class="flex-grow-1 overflow-hidden">
+                                                                                                <p class="mb-1 text-truncate text-muted">AUX</p>
+                                                                                                <h2 class="font-size-22 mb-0" id="auxagent">0</h2>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div><!-- end card body -->
+                                                                            
+                                                                            </div><!-- end col -->
+                                                                            
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-xl-1 col-sm-1">
+                                                                    <div class="col-md-auto">
+                                                                        <div><center>
+                                                                            <p class="text-muted mb-2"><p class="text-muted mb-2"><img src="icon/new/email.png" width="90"></p>
+                                                                        </center>
+                                                                            </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xl-2 col-sm-4">
+                                                                    <div class="card">
+                                                                        <div class="row">
+                                                                        
+                                                                            <div class="col-xl-6 col-lg-6">
+                                                                            
+                                                                                <div class="card-body">
+                                                                                    <div class="d-flex align-items-center">
+                                                                                        <div class="flex-shrink-0 me-3">
+                                                                                            <div class="avatar-sm">
+                                                                                                <div class="avatar-title bg-soft-primary text-primary rounded-circle font-size-18">
+                                                                                                    <img src="icon/AHT.png" width="55">
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        
+                                                                                        <div class="flex-grow-1 overflow-hidden">
+                                                                                            <p class="mb-1 text-truncate text-muted">AHT</p>
+                                                                                            <h2 class="font-size-22 mb-0" id="ahtdata">0</h2>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div><!-- end card body -->
+                                                                        
+                                                                            </div>
+                                                                            <div class="col-xl-6 col-lg-6">
+                                                                                
+                                                                                <div class="card-body">
+                                                                                    <div class="d-flex align-items-center">
+                                                                                        <div class="flex-shrink-0 me-3">
+                                                                                            <div class="avatar-sm">
+                                                                                                <div class="avatar-title bg-soft-primary text-primary rounded-circle font-size-18">
+                                                                                                    <img src="icon/FRT.png" width="55">
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        
+                                                                                        <div class="flex-grow-1 overflow-hidden">
+                                                                                            <p class="mb-1 text-truncate text-muted">FRT</p>
+                                                                                            <h2 class="font-size-22 mb-0" id="ahtdata">0</h2>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div><!-- end card body -->
+                                                                        
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xl-5 col-sm-5">
+                                                                    <div class="card">
+                                                                        <div class="row">
+                                                                            <div class="col-xl-3 col-sm-6">
+                                                                                <div class="card-body">
+                                                                                    <div class="d-flex align-items-center">
+                                                                                        <div class="flex-shrink-0 me-3">
+                                                                                            <div class="avatar-sm">
+                                                                                                <div class="avatar-title bg-soft-primary text-primary rounded-circle font-size-18">
+                                                                                                    <img src="icon/Staffed.png" width="55">
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        
+                                                                                        <div class="flex-grow-1 overflow-hidden">
+                                                                                            <center>
+                                                                                                <p class="mb-1 text-truncate text-muted">AGENT</p>
+                                                                                                <h2 class="font-size-22 mb-0" id="staffed">0</h2>
+                                                                                            </center>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div><!-- end card body -->
+                                                                            </div>
+                                                                            <div class="col-xl-3 col-sm-4">
+                                                                                    
+                                                                                <div class="card-body">
+                                                                                    <div class="d-flex align-items-center">
+                                                                                        <div class="flex-shrink-0 me-3">
+                                                                                            <div class="avatar-sm">
+                                                                                                <div class="avatar-title bg-soft-primary text-primary rounded-circle font-size-18">
+                                                                                                    <img id="waitingImg" src="icon/Waiting1.png" width="55">
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    
+                                                                                        
+                                                                                        <div class="flex-grow-1 overflow-hidden">
+                                                                                            <p class="mb-1 text-truncate text-muted">EMAIL</p>
+                                                                                            <h2 class="font-size-22 mb-0" id="calltotal">0</h2>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div><!-- end card body -->
+                                                                        
+                                                                            </div><!-- end col -->
+                                                                            <div class="col-xl-3 col-sm-4">
+                                                                                
+                                                                                <div class="card-body">
+                                                                                    <div class="d-flex align-items-center">
+                                                                                        <div class="flex-shrink-0 me-3">
+                                                                                            <div class="avatar-sm">
+                                                                                                <div class="avatar-title bg-soft-primary text-primary rounded-circle font-size-18">
+                                                                                                    <img src="icon/Answer.png" width="55">
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        
+                                                                                        <div class="flex-grow-1 overflow-hidden">
+                                                                                        
+                                                                                                <p class="mb-1 text-truncate text-muted">REPLY</p>
+                                                                                                <h2 class="font-size-22 mb-0" id="callanswer">0</h2>
+                                                                                            
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div><!-- end card body -->
+                                                                            
+                                                                            </div>  
+                                                                            <div class="col-xl-3 col-sm-6">
+                                                                                        
+                                                                                <div class="card-body">
+                                                                                    <div class="d-flex align-items-center">
+                                                                                        <div class="flex-shrink-0 me-3">
+                                                                                            <div class="avatar-sm">
+                                                                                                <div class="avatar-title bg-soft-primary text-primary rounded-circle font-size-18">
+                                                                                                    <img src="icon/ABDN.png" width="55">
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        
+                                                                                        <div class="flex-grow-1 overflow-hidden">
+                                                                                        
+                                                                                                <p class="mb-1 text-truncate text-muted">WAITING</p>
+                                                                                                <h2 class="font-size-22 mb-0" id="callabdn">0</h2>
+                                                                                            
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div><!-- end card body -->
+                                                                        
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                            
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-xl-1 col-sm-1">
+                                                                    <div class="col-md-auto">
+                                                                        <div><center>
+                                                                            <p class="text-muted mb-2"><p class="text-muted mb-2"><img src="icon/new/fb.png" width="90"></p>
+                                                                        </center>
+                                                                            </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xl-2 col-sm-4">
+                                                                    <div class="card">
+                                                                        <div class="row">
+                                                                            
+                                                                            <div class="col-xl-6 col-lg-6">
+                                                                            
+                                                                                <div class="card-body">
+                                                                                    <div class="d-flex align-items-center">
+                                                                                        <div class="flex-shrink-0 me-3">
+                                                                                            <div class="avatar-sm">
+                                                                                                <div class="avatar-title bg-soft-primary text-primary rounded-circle font-size-18">
+                                                                                                    <img src="icon/AHT.png" width="55">
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        
+                                                                                        <div class="flex-grow-1 overflow-hidden">
+                                                                                            <p class="mb-1 text-truncate text-muted">AHT</p>
+                                                                                            <h2 class="font-size-22 mb-0" id="ahtdata">0</h2>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div><!-- end card body -->
+                                                                        
+                                                                        </div>
+                                                                        <div class="col-xl-6 col-lg-6">
+                                                                                
+                                                                            <div class="card-body">
+                                                                                <div class="d-flex align-items-center">
+                                                                                    <div class="flex-shrink-0 me-3">
+                                                                                        <div class="avatar-sm">
+                                                                                            <div class="avatar-title bg-soft-primary text-primary rounded-circle font-size-18">
+                                                                                                <img src="icon/FRT.png" width="55">
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    
+                                                                                    <div class="flex-grow-1 overflow-hidden">
+                                                                                        <p class="mb-1 text-truncate text-muted">FRT</p>
+                                                                                        <h2 class="font-size-22 mb-0" id="ahtdata">0</h2>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div><!-- end card body -->
+                                                                    
+                                                                        </div>
+                                                                            
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xl-5 col-sm-5">
+                                                                    <div class="card">
+                                                                        <div class="row">
+                                                                            <div class="col-xl-3 col-sm-3">
+                                                                                <div class="card-body">
+                                                                                    <div class="d-flex align-items-center">
+                                                                                        <div class="flex-shrink-0 me-3">
+                                                                                            <div class="avatar-sm">
+                                                                                                <div class="avatar-title bg-soft-primary text-primary rounded-circle font-size-18">
+                                                                                                    <img src="icon/Staffed.png" width="55">
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        
+                                                                                        <div class="flex-grow-1 overflow-hidden">
+                                                                                            <center>
+                                                                                                <p class="mb-1 text-truncate text-muted">AGENT</p>
+                                                                                                <h2 class="font-size-22 mb-0" id="staffed">0</h2>
+                                                                                            </center>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div><!-- end card body -->
+                                                                            </div>
+                                                                            <div class="col-xl-3 col-sm-3">
+                                                                                
+                                                                                    <div class="card-body">
+                                                                                        <div class="d-flex align-items-center">
+                                                                                            <div class="flex-shrink-0 me-3">
+                                                                                                <div class="avatar-sm">
+                                                                                                    <div class="avatar-title bg-soft-primary text-primary rounded-circle font-size-18">
+                                                                                                        <img id="waitingImg" src="icon/Waiting1.png" width="55">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        
+                                                                                            
+                                                                                            <div class="flex-grow-1 overflow-hidden">
+                                                                                                <p class="mb-1 text-truncate text-muted">FB</p>
+                                                                                                <h2 class="font-size-22 mb-0" id="calltotal">0</h2>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div><!-- end card body -->
+                                                                            
+                                                                            </div><!-- end col -->
+                                                                            <div class="col-xl-3 col-sm-3">
+                                                                            
+                                                                                    <div class="card-body">
+                                                                                        <div class="d-flex align-items-center">
+                                                                                            <div class="flex-shrink-0 me-3">
+                                                                                                <div class="avatar-sm">
+                                                                                                    <div class="avatar-title bg-soft-primary text-primary rounded-circle font-size-18">
+                                                                                                        <img src="icon/Answer.png" width="55">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            
+                                                                                            <div class="flex-grow-1 overflow-hidden">
+                                                                                            
+                                                                                                    <p class="mb-1 text-truncate text-muted">REPLY</p>
+                                                                                                    <h2 class="font-size-22 mb-0" id="callanswer">0</h2>
+                                                                                                
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div><!-- end card body -->
+                                                                                
+                                                                            </div>
+                                                                            <div class="col-xl-3 col-sm-3">
+                                                                                
+                                                                                <div class="card-body">
+                                                                                    <div class="d-flex align-items-center">
+                                                                                        <div class="flex-shrink-0 me-3">
+                                                                                            <div class="avatar-sm">
+                                                                                                <div class="avatar-title bg-soft-primary text-primary rounded-circle font-size-18">
+                                                                                                    <img src="icon/ABDN.png" width="55">
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        
+                                                                                        <div class="flex-grow-1 overflow-hidden">
+                                                                                        
+                                                                                                <p class="mb-1 text-truncate text-muted">WAITING</p>
+                                                                                                <h2 class="font-size-22 mb-0" id="callabdn">0</h2>
+                                                                                            
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div><!-- end card body -->
+                                                                        
+                                                                            </div>
+                                                                            
+                                                                            
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-xl-1 col-sm-1">
+                                                                    <div class="col-md-auto">
+                                                                        <div><center>
+                                                                            <p class="text-muted mb-2"><p class="text-muted mb-2"><img src="icon/new/ig.png" width="90"></p>
+                                                                        </center>
+                                                                            </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xl-2 col-sm-4">
+                                                                    <div class="card">
+                                                                        <div class="row">
+                                                                        
+                                                                            <div class="col-xl-6 col-lg-6">
+                                                                            
+                                                                                <div class="card-body">
+                                                                                    <div class="d-flex align-items-center">
+                                                                                        <div class="flex-shrink-0 me-3">
+                                                                                            <div class="avatar-sm">
+                                                                                                <div class="avatar-title bg-soft-primary text-primary rounded-circle font-size-18">
+                                                                                                    <img src="icon/AHT.png" width="55">
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        
+                                                                                        <div class="flex-grow-1 overflow-hidden">
+                                                                                            <p class="mb-1 text-truncate text-muted">AHT</p>
+                                                                                            <h2 class="font-size-22 mb-0" id="ahtdata">0</h2>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div><!-- end card body -->
+                                                                        
+                                                                        </div>
+                                                                        <div class="col-xl-6 col-lg-6">
+                                                                                
+                                                                            <div class="card-body">
+                                                                                <div class="d-flex align-items-center">
+                                                                                    <div class="flex-shrink-0 me-3">
+                                                                                        <div class="avatar-sm">
+                                                                                            <div class="avatar-title bg-soft-primary text-primary rounded-circle font-size-18">
+                                                                                                <img src="icon/FRT.png" width="55">
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    
+                                                                                    <div class="flex-grow-1 overflow-hidden">
+                                                                                        <p class="mb-1 text-truncate text-muted">FRT</p>
+                                                                                        <h2 class="font-size-22 mb-0" id="ahtdata">0</h2>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div><!-- end card body -->
+                                                                    
+                                                                        </div>
+                                                                            
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xl-5 col-sm-5">
+                                                                    <div class="card">
+                                                                        <div class="row">
+                                                                            <div class="col-xl-3 col-sm-3">
+                                                                                <div class="card-body">
+                                                                                    <div class="d-flex align-items-center">
+                                                                                        <div class="flex-shrink-0 me-3">
+                                                                                            <div class="avatar-sm">
+                                                                                                <div class="avatar-title bg-soft-primary text-primary rounded-circle font-size-18">
+                                                                                                    <img src="icon/Staffed.png" width="55">
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        
+                                                                                        <div class="flex-grow-1 overflow-hidden">
+                                                                                            <center>
+                                                                                                <p class="mb-1 text-truncate text-muted">AGENT</p>
+                                                                                                <h2 class="font-size-22 mb-0" id="staffed">0</h2>
+                                                                                            </center>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div><!-- end card body -->
+                                                                            </div>
+                                                                            <div class="col-xl-3 col-sm-3">
+                                                                                
+                                                                                    <div class="card-body">
+                                                                                        <div class="d-flex align-items-center">
+                                                                                            <div class="flex-shrink-0 me-3">
+                                                                                                <div class="avatar-sm">
+                                                                                                    <div class="avatar-title bg-soft-primary text-primary rounded-circle font-size-18">
+                                                                                                        <img id="waitingImg" src="icon/Waiting1.png" width="55">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        
+                                                                                            
+                                                                                            <div class="flex-grow-1 overflow-hidden">
+                                                                                                <p class="mb-1 text-truncate text-muted">FB</p>
+                                                                                                <h2 class="font-size-22 mb-0" id="calltotal">0</h2>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div><!-- end card body -->
+                                                                            
+                                                                            </div><!-- end col -->
+                                                                            <div class="col-xl-3 col-sm-3">
+                                                                            
+                                                                                    <div class="card-body">
+                                                                                        <div class="d-flex align-items-center">
+                                                                                            <div class="flex-shrink-0 me-3">
+                                                                                                <div class="avatar-sm">
+                                                                                                    <div class="avatar-title bg-soft-primary text-primary rounded-circle font-size-18">
+                                                                                                        <img src="icon/Answer.png" width="55">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            
+                                                                                            <div class="flex-grow-1 overflow-hidden">
+                                                                                            
+                                                                                                    <p class="mb-1 text-truncate text-muted">REPLY</p>
+                                                                                                    <h2 class="font-size-22 mb-0" id="callanswer">0</h2>
+                                                                                                
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div><!-- end card body -->
+                                                                                
+                                                                            </div>
+                                                                            <div class="col-xl-3 col-sm-3">
+                                                                                
+                                                                                <div class="card-body">
+                                                                                    <div class="d-flex align-items-center">
+                                                                                        <div class="flex-shrink-0 me-3">
+                                                                                            <div class="avatar-sm">
+                                                                                                <div class="avatar-title bg-soft-primary text-primary rounded-circle font-size-18">
+                                                                                                    <img src="icon/ABDN.png" width="55">
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        
+                                                                                        <div class="flex-grow-1 overflow-hidden">
+                                                                                        
+                                                                                                <p class="mb-1 text-truncate text-muted">WAITING</p>
+                                                                                                <h2 class="font-size-22 mb-0" id="callabdn">0</h2>
+                                                                                            
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div><!-- end card body -->
+                                                                        
+                                                                            </div>
+                                                                            
+                                                                            
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-xl-1 col-sm-1">
+                                                                    <div class="col-md-auto">
+                                                                        <div><center>
+                                                                            <p class="text-muted mb-2"><p class="text-muted mb-2"><img src="icon/new/chat.png" width="90"></p>
+                                                                        </center>
+                                                                            </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xl-2 col-sm-4">
+                                                                    <div class="card">
+                                                                        <div class="row">
+                                                                            
+                                                                            <div class="col-xl-6 col-lg-6">
+                                                                            
+                                                                                <div class="card-body">
+                                                                                    <div class="d-flex align-items-center">
+                                                                                        <div class="flex-shrink-0 me-3">
+                                                                                            <div class="avatar-sm">
+                                                                                                <div class="avatar-title bg-soft-primary text-primary rounded-circle font-size-18">
+                                                                                                    <img src="icon/AHT.png" width="55">
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        
+                                                                                        <div class="flex-grow-1 overflow-hidden">
+                                                                                            <p class="mb-1 text-truncate text-muted">AHT</p>
+                                                                                            <h2 class="font-size-22 mb-0" id="ahtdata">0</h2>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div><!-- end card body -->
+                                                                        
+                                                                        </div>
+                                                                        <div class="col-xl-6 col-lg-6">
+                                                                                
+                                                                            <div class="card-body">
+                                                                                <div class="d-flex align-items-center">
+                                                                                    <div class="flex-shrink-0 me-3">
+                                                                                        <div class="avatar-sm">
+                                                                                            <div class="avatar-title bg-soft-primary text-primary rounded-circle font-size-18">
+                                                                                                <img src="icon/FRT.png" width="55">
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    
+                                                                                    <div class="flex-grow-1 overflow-hidden">
+                                                                                        <p class="mb-1 text-truncate text-muted">FRT</p>
+                                                                                        <h2 class="font-size-22 mb-0" id="ahtdata">0</h2>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div><!-- end card body -->
+                                                                    
+                                                                        </div>
+                                                                            
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xl-5 col-sm-5">
+                                                                    <div class="card">
+                                                                        <div class="row">
+                                                                            <div class="col-xl-3 col-sm-3">
+                                                                                <div class="card-body">
+                                                                                    <div class="d-flex align-items-center">
+                                                                                        <div class="flex-shrink-0 me-3">
+                                                                                            <div class="avatar-sm">
+                                                                                                <div class="avatar-title bg-soft-primary text-primary rounded-circle font-size-18">
+                                                                                                    <img src="icon/Staffed.png" width="55">
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        
+                                                                                        <div class="flex-grow-1 overflow-hidden">
+                                                                                            <center>
+                                                                                                <p class="mb-1 text-truncate text-muted">AGENT</p>
+                                                                                                <h2 class="font-size-22 mb-0" id="staffed">0</h2>
+                                                                                            </center>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div><!-- end card body -->
+                                                                            </div>
+                                                                            <div class="col-xl-3 col-sm-3">
+                                                                                
+                                                                                    <div class="card-body">
+                                                                                        <div class="d-flex align-items-center">
+                                                                                            <div class="flex-shrink-0 me-3">
+                                                                                                <div class="avatar-sm">
+                                                                                                    <div class="avatar-title bg-soft-primary text-primary rounded-circle font-size-18">
+                                                                                                        <img id="waitingImg" src="icon/Waiting1.png" width="55">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        
+                                                                                            
+                                                                                            <div class="flex-grow-1 overflow-hidden">
+                                                                                                <p class="mb-1 text-truncate text-muted">FB</p>
+                                                                                                <h2 class="font-size-22 mb-0" id="calltotal">0</h2>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div><!-- end card body -->
+                                                                            
+                                                                            </div><!-- end col -->
+                                                                            <div class="col-xl-3 col-sm-3">
+                                                                            
+                                                                                    <div class="card-body">
+                                                                                        <div class="d-flex align-items-center">
+                                                                                            <div class="flex-shrink-0 me-3">
+                                                                                                <div class="avatar-sm">
+                                                                                                    <div class="avatar-title bg-soft-primary text-primary rounded-circle font-size-18">
+                                                                                                        <img src="icon/Answer.png" width="55">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            
+                                                                                            <div class="flex-grow-1 overflow-hidden">
+                                                                                            
+                                                                                                    <p class="mb-1 text-truncate text-muted">REPLY</p>
+                                                                                                    <h2 class="font-size-22 mb-0" id="callanswer">0</h2>
+                                                                                                
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div><!-- end card body -->
+                                                                                
+                                                                            </div>
+                                                                            <div class="col-xl-3 col-sm-3">
+                                                                                
+                                                                                <div class="card-body">
+                                                                                    <div class="d-flex align-items-center">
+                                                                                        <div class="flex-shrink-0 me-3">
+                                                                                            <div class="avatar-sm">
+                                                                                                <div class="avatar-title bg-soft-primary text-primary rounded-circle font-size-18">
+                                                                                                    <img src="icon/ABDN.png" width="55">
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        
+                                                                                        <div class="flex-grow-1 overflow-hidden">
+                                                                                        
+                                                                                                <p class="mb-1 text-truncate text-muted">WAITING</p>
+                                                                                                <h2 class="font-size-22 mb-0" id="callabdn">0</h2>
+                                                                                            
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div><!-- end card body -->
+                                                                        
+                                                                            </div>
+                                                                            
+                                                                            
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+											
+                                            
+                                        </div>
+                                    </div>
+
+                                  
+                            </div>
+                                <!-- end card -->
+                        </div>
+                            <!-- end col -->
+                            
+                            
+
+                          
+                        </div>
+                        <!-- end row -->
+                       
+                        
+                      
+                    </div>
+                    <!-- container-fluid -->
+                </div>
+                <!-- End Page-content -->
+            
+                
+            </div>
+            <!-- end main content-->
+            
+
+        </div>
+        <!-- END layout-wrapper -->
+
+       
+
+        <!-- Right bar overlay-->
+        <div class="rightbar-overlay"></div>
+
+        <!-- JAVASCRIPT
+        <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/libs/metismenujs/metismenujs.min.js"></script>
+        <script src="assets/libs/simplebar/simplebar.min.js"></script>
+        <script src="assets/libs/feather-icons/feather.min.js"></script> -->
+
+        <!-- apexcharts 
+        <script src="assets/libs/apexcharts/apexcharts.min.js"></script>-->
+
+        <!-- Vector map
+        <script src="assets/libs/jsvectormap/js/jsvectormap.min.js"></script>
+        <script src="assets/libs/jsvectormap/maps/world-merc.js"></script>-->
+        <!-- analytics dashboard init -->
+        <!--<script src="assets/js/pages/dashboard-analytics.init.js"></script>-->
+        <!-- apexcharts -->
+        <script src="assets/libs/apexcharts/apexcharts.min.js"></script>
+        <script type='text/javascript' src='js/default.js'></script>
+            
+        <script src="assets/libs/apexcharts/apexcharts.min.js"></script>
+        <script type='text/javascript' src='js/channel.js'></script>
+		<script>
+		 var options = {
+          series: [{
+		  name: "Call",
+          data: [44, 55, 41]
+        }, {
+			name: "Email",
+          data: [53, 32, 33]
+        }, {
+			name: "Whatsapp",
+          data: [21, 45, 22]
+        }],
+          chart: {
+          type: 'bar',
+          height: 430
+        },
+        plotOptions: {
+          bar: {
+            horizontal: false,
+            dataLabels: {
+              position: 'top',
+            },
+          }
+        },
+        dataLabels: {
+          enabled: true,
+          offsetX: -6,
+          style: {
+            fontSize: '12px',
+            colors: ['#fff']
+          }
+        },
+        stroke: {
+          show: true,
+          width: 1,
+          colors: ['#fff']
+        },
+        tooltip: {
+          shared: true,
+          intersect: false
+        },
+        xaxis: {
+          categories: ["Incoming", "Ticket Solved", "Ticket Over SLA"],
+        },
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
+      
+		</script>
+    </body>
+
+
+</html>

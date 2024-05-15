@@ -21,8 +21,8 @@ var myVarY;
 function myFunction() {
   console.log("New PROV JS");
   //myVar = setInterval(llll, 3000);
-  myVarX = setInterval(fetchData, 1000);
-  myVarY = setInterval(agentList, 1000);
+  myVarX = setInterval(fetchData, 8000);
+  myVarY = setInterval(agentList, 8000);
   //calloutbound staffedoutbound auxagent waiting acdin avail callabdn callanswer
   $('#calloutbound').html('0');
   $('#staffedoutbound').html('0');
@@ -38,6 +38,16 @@ function myFunction() {
 function getRedirect() {
   console.log("getRedirect");
   //window.location.replace("outbound.html");
+}
+
+function storeUserData(fieldName,userData) {
+  // Convert the data to a JSON string
+  var jsonString = JSON.stringify(userData);
+
+  // Store the data in local storage under the key 'user'
+  localStorage.setItem(fieldName, jsonString);
+
+  console.log('Data stored in local storage successfully.');
 }
 
 function secondsToHHMMSS(totalSeconds) {
@@ -77,8 +87,135 @@ function secondsToMinutes(seconds) {
     return `${formattedMinutes}:${formattedSeconds}`;
 }
 
+function chartPie(){
+  // Retrieve data from local storage under the key 'user'
+  var storedDataAUX = localStorage.getItem('DATAAUX');
+  var storedDataACDIN = localStorage.getItem('DATAACDIN');
+  var storedDataREADY = localStorage.getItem('DATAAVAIL');
+  var storedDataQUE = localStorage.getItem('DATAQUE');
+  var options={
+    chart: {
+        height: 365,
+        type: "pie"
+    },
+    plotOptions: {
+        pie: {
+            donut: {
+                size: "70%"
+            }
+        }
+    },
+    dataLabels: {
+        formatter(val, opts) {
+            const name = opts.w.globals.labels[opts.seriesIndex]
+            const value = opts.w.config.series[opts.seriesIndex]
+            return [name, value]
+          }
+    },
+    series: [storedDataQUE, storedDataAUX, storedDataACDIN],
+    labels: ["QUE", "AUX", "ACD IN"],
+    colors: ["#EB1616", "#C7EB16", "#164FEB"],
+    legend: {
+        show: false,
+        position: "bottom",
+        horizontalAlign: "center",
+        verticalAlign: "middle",
+        floating: !1,
+        fontSize: "14px",
+        offsetX: 0
+    }
+  };
+  var chart = new ApexCharts(document.querySelector("#chart-donut"), options);
+  chart.render();
+}
+
+
+// Function to update chart data
+function updateChartData() {
+  // Generate new random data
+  var newData = [];
+  /*for (var i = 0; i < pieData.series.length; i++) {
+      newData.push(Math.floor(Math.random() * 100) + 1);
+  }*/
+  
+// Define initial chart data
+var storedDataACDIN = parseInt(localStorage.getItem('DATAACDIN'));
+var storedDataAUX = parseInt(localStorage.getItem('DATAAUX'));
+var storedDataREADY = parseInt(localStorage.getItem('DATAAVAIL'));
+var pieData = {
+  series: [storedDataACDIN, storedDataAUX, storedDataREADY],
+  labels: ["ACD IN", "NOT READY", "AVAIL"]
+};
+
+// Define chart options
+var pieOptions = {
+  chart: {
+    height: 485,
+    type: "pie"
+  },
+  labels: pieData.labels,
+  dataLabels: {
+    formatter(val, opts) {
+        //const name = opts.w.globals.labels[opts.seriesIndex]
+        const value = opts.w.config.series[opts.seriesIndex]
+        //return [name, value]
+          const name = opts.w.globals.labels[opts.seriesIndex]
+            return [name, value]
+      }
+},
+  series: pieData.series,
+  colors: ["#309E43", "#F20F3C", "#160FF2"],
+    legend: {
+        show: false,
+        position: "bottom",
+        horizontalAlign: "center",
+        verticalAlign: "middle",
+        floating: !1,
+        fontSize: "14px",
+        offsetX: 0
+    },
+  responsive: [{
+      breakpoint: 480,
+      options: {
+          chart: {
+              width: 200
+          },
+          legend: {
+              position: 'bottom'
+          }
+      }
+  }]
+};
+
+// Create the pie chart
+var pieChart = new ApexCharts(document.querySelector('#chart-donut'), pieOptions);
+
+// Render the chart
+pieChart.render();
+ // var storedDataACDIN = parseInt(localStorage.getItem('DATAACDIN'));
+  //var storedDataAUX = parseInt(localStorage.getItem('DATANOTREADY'));
+  //var storedDataREADY = parseInt(localStorage.getItem('DATAAVAIL'));
+  //var storedDataQUE = parseInt(localStorage.getItem('DATAQUE'));
+  
+  newData.push(storedDataACDIN);
+  newData.push(storedDataAUX);
+  newData.push(storedDataREADY);
+
+
+
+  console.log(newData);
+  // Update chart series with new data
+  pieChart.updateSeries(newData);
+}
+
 
 function fetchData() {
+    
+    //Call Pie
+    updateChartData();
+    //End
+
+
     
     //GET DATA AUX
     let NoUrutan = 1;
@@ -126,13 +263,77 @@ function fetchData() {
                   '</div>'+
               '</li>');
               NoUrutan++;
-          });
-          
+        });
+        storeUserData("DATAAUX",NoUrutan-1);
 
     })
     .catch(error => {
         console.error('Error fetching XML data:', error);
     });
+
+
+  //Get data Other Channel
+  function getJumlahChannel(channelName, jsonObject) {
+    let jumlah = 0;
+    for (let i = 0; i < jsonData.length; i++) {
+        if (jsonData[i].Channel === channelName) {
+            jumlah += jsonData[i].Jumlah;
+        }
+    }
+    return jumlah;
+}
+  fetch('https://crm.uidesk.id/roatex/apps/WebServiceGetDataMaster.asmx/UIDESK_TrmMasterCombo?TrxID=UideskIndonesia&TrxUserName=Admin&TrxAction=UIDESK126')
+    .then(response => response.text())
+    .then(xmlString => {
+        // Parse the XML string into an XMLDocument
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(xmlString, 'text/xml');
+
+        // Use the xmlDoc as needed
+        console.log(xmlDoc);
+
+        const parserX = new DOMParser();
+        const xmlDocX = parserX.parseFromString(xmlDoc, "text/xml");
+        const jsonString = xmlDoc.getElementsByTagName("string")[0].textContent;
+
+        // Parse the JSON string into a JavaScript object
+        const jsonObject = JSON.parse(jsonString);
+
+        console.log(jsonObject);
+
+        let waTotal=0;
+        let waFrt=0;
+        let emailTotal=0;
+        let emailFrt=0;
+        $.each(jsonObject, function (i, items) {
+            console.log(items["Jumlah"]);   
+            if(items["Channel"]=="Whatsapp"){
+              waTotal =items["Jumlah"];
+              waFrt=items["FRT"];
+            }  else{
+              emailTotal=items["Jumlah"];
+              emailFrt=items["FRT"];
+            }  
+        });
+
+        
+        
+        // Get the number of occurrences of the "Whatsapp" channel
+        
+
+          $('#watotal').html(waTotal);
+          $('#wafrt').html(waFrt);
+          $('#emailtotal').html(emailTotal);
+          $('#emailfrt').html(emailFrt);
+
+    })
+    .catch(error => {
+        console.error('Error fetching XML data:', error);
+    });
+
+
+  //End
+  
 
   var jqxhr = $.getJSON("BE/getssh.php", function (data) {
     console.log("Hai iwallboard");
@@ -187,11 +388,18 @@ function fetchData() {
 
       
     });
+    var storedDataAUX = localStorage.getItem('DATAAUX');
     $('#avail').html(availCount);
-    $('#auxagent').html(auxCount);
-    $('#staffed').html(agentStaffed);
+    $('#staffed').html(parseInt(storedDataAUX)+parseInt(availCount));
+    $('#auxagent').html(storedDataAUX);
+    //$('#staffed').html(availCount);
 
+    // Data to be stored
+    
 
+    // Call the function to store the data
+    storeUserData("DATAAVAIL",availCount);
+    storeUserData("DATANOTREADY",auxCount);
   })
     .done(function () {
       //console.log( "done" );
@@ -228,13 +436,13 @@ function fetchData() {
           //$('#callanswer').html(items.jumlah);
       }
       if(items.TypeNya=="CallAbandoned"){
-          //$('#callabdn').html(items.jumlah);
-          //b = items.jumlah;
+          $('#callabdn').html(items.jumlah);
+          b = items.jumlah;
       }
       if(a==0){
           Abandonrate = "0";
       }else{
-          //Abandonrate = (b / a) * 100;
+          Abandonrate = (b / a) * 100;
       }
       
       
@@ -253,6 +461,161 @@ function fetchData() {
     //console.log( "complete" );
   });
   
+  //get List Aux Talktime
+
+  console.log("Hai iwallboard get Talktime");
+  var Abandonrate = 0;
+
+  
+  
+  //get ACD IN
+
+  //GET List Avail Agent
+  console.log("Hai iwallboard get Available Times");
+  let NoUrutanAvail=1;
+  
+  var jqxhr = $.getJSON("BE/getssh_listagent_que.php", function (data) {
+  $("#listAvailAgent").empty();
+  $.each(data, function (i, items) {
+      console.log(items.name);
+      console.log(items.lastcalltime);
+	  if(items.statuscall === "Ready"){
+		  if(NoUrutanAvail<=5){
+			
+			//console.log(items["AuxUserName"]);
+		  $("#listAvailAgent").append('<li class="px-4 py-2">'+
+			  '<div class="d-flex align-items-center">'+
+				  '<div class="flex-shrink-0 me-3">'+
+					  '<div class="avatar-sm">'+
+						  '<div class="avatar-title bg-light text-primary rounded-circle">'+
+						  NoUrutanAvail+
+						  '</div>'+
+					  '</div>'+
+				  '</div>'+
+				  '<div class="flex-grow-1 overflow-hidden">'+
+					  '<p class="text-muted mb-1 text-truncate">'+ items.name+'</p>'+
+					  '<div class="badge badge-soft-success ms-2">Avail time</div>'+
+				  '</div>'+
+				  '<div class="flex-shrink-0 align-self-start">'+
+					  '<h6> '+ secondsToHHMMSS(items.lastcalltime) +' <i class="uil uil-arrow-up-right text-success ms-1"></i></h6>'+
+				  '</div>'+
+			  '</div>'+
+		  '</li>');
+		  NoUrutanAvail++;
+		}
+      }
+      
+      
+  
+
+  });
+  })
+  .done(function () {
+    //console.log( "done" );
+    
+  })
+  .fail(function () {
+    //console.log( "error" );
+  })
+  .always(function () {
+    //console.log( "complete" );
+  });
+
+  //End
+  
+  //GET Agent ACD IN
+  var NoUrutanACD=1;
+  var jqxhr = $.getJSON("BE/getssh_listagent_acdin.php", function (data) {
+		  $("#listTalkAgent").empty();
+		  $.each(data, function (i, items) {
+			//console.log(items.statuscall);
+			//console.log(items.local);
+			if(items.name != "TEST"){
+				if(items.statuscall === "InCall"){
+					$("#listTalkAgent").append('<li class="px-4 py-2">'+
+					'<div class="d-flex align-items-center">'+
+						'<div class="flex-shrink-0 me-3">'+
+							'<div class="avatar-sm">'+
+								'<div class="avatar-title bg-light text-primary rounded-circle">'+
+									NoUrutanACD+
+								'</div>'+
+							'</div>'+
+						'</div>'+
+						'<div class="flex-grow-1 overflow-hidden">'+
+							'<p class="text-muted mb-1 text-truncate">'+items.name+'</p>'+
+						'</div>'+
+						'<div class="flex-shrink-0 align-self-start">'+
+							'<div class="badge badge-soft-success ms-2">'+items.statuscall+'</div>'+
+						'</div>'+
+					'</div>'+
+				'</li>');
+				NoUrutanACD++;
+				}
+			}
+			 
+		  });
+		  })
+		  .done(function () {
+			//console.log( "done" );
+			 // Push the new data into the array
+			 
+		  })
+		  .fail(function () {
+			//console.log( "error" );
+		  })
+		  .always(function () {
+			//console.log( "complete" );
+		  });
+  
+  //END
+  let dataAuxNya=0;
+  let dataACDNya=0;
+  let dataQUENya=0;
+  let dataREADYNya=0;
+  let dataUNAVAILNya=0;
+  var jqxhr = $.getJSON("BE/getssh_state.php", function (data) {
+    $.each(data["DataDetail"], function (i, items) {
+      console.log("getssh_state here...");
+        console.log(items['ACD-IN']);
+        console.log(items['QUE']);
+      
+        //$('#acdin').html(items['ACD-IN']);
+        if(items['ACD-IN']>0){
+          $('#acdin').html("<font style='color: #2AEE65; font-size: 38px;' color='#2AEE65' id='elem'>"+items['ACD-IN']+"</font>");
+        }else{
+          $('#acdin').html(items['ACD-IN']);
+        }
+        if(items['QUE']>0){
+          $('#queline').html("<font style='color: red; font-size: 38px;' color='red' id='elem'>"+items['QUE']+"</font>");
+        }else{
+          $('#queline').html(items['QUE']);
+        }
+        
+        dataAuxNya=2;
+        dataACDNya=items['ACD-IN'];
+        dataQUENya=items['QUE'];
+        dataREADYNya=items['READY'];
+        dataUNAVAILNya=items['UNAVAILABLE'];
+        storeUserData("DATAACDIN",dataACDNya);
+        storeUserData("DATAQUE",dataQUENya);
+        storeUserData("DATAREADY",dataREADYNya);
+        storeUserData("DATAUN",dataUNAVAILNya);
+        
+
+    });
+    })
+    .done(function () {
+      //console.log( "done" );
+      
+    })
+    .fail(function () {
+      //console.log( "error" );
+    })
+    .always(function () {
+      //console.log( "complete" );
+    });
+
+  //get END
 
   var a = 0;
   var b = 0;
@@ -269,34 +632,35 @@ function fetchData() {
   $.each(data["DataDetail"], function (i, items) {
       console.log(items['Total Call'][day]);
       console.log(items['SCR'][day]);
-      $('#servicelevel').html(items['Service Level'][day]);
+      $('#servicelevel').html(items['Service Level'][day]+' %');
       $('#calltotal').html(items['Total Call'][day]);
-      $('#handlecallanswer').html(items['Call Answered'][day]);
-      $('#callabdn').html(items['early abandoned'][day]);
+      $('#callanswer').html(items['Call Answered'][day]);
+      $('#rona').html("<font style='color: red; font-size: 38px;' color='red'>"+items['Abnd. Ringing'][day]+"</font>");
       $('#abnque').html(items['Abnd. Queue'][day]);
-      $('#abnivr').html(items['ivr terminated'][day]);
+     // $('#abnivr').html(items['ivr terminated'][day]);
       const seconds = items['Average Handling Time (AHT)'][day];
       const formattedTime = secondsToMinutes(seconds);
-      $('#ahtcallanswer').html(formattedTime);
+      $('#ahtdata').html(formattedTime);
       //$('#callabdn').html(items['early abandoned'][day]);
-    });
-    })
-    .done(function () {
-      //console.log( "done" );
-      
-    })
-    .fail(function () {
-      //console.log( "error" );
-    })
-    .always(function () {
-      //console.log( "complete" );
-    });
-  // Perform other work here ...
-
-  // Set another completion function for the request above
-  jqxhr.always(function () {
-    //console.log( "second complete" );
+     
   });
+  })
+  .done(function () {
+    //console.log( "done" );
+    
+  })
+  .fail(function () {
+    //console.log( "error" );
+  })
+  .always(function () {
+    //console.log( "complete" );
+  });
+// Perform other work here ...
+
+// Set another completion function for the request above
+jqxhr.always(function () {
+  //console.log( "second complete" );
+});
 }
 String.prototype.toHHMMSS = function () {
   var sec_num = parseInt(this, 10); // don't forget the second param

@@ -4,7 +4,7 @@
   ini_set('display_startup_errors', 0);
     //error_reporting(E_ALL);
     $key ="Uid35k32!J4y4J4y4";
-    $ssh1 = new Net_SSH2('206.237.98.116', 3389);   // Domain or IP
+    $ssh1 = new Net_SSH2('202.43.173.61', 3389);   // Domain or IP
     if (!$ssh1->login('root', $key))   exit('Login Failed'); 
   $numbers1 = array(10010);
   $ready=0;
@@ -14,9 +14,8 @@
   $outputArray = array();
   
   foreach ($numbers1 as $number1) {
-   
-      $get60011= $ssh1->exec('sudo asterisk -x "queue show 60011"');
-      $get60012= $ssh1->exec('sudo asterisk -x "queue show 60012"');
+      $get60011= $ssh1->exec('sudo asterisk -x "queue show 9000"');
+      //$get60012= $ssh1->exec('sudo asterisk -x "queue show 60012"');
       //$outputArray['DataDetail'][] = array(
        // 'dataque' => $get100111
     //);
@@ -56,15 +55,15 @@
         {"DataDetail":[{"dataque":"60012 has 0 calls (max unlimited) in 'rrordered' strategy (2s holdtime, 148s talktime), W:0, C:65, A:5, SL:100.0%, SL2:95.7% within 60s\n Members: \n Rino Andriansyah (Local\/10020@from-queue\/n from hint:10020@ext-local) (ringinuse enabled)\u001b[0m\u001b[0m\u001b[0m (\u001b[1;32;40mNot in use\u001b[0m) has taken 3 calls (last was 650 secs ago)\n Rizky Alfiandi (Local\/10021@from-queue\/n from hint:10021@ext-local) (ringinuse enabled)\u001b[0m\u001b[0m\u001b[0m (\u001b[1;31;40mUnavailable\u001b[0m) has taken no calls yet\n Nimah Rifda Yusuf (Local\/10022@from-queue\/n from hint:10022@ext-local) (ringinuse enabled)\u001b[0m\u001b[0m\u001b[0m (\u001b[1;32;40mNot in use\u001b[0m) has taken 4 calls (last was 408 secs ago)\n Devira Afandi (Local\/10024@from-queue\/n from hint:10024@ext-local) (ringinuse enabled)\u001b[0m\u001b[0m\u001b[0m (\u001b[1;31;40mUnavailable\u001b[0m) has taken no calls yet\n Mega Rahmawati (Local\/10027@from-queue\/n from hint:10027@ext-local) (ringinuse enabled)\u001b[0m\u001b[0m\u001b[1;33;40m (in call)\u001b[0m (\u001b[1;32;40mIn use\u001b[0m) has taken 3 calls (last was 803 secs ago)\n No Callers\n\n"}
     */
     //echo $memberData; // Output data member
-    // $memberData=$get60011;
-    // $memberData6002=$get60012;
-    if ($_GET['param'] =='KANMO'){
-        $memberData=$get60012;
-    }else{
-        $memberData=$get60011;
-    }
+    $memberData=$get60011;
+    //$memberData6002=$get60012;
+    //echo $memberData;
+    /*$dataArray = explode("\n", $memberData);
 
-    
+    // Iterasi dan mencetak setiap baris
+    foreach ($dataArray as $line) {
+        //echo $line . "<br>";
+    }*/
     // Split the data into rows
     $rows = explode("\n", $memberData);
     $in_call_count = 0;
@@ -87,22 +86,51 @@
             $in_unavailable_count++;
         }
     }
-   
-    //echo "ACD-IN : " . $in_call_count." QUE : " .$in_callwait_count;
-   
+    //Not in use <- ini Ready
+    //Unavailable <- ini nggk masuk
+    //$rows6002 = explode("\n", $memberData6002);
+    //$in_call_count6002 = 0;
+    //$in_callwait_count6002 = 0;
+    //$in_ready_count6002 = 0;
+    //$in_unavailable_count6002 = 0;
+    // Iterate through each row
+    //foreach ($rows6002 as $row6002) {
+        // Check if the row contains "(in call)"
+      //  if (strpos($row6002, "(in call)") !== false) {
+       //     $in_call_count6002++;
+       // }
+       // if (strpos($row6002, "wait:") !== false) {
+       //     $in_callwait_count6002++;
+       // }
+       // if (strpos($row, "Not in use") !== false) {
+        //    $in_ready_count6002++;
+       // }
+       // if (strpos($row, "Unavailable") !== false) {
+        //    $in_unavailable_count6002++;
+        //}
+    //}
 
-        $outputArray['DataDetail'][] = array(
-            'ACD-IN' => $in_call_count,
-            'QUE' => $in_callwait_count,
-            'READY' => $in_ready_count,
-            'UNAVAILABLE' => $in_unavailable_count
-        );
-    
+    //echo "ACD-IN : " . $in_call_count." QUE : " .$in_callwait_count;
+
+    $outputArray['DataDetail'][] = array(
+        'ACD-IN' => $in_call_count,
+        'QUE' => $in_callwait_count,
+        'READY' => $in_ready_count,
+        'UNAVAILABLE' => $in_unavailable_count
+    );
     $myJSON = json_encode($outputArray);
     $data = json_decode($myJSON, true);
     echo $myJSON;
 
-    
+    /*$dataArray = json_decode($myJSON, true);
+
+    // Mendapatkan jumlah elemen dalam array
+    $count = count($dataArray);
+
+    // Mendapatkan nilai dari kunci "JumlahReady" pada objek terakhir dalam array
+    $lastJumlahReady = $dataArray[$count - 1]['JumlahReady'];
+
+    echo "Jumlah Ready pada objek terakhir: " . $lastJumlahReady;*/
 ?>
 	
    

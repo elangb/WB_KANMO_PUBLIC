@@ -1,5 +1,5 @@
 <?php
-$url = "https://crm.uidesk.id/reportroatexasterisk/be-data.php?search=".($_GET['search'] ?? "")."&start_date=".($_GET['start_date'] ?? "")."&end_date=".($_GET['end_date'] ?? "");
+$url = "be-data.php?search=".($_GET['search'] ?? "")."&start_date=".($_GET['start_date'] ?? "")."&end_date=".($_GET['end_date'] ?? "");
 // if (isset($_GET['search'])) $url .= "?search=" . $_GET['search'];
 // if (isset($_GET['search'])) $url .= "?search=" . $_GET['search'];
 // if(isset($_GET['start_date']) && !empty($_GET['start_date']) && isset($_GET['end_date']) && !empty($_GET['end_date'])) $url .= " AND (calldate BETWEEN '".$_GET['start_date']."' AND '".$_GET['end_date']." 23:59:59')";

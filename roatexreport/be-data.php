@@ -1,12 +1,7 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-/*$hostname = "149.28.156.138";
-$database = "mixradius_radDB";
-$username = "103.79.131.74";
-$password = "qcXRAlD7HBfD9B1Z";
-*/
-$mysqli = new mysqli("149.28.156.138","103.79.131.74","qcXRAlD7HBfD9B1Z","mixradius_radDB");
+$mysqli = new mysqli("sip.uidesk.id","root","Uid35k32!Uid35k32!J4y4","asteriskcdrdb");
 /*
 
 user : root
@@ -36,11 +31,11 @@ if(isset($_GET['start_date']) && !empty($_GET['start_date']) && isset($_GET['end
 // die;
 
 $three_days_ago = date("Y-m-d 00:00:00", strtotime("-3 days", time()));
-$result = $mysqli -> query("SELECT a.id, a.member_id, a.type, a.servicetype, a.username, a.password, a.fullname, a.email, a.phonenumber, a.address, a.plan_name, a.renewed_on, a.expired_on, a.trx_invoice, a.trx_status, a.payment_type,b.latitude, b.longitude FROM tbl_customers a LEFT JOIN tbl_customers_map b ON b.customer_id = a.id");
+$result = $mysqli -> query("SELECT DATE(calldate) as Tgl,cdr.* FROM cdr where (dst <> '60011' AND dst <> '60012') AND (YEAR(calldate) > '2022' and recordingfile != '')   AND disposition != 'CONGESTION' ".$add_query."  order by calldate desc");
 
 $data = [];
 while ($row = $result->fetch_assoc()) {
-    //$row['recordingfile_url'] = "https://sip.uidesk.id/stream.php?file=/var/spool/asterisk/monitor/".str_replace("-", "/", trim($row['Tgl']))."/".$row['recordingfile'];
+    $row['recordingfile_url'] = "https://sip.uidesk.id/stream.php?file=/var/spool/asterisk/monitor/".str_replace("-", "/", trim($row['Tgl']))."/".$row['recordingfile'];
     $data[] = $row;
 }
 
