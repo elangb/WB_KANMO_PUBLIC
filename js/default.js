@@ -665,6 +665,7 @@ function fetchData() {
 
   var jqxhr = $.getJSON("BE/getsummary_v2.php", function (data) {
   $.each(data["DataDetail"], function (i, items) {
+    //alert(items['Total Call'][day]);
       console.log(items['Total Call'][day]);
       console.log(items['SCR'][day]);
       $('#servicelevel').html(items['Service Level'][day]+' %');
