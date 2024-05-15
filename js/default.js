@@ -677,7 +677,8 @@ function fetchData() {
       const seconds = items['Average Handling Time (AHT)'][day];
       const formattedTime = secondsToMinutes(seconds);
       $('#ahtdata').html(formattedTime);
-      //$('#callabdn').html(items['early abandoned'][day]);
+      $('#scr').html(items['SCR'][day]+"%");
+      $('#callanswer').html(items['Call Answered'][day]);
      
   });
   })
@@ -761,9 +762,9 @@ function agentList() {
         ScrCalls    = Math.round(((TotalAnswered > 0)? ((TotalAnswered-AbandonCalls) / TotalData) : 0), 2)*100
 
         $('#calltotal').html(TotalData);
-        $('#callanswer').html(TotalAnswered);
+        //$('#callanswer').html(TotalAnswered);
         $('#rona').html("<font style='color: red; font-size: 38px;' color='red'>"+AbandonCalls+"</font>");
-        $('#scr').html(ScrCalls+"%");
+        //$('#scr').html(ScrCalls+"%");
         //$('#callabdn').html(items['early abandoned'][day]);
        
     });
