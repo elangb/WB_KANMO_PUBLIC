@@ -6,7 +6,7 @@ ini_set("error_reporting", E_ALL);
 error_reporting(E_ALL & ~E_NOTICE);
 date_default_timezone_set('GMT');
 
-$mysqli = new mysqli("202.43.173.61","matthew","supersecretpassword","asteriskcdrdb");
+$mysqli = new mysqli("sip.uidesk.id","root","Uid35k32!J4y4J4y4","asteriskcdrdb");
 /*
 
 user : root
@@ -44,7 +44,9 @@ select 'EARLY',curdate(),1 as jumlah,0 Seconds
 GROUP BY
   DAY(calldate),asteriskcdrdb.ReportMonthly.labelreport
 ORDER BY
-  asteriskcdrdb.ReportMonthly.urutan,DAY(calldate);";
+  asteriskcdrdb.ReportMonthly.urutan,DAY(calldate)";
+
+  die($sql);
 $result = $mysqli->query($sql);
 
 // Check if the query was successful
