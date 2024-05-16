@@ -6,21 +6,13 @@ ini_set("error_reporting", E_ALL);
 error_reporting(E_ALL & ~E_NOTICE);
 date_default_timezone_set('GMT');
 
-$mysqli = new mysqli("sip.uidesk.id","root","Uid35k32!J4y4J4y4","asteriskcdrdb");
-/*
+$mysqli = new mysqli("206.237.98.116","root","Uid35k32!Uid35k32!J4y4","qstats");
 
-user : root
-pass : zimam@0306!!
-user : uidesk
-pass : Uidesk123!
-*/
-// Check connection
 if ($mysqli -> connect_errno) {
   echo "Failed to connect to MySQL: " . $mysqli -> connect_error;
   exit();
 }
 
-$add_query="AND (calldate BETWEEN '".date('Y-m-d')." 00:00:00' AND '".date('Y-m-d')." 23:59:59')";
 
 $sql = "SELECT asteriskcdrdb.ReportMonthly.labelreport as lastapp,DAY(calldate) AS hari,
   COUNT(jumlah) AS total_data,SUM(Seconds) as Seconds from(
