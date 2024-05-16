@@ -671,7 +671,7 @@ function fetchData() {
       $('#servicelevel').html(items['Service Level'][day]+' %');
       //$('#calltotal').html(items['Total Call'][day]);
       //$('#callanswer').html(items['Call Answered'][day]);
-      //$('#rona').html("<font style='color: red; font-size: 38px;' color='red'>"+items['Abnd. Ringing'][day]+"</font>");
+      $('#rona').html("<font style='color: red; font-size: 38px;' color='red'>"+items['Abnd. Ringing'][day]+"</font>");
       $('#abnque').html(items['Abnd. Queue'][day]);
      // $('#abnivr').html(items['ivr terminated'][day]);
       const seconds = items['Average Handling Time (AHT)'][day];
@@ -763,7 +763,7 @@ function agentList() {
 
         $('#calltotal').html(TotalData);
         //$('#callanswer').html(TotalAnswered);
-        $('#rona').html("<font style='color: red; font-size: 38px;' color='red'>"+AbandonCalls+"</font>");
+       // $('#rona').html("<font style='color: red; font-size: 38px;' color='red'>"+AbandonCalls+"</font>");
         //$('#scr').html(ScrCalls+"%");
         //$('#callabdn').html(items['early abandoned'][day]);
        
