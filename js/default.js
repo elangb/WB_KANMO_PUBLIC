@@ -96,13 +96,13 @@ function chartPie(){
   var storedDataQUE = localStorage.getItem('DATAQUE');
   var options={
     chart: {
-        height: 365,
+        height: 965,
         type: "pie"
     },
     plotOptions: {
         pie: {
             donut: {
-                size: "70%"
+                size: "100%"
             }
         }
     },
@@ -158,7 +158,7 @@ var pieData = {
 // Define chart options
 var pieOptions = {
   chart: {
-    height: 485,
+    height: 871,
     type: "pie"
   },
   labels: pieData.labels,
