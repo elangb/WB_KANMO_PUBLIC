@@ -100,7 +100,18 @@ function secondsToMinutes(seconds) {
 
     return `${formattedMinutes}:${formattedSeconds}`;
 }
+function convertIntToTime(seconds) {
+    var hours = Math.floor(seconds / 3600);
+    var minutes = Math.floor((seconds % 3600) / 60);
+    seconds = seconds % 60;
 
+    // Add leading zeros if necessary
+    hours = (hours < 10 ? '0' : '') + hours;
+    minutes = (minutes < 10 ? '0' : '') + minutes;
+    seconds = (seconds < 10 ? '0' : '') + seconds;
+
+    return hours + ':' + minutes + ':' + seconds;
+}
 function chartPie(){
   // Retrieve data from local storage under the key 'user'
   var storedDataAUX = localStorage.getItem('DATANOTREADY');
@@ -490,6 +501,8 @@ let callTotal=0;
 let callAnswered=0;
 let callUnAnswered=0;
 let callSL=0;
+let callAvg=0;
+let callAht=0;
   fetch('https://crm.uidesk.id/roatex/apps/WebServiceGetDataMaster.asmx/UIDESK_TrmMasterCombo?TrxID='+ dateAwal +'&TrxUserName='+ dateAkhir +'&TrxAction=UIDESK127')
     .then(response => response.text())
     .then(xmlString => {
@@ -520,11 +533,22 @@ let callSL=0;
             } else if(items["lastapp"]=="Abnd. Queue"){
                 callUnAnswered =items["total_data"];
             } 
+            else if(items["lastapp"]=="AvgRinging"){
+                callAvg =items["total_data"];
+             } 
+
             callSL = Math.ceil((callAnswered/callTotal)*100);
             $('#totalcall').html(callTotal);  
             $('#totalcallanswered').html(callAnswered); 
             $('#totalcallunanswered').html(callUnAnswered);
             $('#totalsl').html(callSL+' %');
+            var _callAvg = convertIntToTime(callAvg);
+            $('#totalcallfrt').html(_callAvg);
+            callAht  = Math.ceil((callTotal/callAnswered)*100);
+            //var _callAht = convertIntToTime(callAht);
+            $('#totalcallaht').html(callAht);
+            
+
         });
 
         
