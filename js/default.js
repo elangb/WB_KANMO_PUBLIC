@@ -168,7 +168,7 @@ var pieOptions = {
         const value = opts.w.config.series[opts.seriesIndex]
         //return [name, value]
           const name = opts.w.globals.labels[opts.seriesIndex]
-            return [name, value]
+            return name+':' + value
       }
 },
   series: pieData.series,
