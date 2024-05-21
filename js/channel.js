@@ -537,14 +537,17 @@ let callAht=0;
                 callAvg =items["total_data"];
              } 
 
-            callSL = Math.ceil((callAnswered/callTotal)*100);
+            callSL =Math.round((callAnswered-callUnAnswered)/(callTotal)*100,2);
+            //$datas['Service Level'][$i] = round((($datas['Call Answered Within'][$i] > 0)? (($datas['Call Answered Within'][$i]-$datas['Abnd. Ringing'][$i]) / $datas['Total Call'][$i]) : 0), 2)*100;
             $('#totalcall').html(callTotal);  
             $('#totalcallanswered').html(callAnswered); 
             $('#totalcallunanswered').html(callUnAnswered);
             $('#totalsl').html(callSL+' %');
             var _callAvg = convertIntToTime(callAvg);
-            $('#totalcallfrt').html(_callAvg);
-            callAht  = Math.ceil((callTotal/callAnswered)*100);
+            var timeParts = _callAvg.split(':');
+            var formattedTime = timeParts[0] + ':' + timeParts[1] + ':' + timeParts[2].split('.')[0];
+            $('#totalcallfrt').html(formattedTime);
+            callAht  = Math.round((callTotal/callAnswered)*100,2);
             //var _callAht = convertIntToTime(callAht);
             $('#totalcallaht').html(callAht);
             
