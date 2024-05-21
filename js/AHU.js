@@ -48,20 +48,25 @@ function myFunction() {
   
 }
 function SLA(){
+  var currentDate = new Date();
+  var day = currentDate.getDate();
     var jqxhr = $.getJSON("BE/getsummary_v2.php", function (data) {
         $.each(data["DataDetail"], function (i, items) {
-            console.log(items['Total Call'][day]);
-            console.log(items['SCR'][day]);
-            $('#servicelevel').html(items['Service Level'][day]+' %');
+            // console.log(items['Total Call'][day]);
+            // console.log(items['SCR'][day]);
+            // $('#servicelevel').html(items['Service Level'][day]+' %');
+            // $('#calltotal').html(items['Total Call'][day]);
+            // $('#callanswer').html(items['Call Answered'][day]);
+            // $('#rona').html("<font style='color: red; font-size: 38px;' color='red'>"+items['Abnd. Ringing'][day]+"</font>");
+            // $('#abnque').html(items['Abnd. Queue'][day]);
+           
+            
+            $('#callAht').html(items['Average Handling Time (AHT)'][day]);
             $('#calltotal').html(items['Total Call'][day]);
             $('#callanswer').html(items['Call Answered'][day]);
-            $('#rona').html("<font style='color: red; font-size: 38px;' color='red'>"+items['Abnd. Ringing'][day]+"</font>");
-            $('#abnque').html(items['Abnd. Queue'][day]);
-           // $('#abnivr').html(items['ivr terminated'][day]);
-            const seconds = items['Average Handling Time (AHT)'][day];
-            const formattedTime = secondsToMinutes(seconds);
-            $('#ahtdata').html(formattedTime);
-            //$('#callabdn').html(items['early abandoned'][day]);
+            $('#callabdn').html(items['Abnd. Queue'][day]);
+            $('#valueVoip').html(items['Service Level'][day]+' %');
+           
            
         });
         })
