@@ -32,7 +32,7 @@ SELECT 'TOTALCALL',calldate,uniqueid as jumlah,billsec Seconds FROM cdr
 union
 select 'EARLY',curdate(),1 as jumlah,0 Seconds
 ) as a left outer join asteriskcdrdb.ReportMonthly on asteriskcdrdb.ReportMonthly.event_id=a.event WHERE
-  calldate !='' and labelreport !='' ".$add_query."
+  calldate !='' and labelreport !='' 
 GROUP BY
   DAY(calldate),asteriskcdrdb.ReportMonthly.labelreport
 ORDER BY
@@ -92,17 +92,6 @@ $datas['early abandoned'][$i] = isset($datas['early abandoned'][$i]) ? $datas['e
 $datas['SCR'][$i] = round((($datas['Call Answered'][$i] > 0) ? ($datas['Call Answered'][$i] / $datas['Total Call'][$i]) : 0), 2) * 100;
 $datas['Service Level'][$i] = round((($datas['Call Answered'][$i] > 0) ? ($datas['Call Answered'][$i] / $datas['Total Call'][$i]) : 0), 2) * 100;
 
-
-  //$datas['Service Level'][$i] = round((($datas['Call Answered Within'][$i] > 0)? ($datas['Call Answered Within'][$i] / ($datas['Total Call'][$i] - 
-  //                                    $datas['Abnd. Ringing'][$i] - 
-  //                                    $datas['Abnd. Transfer'][$i] -
-  //                                    $datas['ivr terminated'][$i] - 
-  //                                    $datas['early abandoned'][$i])) : 0), 2);
-  // $datas['FTE Actual'][$i] = round((($datas['Call Answered'][$i] > 0)? ($datas['Call Answered'][$i] / ($datas['Total Call'][$i] - 
-  //                                     $datas['Abnd. Ringing'][$i] - 
-  //                                     $datas['Abnd. Transfer'][$i] -
-  //                                     $datas['ivr terminated'][$i] - 
-  //                                     $datas['early abandoned'][$i])) : 0), 2);
 
 $datas['FTE Actual'][$i] = 0;
 	if ($datas['Call Answered'][$i] > 0) {
