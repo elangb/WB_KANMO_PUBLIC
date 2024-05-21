@@ -42,6 +42,8 @@ function myFunction() {
   getDateTime();
 
   SLA();
+  fetchDataState();
+  fetchDataTotalEmail();
 
   //------------------------
 
@@ -80,6 +82,99 @@ function SLA(){
         .always(function () {
           //console.log( "complete" );
         });
+}
+
+function fetchDataState(){
+  var selectedValue = $("#floatingSelect").val();
+ 
+    
+
+    $.ajax({
+      type: "POST",
+      url: "https://kanmo.uidesk.id/crm/apps/WebServiceGetDataMaster.asmx/UIDESK_TrmMasterCombo",
+      data: "{TrxID:'"+ selectedValue +"', TrxUserName: '', TrxAction: 'UIDESK136'}",
+      contentType: "application/json; charset=utf-8",
+      dataType: "json",
+      success: function (data) {
+
+          var json = JSON.parse(data.d);
+          var i, x, resultSourceEnquiryReason = "";
+          console.log(json);
+          for (i = 0; i < json.length; i++) {
+            //alert(json[i].Jumlah)
+            if(json[i].Jenis == "Ready")
+
+              $("#stateready").html(json[i].Jumlah);
+            else
+              $("#stateaux").html(json[i].Jumlah);   
+
+           
+            
+
+        }
+
+      },
+      error: function (xmlHttpRequest, textStatus, errorThrown) {
+          console.log(xmlHttpRequest.responseText);
+          console.log(textStatus);
+          console.log(errorThrown);
+      }
+  })
+
+ 
+}
+function fetchDataTotalEmail(){
+  //var selectedValue = value;
+  //alert("");
+  var selectedValue = $("#floatingSelect").val();
+
+  
+    $("#TotalAnsweredEmail").html(0);
+    $("#TotalIncomingEmail").html(0);
+    $("#TotalQueEmail").html(0);
+    $("#TotalAbnEmail").html(0);
+    $("#TotalNotResponseEmail").html(0);
+  
+
+    $.ajax({
+        type: "POST",
+        url: "https://kanmo.uidesk.id/crm/apps/WebServiceGetDataMaster.asmx/UIDESK_TrmMasterCombo",
+        data: "{TrxID:'"+ selectedValue +"', TrxUserName: 'Complaint', TrxAction: 'UIDESK134'}",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data) {
+
+            var json = JSON.parse(data.d);
+            var i, x, resultSourceEnquiryReason = "";
+            console.log(json);
+            for (i = 0; i < json.length; i++) {
+
+              console.log(json[i].Jenis);
+              console.log(json[i].Jumlah);
+              if(json[i].Jenis == "AnsweredEmail"){
+                $("#TotalAnsweredEmail").html(json[i].Jumlah);
+              }else if(json[i].Jenis == "TotalEmail"){
+                $("#TotalIncomingEmail").html(json[i].Jumlah);
+              }else if(json[i].Jenis == "QueueEmail"){
+                $("#TotalQueEmail").html(json[i].Jumlah);
+              }else if(json[i].Jenis == "AbandonEmail"){
+                $("#TotalAbnEmail").html(json[i].Jumlah);
+              }
+              else if(json[i].Jenis == "NotResponseEmail"){
+                $("#TotalNotResponseEmail").html(json[i].Jumlah);
+              }
+
+              
+
+          }
+
+        },
+        error: function (xmlHttpRequest, textStatus, errorThrown) {
+            console.log(xmlHttpRequest.responseText);
+            console.log(textStatus);
+            console.log(errorThrown);
+        }
+    })
 }
 
 
