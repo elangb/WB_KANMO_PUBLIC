@@ -317,54 +317,54 @@ function fetchData() {
     }
     return jumlah;
 }
-  fetch('https://crm.uidesk.id/roatex/apps/WebServiceGetDataMaster.asmx/UIDESK_TrmMasterCombo?TrxID=UideskIndonesia&TrxUserName=Admin&TrxAction=UIDESK126')
-    .then(response => response.text())
-    .then(xmlString => {
-        // Parse the XML string into an XMLDocument
-        const parser = new DOMParser();
-        const xmlDoc = parser.parseFromString(xmlString, 'text/xml');
+  // fetch('https://crm.uidesk.id/roatex/apps/WebServiceGetDataMaster.asmx/UIDESK_TrmMasterCombo?TrxID=UideskIndonesia&TrxUserName=Admin&TrxAction=UIDESK126')
+  //   .then(response => response.text())
+  //   .then(xmlString => {
+  //       // Parse the XML string into an XMLDocument
+  //       const parser = new DOMParser();
+  //       const xmlDoc = parser.parseFromString(xmlString, 'text/xml');
 
-        // Use the xmlDoc as needed
-        console.log(xmlDoc);
+  //       // Use the xmlDoc as needed
+  //       console.log(xmlDoc);
 
-        const parserX = new DOMParser();
-        const xmlDocX = parserX.parseFromString(xmlDoc, "text/xml");
-        const jsonString = xmlDoc.getElementsByTagName("string")[0].textContent;
+  //       const parserX = new DOMParser();
+  //       const xmlDocX = parserX.parseFromString(xmlDoc, "text/xml");
+  //       const jsonString = xmlDoc.getElementsByTagName("string")[0].textContent;
 
-        // Parse the JSON string into a JavaScript object
-        const jsonObject = JSON.parse(jsonString);
+  //       // Parse the JSON string into a JavaScript object
+  //       const jsonObject = JSON.parse(jsonString);
 
-        console.log(jsonObject);
+  //       console.log(jsonObject);
 
-        let waTotal=0;
-        let waFrt=0;
-        let emailTotal=0;
-        let emailFrt=0;
-        $.each(jsonObject, function (i, items) {
-            console.log(items["Jumlah"]);   
-            if(items["Channel"]=="Whatsapp"){
-              waTotal =items["Jumlah"];
-              waFrt=items["FRT"];
-            }  else{
-              emailTotal=items["Jumlah"];
-              emailFrt=items["FRT"];
-            }  
-        });
+  //       let waTotal=0;
+  //       let waFrt=0;
+  //       let emailTotal=0;
+  //       let emailFrt=0;
+  //       $.each(jsonObject, function (i, items) {
+  //           console.log(items["Jumlah"]);   
+  //           if(items["Channel"]=="Whatsapp"){
+  //             waTotal =items["Jumlah"];
+  //             waFrt=items["FRT"];
+  //           }  else{
+  //             emailTotal=items["Jumlah"];
+  //             emailFrt=items["FRT"];
+  //           }  
+  //       });
 
         
         
-        // Get the number of occurrences of the "Whatsapp" channel
+  //       // Get the number of occurrences of the "Whatsapp" channel
         
 
-          $('#watotal').html(waTotal);
-          $('#wafrt').html(waFrt);
-          $('#emailtotal').html(emailTotal);
-          $('#emailfrt').html(emailFrt);
+  //         $('#watotal').html(waTotal);
+  //         $('#wafrt').html(waFrt);
+  //         $('#emailtotal').html(emailTotal);
+  //         $('#emailfrt').html(emailFrt);
 
-    })
-    .catch(error => {
-        console.error('Error fetching XML data:', error);
-    });
+  //   })
+  //   .catch(error => {
+  //       console.error('Error fetching XML data:', error);
+  //   });
 
 
   //End
