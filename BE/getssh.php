@@ -26,11 +26,7 @@
           $notready=$notready+1;
       }
       $AgentNya = explode(" ", $partsUNREACHABLE1[0]);
-      //echo $AgentNya."-".$partsOK1[1]. "<br>";
-      //$get100111result.=$get100111;
-      //$myObj->extension = $AgentNya;
-      //$myObj->state = $partsOK1[1];
-      //$myObj->customer = "Cantas";
+      
       $extNya = explode("/", $AgentNya[0]);
       $string = $partsOK1[1];
       $twoChars = substr($string, 0, 2);

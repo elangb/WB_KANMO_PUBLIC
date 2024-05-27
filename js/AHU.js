@@ -140,6 +140,94 @@ function fetchDataAgent(){
 
  
 }
+function GetSShData(){
+  var jqxhr = $.getJSON("BE/getssh.php", function (data) {
+    
+
+    var availCount = 0;
+    var auxCount = 0;
+    var acdIN = 0;
+    
+    $.each(data["DataDetail"], function (i, items) {
+       
+        if (items.state  === "OK") {
+          availCount++;
+        }
+        if (items.state  === "AUX") {
+          auxCount++;
+        }
+        if (items.state  === "ACD") {
+         
+            acdIN++;
+         
+        }
+    });
+    var storedDataAUX = localStorage.getItem('DATAAUX');
+    $('#avail').html(availCount);
+    $('#staffed').html(parseInt(storedDataAUX)+parseInt(availCount));
+    $('#auxagent').html(storedDataAUX);
+   
+  })
+    .done(function () {
+      //console.log( "done" );
+      
+    })
+    .fail(function () {
+      //console.log( "error" );
+    })
+    .always(function () {
+      //console.log( "complete" );
+    });
+
+  // Perform other work here ...
+
+  // Set another completion function for the request above
+  jqxhr.always(function () {
+    //console.log( "second complete" );
+  });
+
+  var a = 0;
+  var b = 0;
+  console.log("Hai iwallboard summary call");
+  var Abandonrate = 0;
+  var jqxhr = $.getJSON("BE/getsummary.php", function (data) {
+  $.each(data["DataDetail"], function (i, items) {
+      console.log(items.TypeNya);
+      console.log(items.jumlah);
+
+      if(items.TypeNya=="CallReceived"){
+         
+          a = items.jumlah;
+      }
+      if(items.TypeNya=="CallAnswered"){
+          //$('#callanswer').html(items.jumlah);
+      }
+      if(items.TypeNya=="CallAbandoned"){
+          $('#callabdn').html(items.jumlah);
+          b = items.jumlah;
+      }
+      if(a==0){
+          Abandonrate = "0";
+      }else{
+          Abandonrate = (b / a) * 100;
+      }
+      
+      
+  
+
+  });
+  })
+  .done(function () {
+    //console.log( "done" );
+    
+  })
+  .fail(function () {
+    //console.log( "error" );
+  })
+  .always(function () {
+    //console.log( "complete" );
+  });
+}
 
 function fetchDataTotalEmail(){
   
