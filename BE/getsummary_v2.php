@@ -6,7 +6,8 @@ ini_set("error_reporting", E_ALL);
 error_reporting(E_ALL & ~E_NOTICE);
 date_default_timezone_set('GMT');
 
-$mysqli = new mysqli("206.237.98.116","root","Uid35k32!Uid35k32!J4y4","qstats");
+
+$mysqli = new mysqli("202.43.173.61","matthew","supersecretpassword","asteriskcdrdb");
 
 if ($mysqli -> connect_errno) {
   echo "Failed to connect to MySQL: " . $mysqli -> connect_error;
