@@ -17,7 +17,7 @@ Code 0 Aux System
 //});
 var myVarX;
 var myVarY;
-var urlUidesk='https://cloud.uidesk.id/ahuomni/apps/WebServiceGetDataMaster.asmx/UIDESK_TrmMasterCombo';
+var urlUidesk='https://localhost/ahuomni/apps/WebServiceGetDataMaster.asmx/UIDESK_TrmMasterCombo';
 
 // $(document).ready(function(){
 //     $("#submitData").click(function(){
@@ -56,14 +56,7 @@ function SLA(){
   var day = currentDate.getDate();
     var jqxhr = $.getJSON("BE/getsummary_v2.php", function (data) {
         $.each(data["DataDetail"], function (i, items) {
-            // console.log(items['Total Call'][day]);
-            // console.log(items['SCR'][day]);
-            // $('#servicelevel').html(items['Service Level'][day]+' %');
-            // $('#calltotal').html(items['Total Call'][day]);
-            // $('#callanswer').html(items['Call Answered'][day]);
-            // $('#rona').html("<font style='color: red; font-size: 38px;' color='red'>"+items['Abnd. Ringing'][day]+"</font>");
-            // $('#abnque').html(items['Abnd. Queue'][day]);
-           
+                  
             
             $('#callAht').html(items['Average Handling Time (AHT)'][day]);
             $('#calltotal').html(items['Total Call'][day]);
@@ -178,18 +171,21 @@ function fetchDataTotalEmail(){
   })
 }
 function fetchDataKelola(){
-  
-  $("#TotalAnsweredEmail").html(0);
-  $("#TotalIncomingEmail").html(0);
-  $("#TotalQueEmail").html(0);
-  $("#TotalAbnEmail").html(0);
-  $("#TotalNotResponseEmail").html(0);
+  //Lc
+  $("#lctotal").html(0);
+  $("#lcreply").html(0);
+  $("#lcwait").html(0);
+
+    //Lc
+    $("#fbtotal").html(0);
+    $("#fbreply").html(0);
+    $("#fbwait").html(0);
 
 
   $.ajax({
       type: "POST",
       url: urlUidesk,
-      data: "{TrxID:'', TrxUserName: '', TrxAction: 'UIDESK200'}",
+      data: "{TrxID:'UideskIndonesia', TrxUserName: '', TrxAction: 'UIDESK201'}",
       contentType: "application/json; charset=utf-8",
       dataType: "json",
       success: function (data) {
@@ -199,26 +195,46 @@ function fetchDataKelola(){
           console.log(json);
           for (i = 0; i < json.length; i++) {
 
-            console.log(json[i].Jenis);
-            console.log(json[i].Jumlah);
-            if(json[i].Jenis == "TotalEmail"){
-              $("#emailtotal").html(json[i].Jumlah);
-            }else if(json[i].Jenis == "AnsweredEmail"){
-              $("#emailanswer").html(json[i].Jumlah);
-            }else if(json[i].Jenis == "QueueEmail"){
-              $("#emailwait").html(json[i].Jumlah);
-            }else if(json[i].Jenis == "FRT"){
-              $("#emailfrt").html(json[i].Jumlah);
+          
+            //LC
+            if(json[i].label == "Total" && json[i].type =='Lc'){
+              $("#lctotal").html(json[i].Jumlah);
+            }else if(json[i].label == "Reply" && json[i].type =='Lc'){
+              $("#lcreply").html(json[i].Jumlah);
+            }else if(json[i].label == "queue" && json[i].type =='Lc'){
+              $("#lcwait").html(json[i].Jumlah);
             }
+            //fb
+            if(json[i].label == "Total" && json[i].type =='Fb'){
+              $("#fbtotal").html(json[i].Jumlah );
+            }else if(json[i].label == "Reply" && json[i].type =='Fb'){
+              $("#fbreply").html(json[i].Jumlah);
+            }else if(json[i].label == "queue" && json[i].type =='Fb'){
+              $("#fbwait").html(json[i].Jumlah);
+            }
+            //Ig
+           
+            if(json[i].label == "Total" && json[i].type =='Ig'){
+              $("#igtotal").html(json[i].Jumlah );
+            }else if(json[i].label == "Reply" ){
+              $("#igreply").html(json[i].Jumlah);
+            }else if(json[i].label == "queue" && json[i].type =='Ig'){
+              $("#igwait").html(json[i].Jumlah);
+            }
+            //Ig
+           
+            if(json[i].label == "Total" && json[i].Jenis =='Wa'){
+              $("#watotal").html(json[i].Jumlah );
+            }else if(json[i].label == "Reply" && json[i].type =='Wa'){
+              $("#wareply").html(json[i].Jumlah );
+            }else if(json[i].label == "queue" && json[i].type =='Wa'){
+              $("#wawait").html(json[i].Jumlah);
+            }
+            
              
 
         }
-        var totalEmails = parseFloat($("#emailtotal").html());
-        var answeredEmails = parseFloat($("#emailanswer").html());
         
-        var aht = (answeredEmails !== 0) ? (totalEmails / answeredEmails) * 100 : 0;
-        
-        $("#emailaht").html(aht);
         
 
       },

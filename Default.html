@@ -21,6 +21,29 @@
         <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <style>
+            .bold{
+                font-weight: bold;
+                font-size: 20px;
+            }
+            .colorcall{
+                color: #64b8ed
+            }
+            .colorEmail{
+                color: #ffd700
+            }
+            .colorFb{
+                color:  #0165E1;
+            }
+            .colorIg{
+                color: #C13584;
+            }
+            .colorLc{
+                color: #833AB4;
+            }
+            .colorWa{
+                color: #25D366;
+            }
+            
             #elem {
                 animation: blink 0.3s infinite
               }
@@ -82,7 +105,7 @@
                                                         <a class="dropdown-toggle text-reset" href="#"
                                                             data-bs-toggle="dropdown" aria-haspopup="true"
                                                             aria-expanded="false">
-                                                            <span class="fw-semibold"><div id="timeNya"></div></span> 
+                                                            <span class="fw-semiwa"><div id="timeNya"></div></span> 
                                                         </a>
                 
                                                         
@@ -217,11 +240,18 @@
                                                                                         </div>
                                                                                         
                                                                                         <div class="flex-grow-1 overflow-hidden">
-                                                                                            <p class="mb-1 text-truncate text-muted">AHT</p>
-                                                                                            <h2 class="font-size-22 mb-0" id="callAht">0</h2>
+                                                                                            <p class="mb-1 text-truncate  bold colorcall">AHT</p>
                                                                                         </div>
+                                                                                        
+                                                                                        
                                                                                     </div>
+                                                                                    
                                                                                 </div><!-- end card body -->
+                                                                                <div >
+                                                                                <center>
+                                                                                    <h2 class="font-size-22 ml-3" id="callAht">0</h2>
+                                                                                </center>
+                                                                                </div>
                                                                         
                                                                         </div>
                                                                             <div class="col-xl-6 col-sm-6">
@@ -237,12 +267,17 @@
                                                                                         
                                                                                         <div class="flex-grow-1 overflow-hidden">
                                                                                             
-                                                                                                <p class="mb-1 text-truncate text-muted">QUE</p>
-                                                                                                <h2 class="font-size-22 mb-0" id="callQue">0</h2>
+                                                                                                <p class="mb-1 text-truncate bold colorcall">QUE</p>
+                                                                                                
                                                                                         
                                                                                         </div>
                                                                                     </div>
                                                                                 </div><!-- end card body -->
+                                                                                <div >
+                                                                                    <center>
+                                                                                        <h2 class="font-size-22 mb-0" id="callQue">0</h2>
+                                                                                    </center>
+                                                                                    </div>
                                                                             </div>
                                                                             
                                                                         </div>
@@ -265,11 +300,13 @@
                                                                                         
                                                                                             
                                                                                             <div class="flex-grow-1 overflow-hidden">
-                                                                                                <p class="mb-1 text-truncate text-muted">CALL</p>
-                                                                                                <h2 class="font-size-22 mb-0" id="calltotal">0</h2>
+                                                                                                <p class="mb-1 text-truncate bold colorcall">CALL</p>
                                                                                             </div>
                                                                                         </div>
                                                                                     </div><!-- end card body -->
+                                                                                    <center>
+                                                                                        <h2 class="font-size-22 mb-0" id="calltotal">0</h2>
+                                                                                    </center>
                                                                             
                                                                             </div><!-- end col -->
                                                                             <div class="col-xl-4 col-sm-4">
@@ -286,12 +323,14 @@
                                                                                             
                                                                                             <div class="flex-grow-1 overflow-hidden">
                                                                                             
-                                                                                                    <p class="mb-1 text-truncate text-muted">ANS</p>
-                                                                                                    <h2 class="font-size-22 mb-0" id="callanswer">0</h2>
+                                                                                                    <p class="mb-1 text-truncate bold colorcall">ANS</p>
                                                                                                 
                                                                                             </div>
                                                                                         </div>
                                                                                     </div><!-- end card body -->
+                                                                                    <center>
+                                                                                        <h2 class="font-size-22 mb-0" id="callanswer">0</h2>
+                                                                                    </center>
                                                                                 
                                                                             </div>
                                                                             <div class="col-xl-4 col-sm-6">
@@ -308,12 +347,15 @@
                                                                                         
                                                                                         <div class="flex-grow-1 overflow-hidden">
                                                                                         
-                                                                                                <p class="mb-1 text-truncate text-muted">ABDN</p>
-                                                                                                <h2 class="font-size-22 mb-0" id="callabdn">0</h2>
+                                                                                                <p class="mb-1 text-truncate bold colorcall">ABDN</p>
+                                                                                               
                                                                                             
                                                                                         </div>
                                                                                     </div>
                                                                                 </div><!-- end card body -->
+                                                                                <center>
+                                                                                    <h2 class="font-size-22 mb-0" id="callabdn">0</h2>
+                                                                                </center>
                                                                         
                                                                             </div>
                                                                             
@@ -337,12 +379,15 @@
                                                                                         
                                                                                         <div class="flex-grow-1 overflow-hidden">
                                                                                             <center>
-                                                                                                <p class="mb-1 text-truncate text-muted">AGENT</p>
-                                                                                                <h2 class="font-size-22 mb-0" id="callagent">0</h2>
+                                                                                                <p class="mb-1 text-truncate bold colorcall">AGENT</p>
+                                                                                               
                                                                                             </center>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div><!-- end card body -->
+                                                                                <center>
+                                                                                    <h2 class="font-size-22 mb-0" id="callagent">0</h2>
+                                                                                </center>
                                                                             </div>
                                                                             <div class="col-xl-3 col-sm-6">
                                                                             
@@ -358,11 +403,13 @@
                                                                                             
                                                                                             
                                                                                             <div class="flex-grow-1 overflow-hidden">
-                                                                                                <p class="mb-1 text-truncate text-muted">AVAIL</p>
-                                                                                                <h2 class="font-size-22 mb-0" id="callavail">0</h2>
+                                                                                                <p class="mb-1 text-truncate bold colorcall">AVAIL</p>
                                                                                             </div>
                                                                                         </div>
                                                                                     </div><!-- end card body -->
+                                                                                    <center>
+                                                                                        <h2 class="font-size-22 mb-0" id="callavail">0</h2>
+                                                                                    </center>
                                                                             
                                                                             </div>
                                                                             <div class="col-xl-3 col-sm-6">
@@ -379,11 +426,14 @@
                                                                                         
                                                                                         
                                                                                         <div class="flex-grow-1 overflow-hidden">
-                                                                                            <p class="mb-1 text-truncate text-muted">ACD IN</p>
-                                                                                            <h2 class="font-size-22 mb-0" id="callacdin">0</h2>
+                                                                                            <p class="mb-1 text-truncate bold colorcall">ACD IN</p>
+                                                                                           
                                                                                         </div>
                                                                                     </div>
                                                                                 </div><!-- end card body -->
+                                                                                <center>
+                                                                                    <h2 class="font-size-22 mb-0" id="callacdin">0</h2>
+                                                                                </center>
                                                                             
                                                                         </div>
                                                                             <div class="col-xl-3 col-sm-6">
@@ -400,11 +450,14 @@
                                                                                             
                                                                                             
                                                                                             <div class="flex-grow-1 overflow-hidden">
-                                                                                                <p class="mb-1 text-truncate text-muted">AUX</p>
-                                                                                                <h2 class="font-size-22 mb-0" id="callaux">0</h2>
+                                                                                                <p class="mb-1 text-truncate bold colorcall">AUX</p>
+                                                                                                
                                                                                             </div>
                                                                                         </div>
                                                                                     </div><!-- end card body -->
+                                                                                    <center>
+                                                                                        <h2 class="font-size-22 mb-0" id="callaux">0</h2>
+                                                                                    </center>
                                                                             
                                                                             </div><!-- end col -->
                                                                             
@@ -438,11 +491,14 @@
                                                                                         </div>
                                                                                         
                                                                                         <div class="flex-grow-1 overflow-hidden">
-                                                                                            <p class="mb-1 text-truncate text-muted">AHT</p>
-                                                                                            <h2 class="font-size-22 mb-0" id="emailaht">0</h2>
+                                                                                            <p class="mb-1 text-truncate bold colorEmail">AHT</p>
+                                                                                            
                                                                                         </div>
                                                                                     </div>
                                                                                 </div><!-- end card body -->
+                                                                                <center>
+                                                                                    <h2 class="font-size-22 mb-0" id="emailaht">0</h2>
+                                                                                </center>
                                                                         
                                                                             </div>
                                                                             <div class="col-xl-6 col-lg-6">
@@ -458,11 +514,14 @@
                                                                                         </div>
                                                                                         
                                                                                         <div class="flex-grow-1 overflow-hidden">
-                                                                                            <p class="mb-1 text-truncate text-muted">FRT</p>
-                                                                                            <h2 class="font-size-22 mb-0" id="emailfrt">0</h2>
+                                                                                            <p class="mb-1 text-truncate bold colorEmail">FRT</p>
+                                                                                           
                                                                                         </div>
                                                                                     </div>
                                                                                 </div><!-- end card body -->
+                                                                                <center>
+                                                                                    <h2 class="font-size-22 mb-0" id="emailfrt">0</h2>
+                                                                                </center>
                                                                         
                                                                             </div>
                                                                         </div>
@@ -484,12 +543,15 @@
                                                                                         
                                                                                         <div class="flex-grow-1 overflow-hidden">
                                                                                             <center>
-                                                                                                <p class="mb-1 text-truncate text-muted">AGENT</p>
-                                                                                                <h2 class="font-size-22 mb-0" id="emailagent">0</h2>
+                                                                                                <p class="mb-1 text-truncate bold colorEmail">AGENT</p>
+                                                                                                
                                                                                             </center>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div><!-- end card body -->
+                                                                                <center>
+                                                                                    <h2 class="font-size-22 mb-0" id="emailagent">0</h2>
+                                                                                </center>
                                                                             </div>
                                                                             <div class="col-xl-3 col-sm-4">
                                                                                     
@@ -505,11 +567,14 @@
                                                                                     
                                                                                         
                                                                                         <div class="flex-grow-1 overflow-hidden">
-                                                                                            <p class="mb-1 text-truncate text-muted">EMAIL</p>
-                                                                                            <h2 class="font-size-22 mb-0" id="emailtotal">0</h2>
+                                                                                            <p class="mb-1 text-truncate bold colorEmail">EMAIL</p>
+                                                                                           
                                                                                         </div>
                                                                                     </div>
                                                                                 </div><!-- end card body -->
+                                                                                <center>
+                                                                                    <h2 class="font-size-22 mb-0" id="emailtotal">0</h2>
+                                                                                </center>
                                                                         
                                                                             </div><!-- end col -->
                                                                             <div class="col-xl-3 col-sm-4">
@@ -526,12 +591,15 @@
                                                                                         
                                                                                         <div class="flex-grow-1 overflow-hidden">
                                                                                         
-                                                                                                <p class="mb-1 text-truncate text-muted">REPLY</p>
-                                                                                                <h2 class="font-size-22 mb-0" id="emailanswer">0</h2>
+                                                                                                <p class="mb-1 text-truncate bold colorEmail">REPLY</p>
+                                                                                              
                                                                                             
                                                                                         </div>
                                                                                     </div>
                                                                                 </div><!-- end card body -->
+                                                                                <center>
+                                                                                    <h2 class="font-size-22 mb-0" id="emailanswer">0</h2>
+                                                                                </center>
                                                                             
                                                                             </div>  
                                                                             <div class="col-xl-3 col-sm-6">
@@ -548,12 +616,15 @@
                                                                                         
                                                                                         <div class="flex-grow-1 overflow-hidden">
                                                                                         
-                                                                                                <p class="mb-1 text-truncate text-muted">WAITING</p>
-                                                                                                <h2 class="font-size-22 mb-0" id="emailwait">0</h2>
+                                                                                                <p class="mb-1 text-truncate bold colorEmail">WAITING</p>
+                                                                                                
                                                                                             
                                                                                         </div>
                                                                                     </div>
                                                                                 </div><!-- end card body -->
+                                                                                <center>
+                                                                                    <h2 class="font-size-22 mb-0" id="emailwait">0</h2>
+                                                                                </center>
                                                                         
                                                                             </div>
                                                                         </div>
@@ -588,11 +659,14 @@
                                                                                         </div>
                                                                                         
                                                                                         <div class="flex-grow-1 overflow-hidden">
-                                                                                            <p class="mb-1 text-truncate text-muted">AHT</p>
-                                                                                            <h2 class="font-size-22 mb-0" id="fbaht">0</h2>
+                                                                                            <p class="mb-1 text-truncate bold colorFb">AHT</p>
+                                                                                            
                                                                                         </div>
                                                                                     </div>
                                                                                 </div><!-- end card body -->
+                                                                                <center>
+                                                                                    <h2 class="font-size-22 mb-0" id="fbaht">0</h2>
+                                                                                </center>
                                                                         
                                                                         </div>
                                                                         <div class="col-xl-6 col-lg-6">
@@ -608,11 +682,14 @@
                                                                                     </div>
                                                                                     
                                                                                     <div class="flex-grow-1 overflow-hidden">
-                                                                                        <p class="mb-1 text-truncate text-muted">FRT</p>
-                                                                                        <h2 class="font-size-22 mb-0" id="fbaht">0</h2>
+                                                                                        <p class="mb-1 text-truncate bold colorFb">FRT</p>
+                                                                                        
                                                                                     </div>
                                                                                 </div>
                                                                             </div><!-- end card body -->
+                                                                            <center>
+                                                                                <h2 class="font-size-22 mb-0" id="fbaht">0</h2>
+                                                                            </center>
                                                                     
                                                                         </div>
                                                                             
@@ -635,12 +712,15 @@
                                                                                         
                                                                                         <div class="flex-grow-1 overflow-hidden">
                                                                                             <center>
-                                                                                                <p class="mb-1 text-truncate text-muted">AGENT</p>
-                                                                                                <h2 class="font-size-22 mb-0" id="fbagent">0</h2>
+                                                                                                <p class="mb-1 text-truncate bold colorFb">AGENT</p>
+                                                                                               
                                                                                             </center>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div><!-- end card body -->
+                                                                                <center>
+                                                                                    <h2 class="font-size-22 mb-0" id="fbagent">0</h2>
+                                                                                </center>
                                                                             </div>
                                                                             <div class="col-xl-3 col-sm-3">
                                                                                 
@@ -656,11 +736,14 @@
                                                                                         
                                                                                             
                                                                                             <div class="flex-grow-1 overflow-hidden">
-                                                                                                <p class="mb-1 text-truncate text-muted">FB</p>
-                                                                                                <h2 class="font-size-22 mb-0" id="fbtotal">0</h2>
+                                                                                                <p class="mb-1 text-truncate bold colorFb">FB</p>
+                                                                                               
                                                                                             </div>
                                                                                         </div>
                                                                                     </div><!-- end card body -->
+                                                                                    <center>
+                                                                                        <h2 class="font-size-22 mb-0" id="fbtotal">0</h2>
+                                                                                    </center>
                                                                             
                                                                             </div><!-- end col -->
                                                                             <div class="col-xl-3 col-sm-3">
@@ -677,12 +760,15 @@
                                                                                             
                                                                                             <div class="flex-grow-1 overflow-hidden">
                                                                                             
-                                                                                                    <p class="mb-1 text-truncate text-muted">REPLY</p>
-                                                                                                    <h2 class="font-size-22 mb-0" id="fbanswer">0</h2>
+                                                                                                    <p class="mb-1 text-truncate bold colorFb">REPLY</p>
+                                                                                                    
                                                                                                 
                                                                                             </div>
                                                                                         </div>
                                                                                     </div><!-- end card body -->
+                                                                                    <center>
+                                                                                        <h2 class="font-size-22 mb-0" id="fbanswer">0</h2>
+                                                                                    </center>
                                                                                 
                                                                             </div>
                                                                             <div class="col-xl-3 col-sm-3">
@@ -699,12 +785,15 @@
                                                                                         
                                                                                         <div class="flex-grow-1 overflow-hidden">
                                                                                         
-                                                                                                <p class="mb-1 text-truncate text-muted">WAITING</p>
-                                                                                                <h2 class="font-size-22 mb-0" id="fbwait">0</h2>
+                                                                                                <p class="mb-1 text-truncate bold colorFb">WAITING</p>
+                                                                                               
                                                                                             
                                                                                         </div>
                                                                                     </div>
                                                                                 </div><!-- end card body -->
+                                                                                <center>
+                                                                                    <h2 class="font-size-22 mb-0" id="fbwait">0</h2>
+                                                                                </center>
                                                                         
                                                                             </div>
                                                                             
@@ -740,11 +829,14 @@
                                                                                         </div>
                                                                                         
                                                                                         <div class="flex-grow-1 overflow-hidden">
-                                                                                            <p class="mb-1 text-truncate text-muted">AHT</p>
-                                                                                            <h2 class="font-size-22 mb-0" id="igaht">0</h2>
+                                                                                            <p class="mb-1 text-truncate bold colorIg">AHT</p>
+                                                                                          
                                                                                         </div>
                                                                                     </div>
                                                                                 </div><!-- end card body -->
+                                                                                <center>
+                                                                                    <h2 class="font-size-22 mb-0" id="igaht">0</h2>
+                                                                                </center>
                                                                         
                                                                         </div>
                                                                         <div class="col-xl-6 col-lg-6">
@@ -760,11 +852,14 @@
                                                                                     </div>
                                                                                     
                                                                                     <div class="flex-grow-1 overflow-hidden">
-                                                                                        <p class="mb-1 text-truncate text-muted">FRT</p>
-                                                                                        <h2 class="font-size-22 mb-0" id="igfrt">0</h2>
+                                                                                        <p class="mb-1 text-truncate bold colorIg">FRT</p>
+                                                                                      
                                                                                     </div>
                                                                                 </div>
                                                                             </div><!-- end card body -->
+                                                                            <center>
+                                                                                <h2 class="font-size-22 mb-0" id="igfrt">0</h2>
+                                                                            </center>
                                                                     
                                                                         </div>
                                                                             
@@ -787,12 +882,15 @@
                                                                                         
                                                                                         <div class="flex-grow-1 overflow-hidden">
                                                                                             <center>
-                                                                                                <p class="mb-1 text-truncate text-muted">AGENT</p>
-                                                                                                <h2 class="font-size-22 mb-0" id="igagent">0</h2>
+                                                                                                <p class="mb-1 text-truncate bold colorIg">AGENT</p>
+                                                                                              
                                                                                             </center>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div><!-- end card body -->
+                                                                                <center>
+                                                                                    <h2 class="font-size-22 mb-0" id="igagent">0</h2>
+                                                                                </center>
                                                                             </div>
                                                                             <div class="col-xl-3 col-sm-3">
                                                                                 
@@ -808,11 +906,14 @@
                                                                                         
                                                                                             
                                                                                             <div class="flex-grow-1 overflow-hidden">
-                                                                                                <p class="mb-1 text-truncate text-muted">FB</p>
-                                                                                                <h2 class="font-size-22 mb-0" id="igtotal">0</h2>
+                                                                                                <p class="mb-1 text-truncate bold colorIg">FB</p>
+                                                                                                
                                                                                             </div>
                                                                                         </div>
                                                                                     </div><!-- end card body -->
+                                                                                    <center>
+                                                                                        <h2 class="font-size-22 mb-0" id="igtotal">0</h2>
+                                                                                    </center>
                                                                             
                                                                             </div><!-- end col -->
                                                                             <div class="col-xl-3 col-sm-3">
@@ -829,12 +930,15 @@
                                                                                             
                                                                                             <div class="flex-grow-1 overflow-hidden">
                                                                                             
-                                                                                                    <p class="mb-1 text-truncate text-muted">REPLY</p>
-                                                                                                    <h2 class="font-size-22 mb-0" id="igreply">0</h2>
+                                                                                                    <p class="mb-1 text-truncate bold colorIg">REPLY</p>
+                                                                                                    
                                                                                                 
                                                                                             </div>
                                                                                         </div>
                                                                                     </div><!-- end card body -->
+                                                                                    <center>
+                                                                                        <h2 class="font-size-22 mb-0" id="igreply">0</h2>
+                                                                                    </center>
                                                                                 
                                                                             </div>
                                                                             <div class="col-xl-3 col-sm-3">
@@ -851,12 +955,15 @@
                                                                                         
                                                                                         <div class="flex-grow-1 overflow-hidden">
                                                                                         
-                                                                                                <p class="mb-1 text-truncate text-muted">WAITING</p>
-                                                                                                <h2 class="font-size-22 mb-0" id="igwait">0</h2>
+                                                                                                <p class="mb-1 text-truncate bold colorIg">WAITING</p>
+                                                                                               
                                                                                             
                                                                                         </div>
                                                                                     </div>
                                                                                 </div><!-- end card body -->
+                                                                                <center>
+                                                                                    <h2 class="font-size-22 mb-0" id="igwait">0</h2>
+                                                                                </center>
                                                                         
                                                                             </div>
                                                                             
@@ -892,11 +999,14 @@
                                                                                         </div>
                                                                                         
                                                                                         <div class="flex-grow-1 overflow-hidden">
-                                                                                            <p class="mb-1 text-truncate text-muted">AHT</p>
-                                                                                            <h2 class="font-size-22 mb-0" id="lcaht">0</h2>
+                                                                                            <p class="mb-1 text-truncate bold colorLc">AHT</p>
+                                                                                           
                                                                                         </div>
                                                                                     </div>
                                                                                 </div><!-- end card body -->
+                                                                                <center>
+                                                                                    <h2 class="font-size-22 mb-0" id="lcaht">0</h2>
+                                                                                </center>
                                                                         
                                                                         </div>
                                                                         <div class="col-xl-6 col-lg-6">
@@ -912,11 +1022,14 @@
                                                                                     </div>
                                                                                     
                                                                                     <div class="flex-grow-1 overflow-hidden">
-                                                                                        <p class="mb-1 text-truncate text-muted">FRT</p>
-                                                                                        <h2 class="font-size-22 mb-0" id="lcfrt">0</h2>
+                                                                                        <p class="mb-1 text-truncate bold colorLc">FRT</p>
+                                                                                       
                                                                                     </div>
                                                                                 </div>
                                                                             </div><!-- end card body -->
+                                                                            <center>
+                                                                                <h2 class="font-size-22 mb-0" id="lcfrt">0</h2>
+                                                                            </center>
                                                                     
                                                                         </div>
                                                                             
@@ -939,12 +1052,15 @@
                                                                                         
                                                                                         <div class="flex-grow-1 overflow-hidden">
                                                                                             <center>
-                                                                                                <p class="mb-1 text-truncate text-muted">AGENT</p>
-                                                                                                <h2 class="font-size-22 mb-0" id="lcagent">0</h2>
+                                                                                                <p class="mb-1 text-truncate bold colorLc">AGENT</p>
+                                                                                              
                                                                                             </center>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div><!-- end card body -->
+                                                                                <center>
+                                                                                    <h2 class="font-size-22 mb-0" id="lcagent">0</h2>
+                                                                                </center>
                                                                             </div>
                                                                             <div class="col-xl-3 col-sm-3">
                                                                                 
@@ -960,11 +1076,14 @@
                                                                                         
                                                                                             
                                                                                             <div class="flex-grow-1 overflow-hidden">
-                                                                                                <p class="mb-1 text-truncate text-muted">FB</p>
-                                                                                                <h2 class="font-size-22 mb-0" id="lctotal">0</h2>
+                                                                                                <p class="mb-1 text-truncate bold colorLc">FB</p>
+                                                                                                
                                                                                             </div>
                                                                                         </div>
                                                                                     </div><!-- end card body -->
+                                                                                    <center>
+                                                                                        <h2 class="font-size-22 mb-0" id="lctotal">0</h2>
+                                                                                    </center>
                                                                             
                                                                             </div><!-- end col -->
                                                                             <div class="col-xl-3 col-sm-3">
@@ -981,12 +1100,15 @@
                                                                                             
                                                                                             <div class="flex-grow-1 overflow-hidden">
                                                                                             
-                                                                                                    <p class="mb-1 text-truncate text-muted">REPLY</p>
-                                                                                                    <h2 class="font-size-22 mb-0" id="lcreply">0</h2>
+                                                                                                    <p class="mb-1 text-truncate bold colorLc">REPLY</p>
+                                                                                                   
                                                                                                 
                                                                                             </div>
                                                                                         </div>
                                                                                     </div><!-- end card body -->
+                                                                                    <center>
+                                                                                        <h2 class="font-size-22 mb-0" id="lcreply">0</h2>
+                                                                                    </center>
                                                                                 
                                                                             </div>
                                                                             <div class="col-xl-3 col-sm-3">
@@ -1003,12 +1125,186 @@
                                                                                         
                                                                                         <div class="flex-grow-1 overflow-hidden">
                                                                                         
-                                                                                                <p class="mb-1 text-truncate text-muted">WAITING</p>
-                                                                                                <h2 class="font-size-22 mb-0" id="lcwait">0</h2>
+                                                                                                <p class="mb-1 text-truncate bold colorLc">WAITING</p>
+                                                                                              
                                                                                             
                                                                                         </div>
                                                                                     </div>
                                                                                 </div><!-- end card body -->
+                                                                                <center>
+                                                                                    <h2 class="font-size-22 mb-0" id="lcwait">0</h2>
+                                                                                </center>
+                                                                        
+                                                                            </div>
+                                                                            
+                                                                            
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                            </div>
+
+                                                            <div class="row">
+                                                                <div class="col-xl-1 col-sm-1">
+                                                                    <div class="col-md-auto">
+                                                                        <div><center>
+                                                                            <p class="text-muted mb-2"><p class="text-muted mb-2"><img src="icon/new/wa.png" width="90"></p>
+                                                                        </center>
+                                                                            </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xl-2 col-sm-4">
+                                                                    <div class="card">
+                                                                        <div class="row">
+                                                                            
+                                                                            <div class="col-xl-6 col-lg-6">
+                                                                            
+                                                                                <div class="card-body">
+                                                                                    <div class="d-flex align-items-center">
+                                                                                        <div class="flex-shrink-0 me-3">
+                                                                                            <div class="avatar-sm">
+                                                                                                <div class="avatar-title bg-soft-primary text-primary rounded-circle font-size-18">
+                                                                                                    <img src="icon/AHT.png" width="55">
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        
+                                                                                        <div class="flex-grow-1 overflow-hidden">
+                                                                                            <p class="mb-1 text-truncate colorWa bold">AHT</p>
+                                                                                           
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div><!-- end card body -->
+                                                                                <center>
+                                                                                    <h2 class="font-size-22 mb-0" id="waaht">0</h2>
+                                                                                </center>
+                                                                        
+                                                                        </div>
+                                                                        <div class="col-xl-6 col-lg-6">
+                                                                                
+                                                                            <div class="card-body">
+                                                                                <div class="d-flex align-items-center">
+                                                                                    <div class="flex-shrink-0 me-3">
+                                                                                        <div class="avatar-sm">
+                                                                                            <div class="avatar-title bg-soft-primary text-primary rounded-circle font-size-18">
+                                                                                                <img src="icon/FRT.png" width="55">
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    
+                                                                                    <div class="flex-grow-1 overflow-hidden">
+                                                                                        <p class="mb-1 text-truncate colorWa bold">FRT</p>
+                                                                                       
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div><!-- end card body -->
+                                                                            <center>
+                                                                                <h2 class="font-size-22 mb-0" id="wafrt">0</h2>
+                                                                            </center>
+                                                                    
+                                                                        </div>
+                                                                            
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xl-5 col-sm-5">
+                                                                    <div class="card">
+                                                                        <div class="row">
+                                                                            <div class="col-xl-3 col-sm-3">
+                                                                                <div class="card-body">
+                                                                                    <div class="d-flex align-items-center">
+                                                                                        <div class="flex-shrink-0 me-3">
+                                                                                            <div class="avatar-sm">
+                                                                                                <div class="avatar-title bg-soft-primary text-primary rounded-circle font-size-18">
+                                                                                                    <img src="icon/Staffed.png" width="55">
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        
+                                                                                        <div class="flex-grow-1 overflow-hidden">
+                                                                                            <center>
+                                                                                                <p class="mb-1 text-truncate colorWa bold">AGENT</p>
+                                                                                              
+                                                                                            </center>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div><!-- end card body -->
+                                                                                <center>
+                                                                                    <h2 class="font-size-22 mb-0" id="waagent">0</h2>
+                                                                                </center>
+                                                                            </div>
+                                                                            <div class="col-xl-3 col-sm-3">
+                                                                                
+                                                                                    <div class="card-body">
+                                                                                        <div class="d-flex align-items-center">
+                                                                                            <div class="flex-shrink-0 me-3">
+                                                                                                <div class="avatar-sm">
+                                                                                                    <div class="avatar-title bg-soft-primary text-primary rounded-circle font-size-18">
+                                                                                                        <img id="waitingImg" src="icon/Waiting1.png" width="55">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        
+                                                                                            
+                                                                                            <div class="flex-grow-1 overflow-hidden">
+                                                                                                <p class="mb-1 text-truncate colorWa bold">FB</p>
+                                                                                                
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div><!-- end card body -->
+                                                                                    <center>
+                                                                                        <h2 class="font-size-22 mb-0" id="watotal">0</h2>
+                                                                                    </center>
+                                                                            
+                                                                            </div><!-- end col -->
+                                                                            <div class="col-xl-3 col-sm-3">
+                                                                            
+                                                                                    <div class="card-body">
+                                                                                        <div class="d-flex align-items-center">
+                                                                                            <div class="flex-shrink-0 me-3">
+                                                                                                <div class="avatar-sm">
+                                                                                                    <div class="avatar-title bg-soft-primary text-primary rounded-circle font-size-18">
+                                                                                                        <img src="icon/Answer.png" width="55">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            
+                                                                                            <div class="flex-grow-1 overflow-hidden">
+                                                                                            
+                                                                                                    <p class="mb-1 text-truncate colorWa bold">REPLY</p>
+                                                                                                   
+                                                                                                
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div><!-- end card body -->
+                                                                                    <center>
+                                                                                        <h2 class="font-size-22 mb-0" id="wareply">0</h2>
+                                                                                    </center>
+                                                                                
+                                                                            </div>
+                                                                            <div class="col-xl-3 col-sm-3">
+                                                                                
+                                                                                <div class="card-body">
+                                                                                    <div class="d-flex align-items-center">
+                                                                                        <div class="flex-shrink-0 me-3">
+                                                                                            <div class="avatar-sm">
+                                                                                                <div class="avatar-title bg-soft-primary text-primary rounded-circle font-size-18">
+                                                                                                    <img src="icon/ABDN.png" width="55">
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        
+                                                                                        <div class="flex-grow-1 overflow-hidden">
+                                                                                        
+                                                                                                <p class="mb-1 text-truncate colorWa bold">WAITING</p>
+                                                                                              
+                                                                                            
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div><!-- end card body -->
+                                                                                <center>
+                                                                                    <h2 class="font-size-22 mb-0" id="wawait">0</h2>
+                                                                                </center>
                                                                         
                                                                             </div>
                                                                             
