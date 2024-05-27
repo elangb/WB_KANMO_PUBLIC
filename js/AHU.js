@@ -43,7 +43,7 @@ function myFunction() {
   getDateTime();
 
   SLA();
-  fetchDataState();
+  fetchDataAgent();
   fetchDataTotalEmail();
   fetchDataKelola();
 
@@ -79,14 +79,12 @@ function SLA(){
         });
 }
 
-function fetchDataState(){
-  
-    
+function fetchDataAgent(){
 
     $.ajax({
       type: "POST",
-      url: "https://kanmo.uidesk.id/crm/apps/WebServiceGetDataMaster.asmx/UIDESK_TrmMasterCombo",
-      data: "{TrxID:'', TrxUserName: '', TrxAction: 'UIDESK136'}",
+      url:urlUidesk,
+      data: "{TrxID:'', TrxUserName: '', TrxAction: 'UIDESK202'}",
       contentType: "application/json; charset=utf-8",
       dataType: "json",
       success: function (data) {
@@ -95,17 +93,42 @@ function fetchDataState(){
           var i, x, resultSourceEnquiryReason = "";
           console.log(json);
           for (i = 0; i < json.length; i++) {
-            //alert(json[i].Jumlah)
-            if(json[i].Jenis == "Ready")
-
-              $("#stateready").html(json[i].Jumlah);
-            else
-              $("#stateaux").html(json[i].Jumlah);   
-
+           
+            switch(json[i].label) {
+              case 'Email':
+                $("#emailagent").html(json[i].Jumlah);
+                
+                  break;
+              case 'Call':
+                $("#callagent").html(json[i].Jumlah);
+                  break;
+              case 'Wa':
+                  $("#waagent").html(json[i].Jumlah);
+                  break;
+                case 'Fb':
+                  $("#fbagent").html(json[i].Jumlah);
+                  break;
+                case 'Ig':
+                  $("#igagent").html(json[i].Jumlah);
+                  break;
+                case 'Lc':
+                  $("#lcagent").html(json[i].Jumlah);
+                  break;
+                case 'Lc':
+                  $("#lcagent").html(json[i].Jumlah);
+                  break;
+               default:
+                $("#callagent").html(0);
+                $("#emailagent").html(0);
+                $("#fbagent").html(0);
+                $("#igagent").html(0);
+                $("#lcagent").html(0);
+                $("#waagent").html(0);
+            }
            
             
 
-        }
+          }
 
       },
       error: function (xmlHttpRequest, textStatus, errorThrown) {
