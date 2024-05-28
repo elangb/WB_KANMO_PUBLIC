@@ -2,64 +2,56 @@
   include('Net/SSH2.php');
   ini_set('display_errors', 0);
   ini_set('display_startup_errors', 0);
-    //error_reporting(E_ALL);
-  $key ="Uid35k32!J4y4J4y4";
-  $ssh1 = new Net_SSH2('202.43.173.61', 3389);   // Domain or IP
+   
+  $key ="P@ssword1234!!@@";
+  $ssh1 = new Net_SSH2('call.ahu-mobile.com', 8072);   
   if (!$ssh1->login('root', $key))   exit('Login Failed'); 
-  $numbers1 = array(10010,10011);
+  
+  $numbers1 = array(10010);
   $ready=0;
   $notready=0;
   $get100111result=0;
   $myObj = new stdClass();
   $outputArray = array();
   
-  foreach ($numbers1 as $number1) {
-      $get100111= $ssh1->exec('sudo asterisk -x "sip show peers" | grep '.$number1.'');
-      $partsOK1 = preg_split('/\s(?=OK\b)/', $get100111);
-      $partsUNREACHABLE1 = preg_split('/\s(?=UNREACHABLE\b)/', $get100111);
-      $partsUNKNOWN1 = preg_split('/\s(?=UNKNOWN\b)/', $get100111);
-      if (isset($partsOK1[1])) {
-         $ready=$ready+1;
-      }else if (isset($partsUNREACHABLE1[1])) {
-         $notready=$notready+1; 
-      }else if (isset($partsUNKNOWN1[1])) {
-          $notready=$notready+1;
-      }
-      $AgentNya = explode(" ", $partsUNREACHABLE1[0]);
-      
-      $extNya = explode("/", $AgentNya[0]);
-      $string = $partsOK1[1];
-      $twoChars = substr($string, 0, 2);
-      if ($twoChars === "OK"){
-
-      }else{
-        $twoChars = substr($string, 0, 7);
-      }
-      $outputArray['DataDetail'][] = array(
-        'extension' => $extNya[0],
-        'state' => $twoChars,
-        'JumlahReady' => $ready,
-        'JumlahNotReady' => $notready
+   
+   $memberData= $ssh1->exec('sudo asterisk -x "queue show 9000"');
+   
+   $rows = explode("\n", $memberData);
+      $in_call_count = 0;
+      $in_callwait_count = 0;
+      $in_ready_count = 0;
+      $in_unavailable_count = 0;
      
-    );
+      foreach ($rows as $row) {
+     
+        if (strpos($row, "(in call)") !== false) {
+              $in_call_count++;
+          }
+          if (strpos($row, "wait:") !== false) {
+              $in_callwait_count++;
+          }
+          if (strpos($row, "Not in use") !== false) {
+              $in_ready_count++;
+          }
+          if (strpos($row, "Unavailable") !== false) {
+              $in_unavailable_count++;
+          }
+      }
+      
+  
+      $outputArray['DataDetail'][] = array(
+          'ACD-IN' => $in_call_count,
+          'QUE' => $in_callwait_count,
+          'READY' => $in_ready_count,
+          'UNAVAILABLE' => $in_unavailable_count
+      );
+     
+      $myJSON = json_encode($outputArray);
+      $data = json_decode($myJSON, true);
+      echo json_encode($data, JSON_PRETTY_PRINT);
 
-  }
-  //echo $get100111result;
- 
-
-    $myJSON = json_encode($outputArray);
-
-    echo $myJSON;
-
-    /*$dataArray = json_decode($myJSON, true);
-
-    // Mendapatkan jumlah elemen dalam array
-    $count = count($dataArray);
-
-    // Mendapatkan nilai dari kunci "JumlahReady" pada objek terakhir dalam array
-    $lastJumlahReady = $dataArray[$count - 1]['JumlahReady'];
-
-    echo "Jumlah Ready pada objek terakhir: " . $lastJumlahReady;*/
+    
 ?>
 	
    

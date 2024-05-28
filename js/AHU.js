@@ -43,6 +43,7 @@ function myFunction() {
   getDateTime();
 
   SLA();
+  GetSShData();
   fetchDataAgent();
   fetchDataTotalEmail();
   fetchDataKelola();
