@@ -56,14 +56,7 @@
     */
     //echo $memberData; // Output data member
     $memberData=$get60011;
-    //$memberData6002=$get60012;
-    //echo $memberData;
-    /*$dataArray = explode("\n", $memberData);
-
-    // Iterasi dan mencetak setiap baris
-    foreach ($dataArray as $line) {
-        //echo $line . "<br>";
-    }*/
+    
     // Split the data into rows
     $rows = explode("\n", $memberData);
     $in_call_count = 0;
@@ -86,32 +79,7 @@
             $in_unavailable_count++;
         }
     }
-    //Not in use <- ini Ready
-    //Unavailable <- ini nggk masuk
-    //$rows6002 = explode("\n", $memberData6002);
-    //$in_call_count6002 = 0;
-    //$in_callwait_count6002 = 0;
-    //$in_ready_count6002 = 0;
-    //$in_unavailable_count6002 = 0;
-    // Iterate through each row
-    //foreach ($rows6002 as $row6002) {
-        // Check if the row contains "(in call)"
-      //  if (strpos($row6002, "(in call)") !== false) {
-       //     $in_call_count6002++;
-       // }
-       // if (strpos($row6002, "wait:") !== false) {
-       //     $in_callwait_count6002++;
-       // }
-       // if (strpos($row, "Not in use") !== false) {
-        //    $in_ready_count6002++;
-       // }
-       // if (strpos($row, "Unavailable") !== false) {
-        //    $in_unavailable_count6002++;
-        //}
-    //}
-
-    //echo "ACD-IN : " . $in_call_count." QUE : " .$in_callwait_count;
-
+   
     $outputArray['DataDetail'][] = array(
         'ACD-IN' => $in_call_count,
         'QUE' => $in_callwait_count,
