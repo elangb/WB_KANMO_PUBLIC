@@ -45,7 +45,10 @@ if ($mysqli -> connect_errno) {
                             union 
                             SELECT 'OUTBOUND',a.calldate,a.uniqueid,0 Seconds from( select substring(channel,1,locate('-',channel,1)-1) AS chan1, billsec, calldate,uniqueid, (time_to_sec(calldate)-(hour(calldate)*3600)+billsec)-3600 AS minute, hour(calldate) AS hour,date_format(calldate,'%Y%m%d') AS fulldate FROM asteriskcdrdb.cdr WHERE substring(channel,1,locate('-',channel,1)-1)<>'' AND (duration-billsec) >=0 HAVING chan1 IN ('SIP/201010','SIP/201011','SIP/201012','SIP/201013','SIP/201014') ) as a 
                             union 
-                            select 'TOTALCALL',calldate,recordingfile as jumlah,0 Seconds from ( select distinct 'TOTALCALL' as State,NoAnswer AS jumlah,0 Seconds,recordingfile,src,calldate from( SELECT c.src,DATE_FORMAT(c.calldate, '%Y-%m-%d') as calldate,c.uniqueid,c.recordingfile,c.disposition as NoAnswer,'aaa' as Answered FROM asteriskcdrdb.cdr c WHERE (c.duration-c.billsec) >=0 AND substring(c.dstchannel,1,locate('-',c.dstchannel,length(c.dstchannel)-8)-1) in ('SIP/201010','SIP/201011','SIP/201012','SIP/201013','SIP/201014') ) as a where a.calldate BETWEEN '2024-05-01' AND '2024-05-29 23:59:59' ) as b 
+                            select 'TOTALCALL',calldate,recordingfile as jumlah,0 Seconds from ( select distinct 'TOTALCALL' as State,NoAnswer AS jumlah,0 Seconds,recordingfile,src,calldate 
+                            from( SELECT c.src,DATE_FORMAT(c.calldate, '%Y-%m-%d') as calldate,c.uniqueid,c.recordingfile,c.disposition as NoAnswer,'aaa' as Answered FROM asteriskcdrdb.cdr c 
+                            WHERE (c.duration-c.billsec) >=0 AND substring(c.dstchannel,1,locate('-',c.dstchannel,length(c.dstchannel)-8)-1) in ('SIP/201010','SIP/201011','SIP/201012','SIP/201013','SIP/201014') ) as a
+                            where  DATE_FORMAT(a.calldate, '%Y-%m-%d') = CURDATE() ) as b 
                             union 
                             select 'EARLY',curdate(),0 as jumlah,0 Seconds ) as a left outer join qstats.reportmonthly on qstats.reportmonthly.event_id=a.event WHERE datetime !='' and labelreport !='' AND 
                             (DATE_FORMAT(datetime, '%Y-%m-%d') = CURDATE()
