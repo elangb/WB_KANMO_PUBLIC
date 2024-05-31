@@ -45,10 +45,7 @@ Seconds
 from( select recordingfile,SUM(duration) as Ringtime,calldate,uniqueid,billsec 
 from( SELECT substring(dstchannel,1,locate('-',dstchannel,length(dstchannel)-8)-1) 
 AS chan1,asteriskcdrdb.cdr.* FROM asteriskcdrdb.cdr WHERE (duration-billsec) >=0 HAVING 
-chan1 in ('SIP/10010','SIP/10011','SIP/10012','SIP/10013','SIP/10014','SIP/10015','SIP/10016', 'SIP/10017','SIP/10018','SIP/10019','SIP/10020','SIP/10021','SIP/10022','SIP/10023','SIP/10024','SIP/10025','SIP/10026','SIP/10027','SIP/10028','SIP/10029') ) as a where a.disposition='ANSWERED' group by recordingfile ) 
-as a 
-where Ringtime>0
-union 
+chan1 in ('SIP/10010','SIP/10011','SIP/10012','SIP/10013','SIP/10014','SIP/10015','SIP/10016', 'SIP/10017', 'SIP/10018','SIP/10019','SIP/10020','SIP/10021','SIP/10022','SIP/10023','SIP/10024','SIP/10025','SIP/10026','SIP/10027','SIP/10028','SIP/10029') ) as a where a.disposition='NO ANSWER' group by recordingfile ) as a where Ringtime>15union 
 select 'ENTERQUEUENEWa',calldate,uniqueid as jumlah,0 Seconds from asteriskcdrdb.cdr where dst in ('60012','60011') and dstchannel='' 
 union 
 select a.event,a.datetime,a.uniqueid as jumlah,(SELECT g.duration FROM asteriskcdrdb.cdr g WHERE g.uniqueid = a.uniqueid and g.disposition='ANSWERED' ORDER BY uniqueid DESC LIMIT 1) AS Seconds from qstats.queue_stats_full a where a.qname in ('2','3') and a.queue in ('60012','60011') 
