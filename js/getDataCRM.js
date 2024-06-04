@@ -669,94 +669,88 @@ function fetchDataIncomingCall(){
 //Get Count Agent
 function fetchDataCountCall(){
   //var selectedValue = value;
+  var table = '<table class="table table-info table-striped" id="tbDetail">';
+                  // Membuat baris header
+                table += '<tr>' +                                               
+                '<th scope="col">Agent Name</th>' +
+                '<th scope="col">Incoming calls</th>' +
+                '<th scope="col">Outgoing Calls</th>' +
+                '<th scope="col">Waiting Time</th>' +
+                '<th scope="col">Talking Time</th>' +
+                '<th scope="col">Status</th>' +
+                '</tr>';
  
 
   var selectedValue = $("#floatingSelect").val();
-  var jqxhr = $.getJSON("BE/getcountstatus.php?param=" + encodeURIComponent(selectedValue), function (data) {
-    console.log("Hai iwallboard Count");
-   
+
+  
     
     //Get Data Detail
-    
-    
-    console.log(data["DataDetail"]);
-    var table = '<table class="table table-info table-striped" id="tbDetail">';
-            // Membuat baris header
-    table += '<tr>' +                                               
-        '<th scope="col">Agent Name</th>' +
-        '<th scope="col">Incoming calls</th>' +
-        '<th scope="col">Outgoing Calls</th>' +
-        '<th scope="col">Waiting Time</th>' +
-        '<th scope="col">Talking Time</th>' +
-        '<th scope="col">Status</th>' +
-        '</tr>';
-    $.each(data["DataDetail"], function (i, items) {
-      table += '<tr>';
-      table += '<td>' + items.AgentName + '</td>';
-      table += '<td>' + items.IncomingCall + '</td>';
-      table += '<td>' + items.OutgoingCall + '</td>';
-      table += '<td>' + items.WaitingTime + '</td>';
-      table += '<td>' + items.TalkingTime + '</td>';
-      table += '<td>' + items.StatusAgent + '</td>';
-      table += '</tr>';
-
-    })
-    // Menutup tabel HTML
-    table += '</table>';
- 
-   
-                                         
-   // Menempatkan tabel ke dalam elemen dengan ID "table-container"
-   $('#table-count').html(table);
-   
-     // alert(dt);
-     var _table = '';
-    if (data["DataDetail"] == undefined || data["DataDetail"].length == 0){
-
-      $.each(dataJson, function (i, d) {
-        _table += '<tr>';
-        _table += '<td>' + d.agent_name + '</td>';
-        _table += '<td>0</td>';
-         _table += '<td>0</td>';
-         _table += '<td>0</td>';
-         _table += '<td>0</td>';
-         _table += '<td>' + d.Status + '</td>';
-         _table += '</tr>';
-        
+    $.ajax({
+      type: "POST",
+      url: "https://kanmo.uidesk.id/crm/apps/WebServiceGetDataMaster.asmx/UIDESK_TrmMasterCombo",
+      data: "{TrxID:'"+ selectedValue +"', TrxUserName: '', TrxAction: 'UIDESK139'}",
+      contentType: "application/json; charset=utf-8",
+      dataType: "json",
+      success: function (data) {
+           
+            var json = JSON.parse(data.d);
   
-      })
-      $('#tbDetail').append(_table);
+                  
+  
+            for (i = 0; i < json.length; i++) {
 
-    }else{
+              if (json[i].Status != null){
 
-      $.each(dataJson, function (i, dt) {
-          
-            if (isRowExists(dt.agent_name.replace('_',' ')) == false)
+                  var WaitingTime = ticksToTime(json[i].WaitingTime);
+                  var TalkingTime = ticksToTime(json[i].TalkingTime);
 
-            {
-             
-                 _table += '<tr>';
-                _table += '<td>' + dt.agent_name + '</td>';
-                 _table += '<td>0</td>';
-                 _table += '<td>0</td>';
-                 _table += '<td>0</td>';
-                 _table += '<td>0</td>';
-                 _table += '<td>' + dt.Status + '</td>';
-                 _table += '</tr>';
-               
+                    
+                        table += '<tr>';
+                        table += '<td>' + json[i].AgentName + '</td>';
+                        table += '<td>' + json[i].IncomingCall + '</td>';
+                        table += '<td>' + json[i].OutgoingCall + '</td>';
+                        table += '<td>' + WaitingTime + '</td>';
+                        table += '<td>' + TalkingTime + '</td>';
+                        table += '<td>' + json[i].Status + '</td>';
+                        table += '</tr>';
+              }
+                  
+                    
+                     
                    
-            } 
-
-      })
-      $('#tbDetail').append(_table);
-     
-    }
-
-  })   
-    
-
-}
+          }
+   // Menutup tabel HTML
+   table += '</table>';
+   $('#table-count').html(table);
+         
   
+           
+  
+  
+      },
+      error: function (xmlHttpRequest, textStatus, errorThrown) {
+          console.log(xmlHttpRequest.responseText);
+          console.log(textStatus);
+          console.log(errorThrown);
+      }
+    
+});
+   
+ 
+}
+function ticksToTime(obj) {
+  var ticks = obj.Ticks;
+  var milliseconds = ticks % 1000;
+  var seconds = Math.floor((ticks / 1000) % 60);
+  var minutes = Math.floor((ticks / (1000 * 60)) % 60);
+  var hours = Math.floor((ticks / (1000 * 60 * 60)) % 24);
+
+  // Format the time
+  var formattedTime = ('0' + hours).slice(-2) + ':' + ('0' + minutes).slice(-2) + ':' + ('0' + seconds).slice(-2);
+
+  return formattedTime;
+}
 
 function isRowExists(name) {
   
@@ -785,7 +779,20 @@ function isRowExists(name) {
     success: function (data) {
          
           var json = JSON.parse(data.d);
-          dataJson = json;
+
+          for (i = 0; i < json.length; i++) {
+            //alert(json[i].Jumlah)
+            if(json[i].Jenis == "Ready")
+
+              $("#stateready").html(json[i].Jumlah);
+            else
+              $("#stateaux").html(json[i].Jumlah);   
+
+           
+            
+
+        }
+         
 
 
     },
