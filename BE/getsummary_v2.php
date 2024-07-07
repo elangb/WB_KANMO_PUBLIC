@@ -8,7 +8,8 @@ date_default_timezone_set('GMT');
 
 
 
-$mysqli = new mysqli("202.43.173.61","matthew","supersecretpassword","asteriskcdrdb");
+//$mysqli = new mysqli("202.43.173.61","matthew","supersecretpassword","asteriskcdrdb");
+$mysqli = new mysqli("pbx.pelni.uidesk.id","root","Uid35k32!Uid35k32!J4y4","qstats");
 
 if ($mysqli -> connect_errno) {
   echo "Failed to connect to MySQL: " . $mysqli -> connect_error;
