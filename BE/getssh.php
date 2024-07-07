@@ -3,8 +3,8 @@
   ini_set('display_errors', 0);
   ini_set('display_startup_errors', 0);
    
-  $key ="P@ssword1234!!@@";
-  $ssh1 = new Net_SSH2('call.ahu-mobile.com', 8072);   
+  $key ="Uid35k32!";
+  $ssh1 = new Net_SSH2('pbx.pelni.uidesk.id');   
   if (!$ssh1->login('root', $key))   exit('Login Failed'); 
   
   $numbers1 = array(10010);
@@ -15,7 +15,7 @@
   $outputArray = array();
   
    
-   $memberData= $ssh1->exec('sudo asterisk -x "queue show 9000"');
+   $memberData= $ssh1->exec('sudo asterisk -x "queue show 60011"');
    
    $rows = explode("\n", $memberData);
       $in_call_count = 0;

@@ -17,7 +17,7 @@ Code 0 Aux System
 //});
 var myVarX;
 var myVarY;
-var urlUidesk='https://localhost/ahuomni/apps/WebServiceGetDataMaster.asmx/UIDESK_TrmMasterCombo';
+var urlUidesk='https://pelni.uidesk.id/crm/apps/WebServiceGetDataMaster.asmx/UIDESK_TrmMasterCombo';
 
 // $(document).ready(function(){
 //     $("#submitData").click(function(){
@@ -187,47 +187,7 @@ function GetSShData(){
     //console.log( "second complete" );
   });
 
-  var a = 0;
-  var b = 0;
-  console.log("Hai iwallboard summary call");
-  var Abandonrate = 0;
-  var jqxhr = $.getJSON("BE/getsummary.php", function (data) {
-  $.each(data["DataDetail"], function (i, items) {
-      console.log(items.TypeNya);
-      console.log(items.jumlah);
-
-      if(items.TypeNya=="CallReceived"){
-         
-          a = items.jumlah;
-      }
-      if(items.TypeNya=="CallAnswered"){
-          //$('#callanswer').html(items.jumlah);
-      }
-      if(items.TypeNya=="CallAbandoned"){
-          $('#callabdn').html(items.jumlah);
-          b = items.jumlah;
-      }
-      if(a==0){
-          Abandonrate = "0";
-      }else{
-          Abandonrate = (b / a) * 100;
-      }
-      
-      
   
-
-  });
-  })
-  .done(function () {
-    //console.log( "done" );
-    
-  })
-  .fail(function () {
-    //console.log( "error" );
-  })
-  .always(function () {
-    //console.log( "complete" );
-  });
 }
 
 function fetchDataTotalEmail(){

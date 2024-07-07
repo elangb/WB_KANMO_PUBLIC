@@ -7,6 +7,7 @@ error_reporting(E_ALL & ~E_NOTICE);
 date_default_timezone_set('GMT');
 
 
+
 $mysqli = new mysqli("202.43.173.61","matthew","supersecretpassword","asteriskcdrdb");
 
 if ($mysqli -> connect_errno) {
@@ -16,7 +17,7 @@ if ($mysqli -> connect_errno) {
 
 
 $sql = "SELECT qstats.reportmonthly.labelreport as lastapp,DAY(datetime) AS hari
-, COUNT(jumlah) AS total_data,SUM(Seconds) as Seconds from( select event,datetime,real_uniqueid as jumlah,0 Seconds from qstats.queue_stats_mv where (queue='60012' or queue='60013')
+, COUNT(jumlah) AS total_data,SUM(Seconds) as Seconds from( select event,datetime,real_uniqueid as jumlah,0 Seconds from qstats.queue_stats_mv where (queue='60011' or queue='60012')
  union 
 select disposition as event,calldate,uniqueid as jumlah,0 AS seconds from asteriskcdrdb.cdr where disposition in ('NO ANSWER') AND substring(dstchannel,1,locate('-',dstchannel,length(dstchannel)-8)-1) in ('SIP/10010','SIP/10011','SIP/10012','SIP/10013','SIP/10014','SIP/10015','SIP/10016', 'SIP/10017','SIP/10018','SIP/10019','SIP/10020','SIP/10021','SIP/10022','SIP/10023','SIP/10024','SIP/10025','SIP/10026','SIP/10027','SIP/10028','SIP/10029')
 union select 'CONNECTA' as event,calldate,uniqueid as jumlah,billsec AS seconds from asteriskcdrdb.cdr where dst in ('60012','60011') 
@@ -26,19 +27,19 @@ Seconds
 from( select recordingfile,SUM(duration) as Ringtime,calldate,uniqueid,billsec 
 from( SELECT substring(dstchannel,1,locate('-',dstchannel,length(dstchannel)-8)-1) 
 AS chan1,asteriskcdrdb.cdr.* FROM asteriskcdrdb.cdr WHERE (duration-billsec) >=0 HAVING 
-chan1 in ('SIP/10010','SIP/10011','SIP/10012','SIP/10013','SIP/10014','SIP/10015','SIP/10016', 'SIP/10017','SIP/10018','SIP/10019','SIP/10020','SIP/10021','SIP/10022','SIP/10023','SIP/10024','SIP/10025','SIP/10026','SIP/10027','SIP/10028','SIP/10029') ) as a where a.disposition='ANSWERED' group by recordingfile ) 
+chan1 in ('SIP/102030','SIP/102031','SIP/102032','SIP/102033','SIP/102034','SIP/102035','SIP/102036', 'SIP/102037','SIP/102038') ) as a where a.disposition='ANSWERED' group by recordingfile ) 
 as a 
 where Ringtime>0 
 union 
 SELECT 'OUTBOUND',a.calldate,a.uniqueid,0 Seconds from( select substring(channel,1,locate('-',channel,1)-1) AS chan1, billsec, calldate,uniqueid, (time_to_sec(calldate)-(hour(calldate)*3600)+billsec)-3600 AS minute, hour(calldate) AS hour,date_format(calldate,'%Y%m%d') AS fulldate FROM asteriskcdrdb.cdr WHERE substring(channel,1,locate('-',channel,1)-1)<>'' AND (duration-billsec) >=0 
-HAVING chan1 IN ('SIP/10010','SIP/10011','SIP/10012','SIP/10013','SIP/10014','SIP/10015','SIP/10016', 'SIP/10017','SIP/10018','SIP/10019','SIP/10020','SIP/10021','SIP/10022','SIP/10023','SIP/10024','SIP/10025','SIP/10026','SIP/10027','SIP/10028','SIP/10029') ) as a 
+HAVING chan1 IN ('SIP/102030','SIP/102031','SIP/102032','SIP/102033','SIP/102034','SIP/102035','SIP/102036', 'SIP/102037','SIP/102038') ) as a 
 union 
 select 'CALLWITHIN',a.calldate,a.uniqueid,a.billsec as  
 Seconds 
 from( select recordingfile,SUM(duration) as Ringtime,calldate,uniqueid,billsec 
 from( SELECT substring(dstchannel,1,locate('-',dstchannel,length(dstchannel)-8)-1) 
 AS chan1,asteriskcdrdb.cdr.* FROM asteriskcdrdb.cdr WHERE (duration-billsec) >=0 HAVING 
-chan1 in ('SIP/10010','SIP/10011','SIP/10012','SIP/10013','SIP/10014','SIP/10015','SIP/10016', 'SIP/10017','SIP/10018','SIP/10019','SIP/10020','SIP/10021','SIP/10022','SIP/10023','SIP/10024','SIP/10025','SIP/10026','SIP/10027','SIP/10028','SIP/10029') ) as a where a.disposition='ANSWERED' group by recordingfile ) 
+chan1 in ('SIP/102030','SIP/102031','SIP/102032','SIP/102033','SIP/102034','SIP/102035','SIP/102036', 'SIP/102037','SIP/102038') ) as a where a.disposition='ANSWERED' group by recordingfile ) 
 as a 
 where Ringtime>0
 union 
@@ -49,7 +50,7 @@ union
 select 'EARLYa',calldate,uniqueid as jumlah,0 Seconds from asteriskcdrdb.cdr where disposition in ('NO ANSWER') and dst in ('60012','60011') and duration between '0' and '9' 
 union 
 SELECT 'TOTALCALL',calldate,uniqueid as jumlah,0 Seconds FROM asteriskcdrdb.cdr 
-WHERE (duration-billsec) >=0 AND substring(dstchannel,1,locate('-',dstchannel,length(dstchannel)-8)-1) in ('SIP/10010','SIP/10011','SIP/10012','SIP/10013','SIP/10014','SIP/10015','SIP/10016', 'SIP/10017','SIP/10018','SIP/10019','SIP/10020','SIP/10021','SIP/10022','SIP/10023','SIP/10024','SIP/10025','SIP/10026','SIP/10027','SIP/10028','SIP/10029') 
+WHERE (duration-billsec) >=0 AND substring(dstchannel,1,locate('-',dstchannel,length(dstchannel)-8)-1) in ('SIP/102030','SIP/102031','SIP/102032','SIP/102033','SIP/102034','SIP/102035','SIP/102036', 'SIP/102037','SIP/102038') 
 union 
 select 'EARLY',curdate(),0 as jumlah,0 Seconds ) as a left outer join qstats.reportmonthly on qstats.reportmonthly.event_id=a.event WHERE datetime !='' 
 and labelreport !='' 
