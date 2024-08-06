@@ -1,5 +1,5 @@
 <?php
-$mysqli = new mysqli("202.43.173.61","root","Uid35k32!Uid35k32!J4y4","asteriskcdrdb");
+$mysqli = new mysqli("103.186.31.138","root","Uid35k32!Uid35k32!J4y4","asteriskcdrdb");
 /*
 
 user : root

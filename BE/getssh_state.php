@@ -3,8 +3,8 @@
   ini_set('display_errors', 0);
   ini_set('display_startup_errors', 0);
     //error_reporting(E_ALL);
-    $key ="Uid35k32!J4y4J4y4";
-    $ssh1 = new Net_SSH2('206.237.98.116', 3389);   // Domain or IP
+    $key ="Uid35k32!Uid35k32!J4y4";
+    $ssh1 = new Net_SSH2('103.186.31.138', 22);   // Domain or IP
     if (!$ssh1->login('root', $key))   exit('Login Failed'); 
   $numbers1 = array(10010);
   $ready=0;

@@ -1,5 +1,5 @@
 <?php
-$mysqli = new mysqli("pbx.uidesk.id","root","Uid35k32!Uid35k32!J4y4","qstats");
+$mysqli = new mysqli("103.186.31.138","root","Uid35k32!Uid35k32!J4y4","qstats");
 
 // Check connection
 if ($mysqli -> connect_errno) {
