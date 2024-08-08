@@ -203,7 +203,7 @@ function fetchData() {
     fetch('https://kanmo.uidesk.id/crm/apps/WebServiceGetDataMaster.asmx/UIDESK_TrmMasterCombo?TrxID='+selectedValue+'&TrxUserName=Inquiry&TrxAction=UIDESK132')
     .then(response => response.text())
     .then(xmlString => {
-      const jsonObject="";
+      let jsonObject="";
         // Parse the XML string into an XMLDocument
         const parser = new DOMParser();
         const xmlDoc = parser.parseFromString(xmlString, 'text/xml');
