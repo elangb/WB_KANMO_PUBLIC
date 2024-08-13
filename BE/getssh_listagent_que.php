@@ -82,10 +82,11 @@ $json_result = json_encode($result, JSON_PRETTY_PRINT);
 // menampilkan data JSON echo $json_result;
 // Step 1: Decode JSON data into PHP associative array
 $data = json_decode($json_result, true);
+$datas = array_unique($data);
 
 // Step 2: Extract and combine all "members" arrays
 $allMembers = [];
-foreach ($data as $item) {
+foreach ($datas as $item) {
     $allMembers = array_merge($allMembers, $item['members']);
 }
 

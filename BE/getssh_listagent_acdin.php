@@ -20,6 +20,7 @@ $get100111= $ssh1->exec('sudo asterisk -x "queue show"');
 // Split data into lines
 $lines = explode("\n", $get100111);
 
+
 $result = array();
 
 foreach ($lines as $line) {
@@ -75,18 +76,21 @@ foreach ($lines as $line) {
     }
 }
 
+
 // Convert result to JSON
 $json_result = json_encode($result, JSON_PRETTY_PRINT);
 
 // menampilkan data JSON echo $json_result;
 // Step 1: Decode JSON data into PHP associative array
 $data = json_decode($json_result, true);
+$datas = array_unique($data);
 
 // Step 2: Extract and combine all "members" arrays
 $allMembers = [];
-foreach ($data as $item) {
+foreach ($datas as $item) {
     $allMembers = array_merge($allMembers, $item['members']);
 }
+
 
 // Step 3: Sort the combined array by "lastcalltime" in descending order
 usort($allMembers, function($a, $b) {
