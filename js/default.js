@@ -517,39 +517,53 @@ function fetchData() {
   
   var jqxhr = $.getJSON("BE/getssh_listagent_que.php", function (data) {
   $("#listAvailAgent").empty();
-  $.each(data, function (i, items) {
-      console.log(items.name);
-      console.log(items.lastcalltime);
-	  if(items.statuscall === "Ready"){
-		  if(NoUrutanAvail<=5){
-			
-			//console.log(items["AuxUserName"]);
-		  $("#listAvailAgent").append('<li class="px-4 py-2">'+
-			  '<div class="d-flex align-items-center">'+
-				  '<div class="flex-shrink-0 me-3">'+
-					  '<div class="avatar-sm">'+
-						  '<div class="avatar-title bg-light text-primary rounded-circle">'+
-						  NoUrutanAvail+
-						  '</div>'+
-					  '</div>'+
-				  '</div>'+
-				  '<div class="flex-grow-1 overflow-hidden">'+
-					  '<p class="text-muted mb-1 text-truncate">'+ items.name+'</p>'+
-					  '<div class="badge badge-soft-success ms-2">Avail time</div>'+
-				  '</div>'+
-				  '<div class="flex-shrink-0 align-self-start">'+
-					  '<h6> '+ secondsToHHMMSS(items.lastcalltime) +' <i class="uil uil-arrow-up-right text-success ms-1"></i></h6>'+
-				  '</div>'+
-			  '</div>'+
-		  '</li>');
-		  NoUrutanAvail++;
-		}
-      }
+ 
+  $.getJSON("BE/getssh_listagent_que.php", function(data) {
+    // Keep track of unique names
+    const processedNames = new Set();
+    let NoUrutanAvail = 1; // Initialize with your starting value
+
+    $("#listAvailAgent").empty();
+
+    $.each(data, function(i, items) {
+        console.log(items.name);
+        console.log(items.lastcalltime);
+
+        // Check if the status is "Ready" and if the agent is not already processed
+        if (items.statuscall === "Ready" && !processedNames.has(items.name)) {
+            if (NoUrutanAvail <= 5) {
+                processedNames.add(items.name); // Mark this name as processed
+
+                $("#listAvailAgent").append(
+                    '<li class="px-4 py-2">' +
+                        '<div class="d-flex align-items-center">' +
+                            '<div class="flex-shrink-0 me-3">' +
+                                '<div class="avatar-sm">' +
+                                    '<div class="avatar-title bg-light text-primary rounded-circle">' +
+                                        NoUrutanAvail +
+                                    '</div>' +
+                                '</div>' +
+                            '</div>' +
+                            '<div class="flex-grow-1 overflow-hidden">' +
+                                '<p class="text-muted mb-1 text-truncate">' + items.name + '</p>' +
+                                '<div class="badge badge-soft-success ms-2">Avail time</div>' +
+                            '</div>' +
+                            '<div class="flex-shrink-0 align-self-start">' +
+                                '<h6>' + secondsToHHMMSS(items.lastcalltime) + ' <i class="uil uil-arrow-up-right text-success ms-1"></i></h6>' +
+                            '</div>' +
+                        '</div>' +
+                    '</li>'
+                );
+
+                NoUrutanAvail++;
+            }
+        }
+    });
+});
       
       
   
 
-  });
   })
   .done(function () {
     //console.log( "done" );
