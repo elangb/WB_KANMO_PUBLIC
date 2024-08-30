@@ -276,6 +276,7 @@ function fetchDataKelola(){
             }else if(json[i].label == "queue" && json[i].type =='Lc'){
               $("#lcwait").html(json[i].Jumlah);
             }
+
             //fb
             if(json[i].label == "Total" && json[i].type =='Fb'){
               $("#fbtotal").html(json[i].Jumlah );
@@ -284,27 +285,30 @@ function fetchDataKelola(){
             }else if(json[i].label == "queue" && json[i].type =='Fb'){
               $("#fbwait").html(json[i].Jumlah);
             }
+
+
             //Ig
-           
             if(json[i].label == "Total" && json[i].type =='Ig'){
               $("#igtotal").html(json[i].Jumlah );
             }else if(json[i].label == "Reply" ){
               $("#igreply").html(json[i].Jumlah);
             }else if(json[i].label == "queue" && json[i].type =='Ig'){
               $("#igwait").html(json[i].Jumlah);
+            }else if(json[i].label == "IgLastWaiting" && json[i].type =='Ig'){
+              $("#IgLast").html(json[i].Jumlah);
             }
-            //Ig
-           
+
+
+            //WA
             if(json[i].label == "Total" && json[i].Jenis =='Wa'){
               $("#watotal").html(json[i].Jumlah );
             }else if(json[i].label == "Reply" && json[i].type =='Wa'){
               $("#wareply").html(json[i].Jumlah );
             }else if(json[i].label == "queue" && json[i].type =='Wa'){
               $("#wawait").html(json[i].Jumlah);
+            }else if(json[i].label == "WaLastWaiting" && json[i].type =='Wa'){
+              $("#WaLast").html(json[i].Jumlah);
             }
-            
-             
-
         }
         
         
@@ -555,3 +559,4 @@ function getDateTime() {
   divDateNya.empty();
   divDateNya.append(months[month_value] + " " + day_value + ", " + year_value);
 }
+
