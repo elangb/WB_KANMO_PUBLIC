@@ -1,0 +1,79 @@
+.avatar-sm {
+    width: 50px;
+    /* ukuran gambar kecil */
+    height: 80px;
+    /* ukuran gambar kecil */
+    object-fit: cover;
+    /* membuat gambar menyesuaikan ukuran tanpa distorsi */
+    border-radius: 0;
+    /* membuat gambar benar-benar kotak */
+    border: 1px solid #ccc;
+    /* optional: menambahkan border */
+}
+
+body.sidebar-enable {
+    background: url('../images/balmond-bg.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+.transparent-table {
+    background-color: transparent;
+    /* Transparansi penuh pada card */
+    border: none;
+    /* Menghapus border jika ada */
+}
+
+.table {
+    background-color: transparent;
+    /* Transparansi penuh pada tabel */
+    border: none;
+    /* Menghapus border pada tabel */
+}
+
+.transparent-black {
+    background-color: rgba(0, 0, 0, 0.364);
+    /* Hitam dengan transparansi 70% */
+    border: none;
+    /* Hilangkan border jika ada */
+    color: #fff;
+    /* Agar teks menjadi putih untuk kontras yang lebih baik */
+}
+
+.transparent-black .table {
+    background-color: transparent;
+    /* Tabel tetap transparan */
+    color: #fff;
+    /* Agar teks tabel tetap putih */
+}
+
+.transparent-black .table img {
+    border-radius: 0;
+    /* Agar gambar tetap kotak */
+}
+
+
+/* Text Size */
+.larger-text {
+    font-size: 18px;
+    /* Atur ukuran teks sesuai kebutuhan, misalnya 18px */
+}
+
+.larger-text td {
+    font-size: 24px;
+    /* Terapkan ukuran teks yang lebih besar pada header dan isi tabel */
+}
+
+.larger-text th {
+    font-weight: bold;
+    /* Untuk header tabel, tambahkan tebal pada teks */
+}
+
+.centered-chart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* Center vertically */
+    width: 100%;
+    /* Full width of the parent */
+}

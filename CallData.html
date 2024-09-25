@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="en">
+
+
+<!-- Mirrored from preview.pichforest.com/dashonic/layouts/pages-profile.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 13 Oct 2022 09:33:00 GMT -->
+
+<head>
+
+    <meta charset="utf-8" />
+    <title>WALLBOARD CALL DATA</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="Pichforest" name="author" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+    <!-- swiper css -->
+    <link rel="stylesheet" href="assets/libs/swiper/swiper-bundle.min.css">
+
+    <!-- Bootstrap Css -->
+    <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+    <!-- Icons Css -->
+    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <!-- App Css-->
+    <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="assets/css/CallData.css">
+
+</head>
+
+
+<body class="sidebar-enable" data-sidebar-size="sm">
+
+    <!-- <body data-layout="horizontal"> -->
+
+    <!-- Begin page -->
+    <div id="layout-wrapper">
+
+        <!-- ============================================================== -->
+        <!-- Start right main-content page-content Content here -->
+        <!-- ============================================================== -->
+        <!-- Start page title -->
+
+        <!-- End page title -->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <br>
+                    <div class="page-title-box d-flex align-items-center justify-content-between">
+                        <h4 class="mb-0 d-flex align-items-center">
+                            <img src="Logo_Kumham_AHU.png" width="200">
+                            <div class="flex-grow-1 d-flex align-items-center" style="margin-left: 500px;">
+                                <!-- Chart Container -->
+                                <div class="centered-chart" style="display: flex; flex-direction: row; align-items: center;">
+                                    <!-- First Chart -->
+                                    <div style="display: flex; flex-direction: column; align-items: center; margin-right: 200px;">
+                                        <div id="chart1" style="width: 300px; height: 150px;"></div>
+                                        <div style="text-align: center; color: white; margin-top: 10px;">(%) Service Level</div>
+                                    </div>
+                                    <!-- Second Chart -->
+                                    <div style="display: flex; flex-direction: column; align-items: center;">
+                                        <div id="chart2" style="width: 300px; height: 150px;"></div>
+                                        <div style="text-align: center; color: white; margin-top: 10px;">(%) Abandon</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </h4>
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item">
+                                    <a href="javascript: void(0);"></a>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+    <!-- Agent State Table -->
+    <div class="col-md-3">
+        <div class="card transparent-black"> <!-- Tambahkan kelas custom -->
+            <div class="col-xl-12">
+                <div class="card-body">
+                    <div class="table-responsive ">
+                        <table class="table mb-0">
+                            <tbody>
+                                <tr>
+                                    <td style="display: flex; flex-direction: column; align-items: flex-start;">
+                                        <div style="display: flex; align-items: center;">
+                                            <img src="assets/images/users/avatar-2.jpg" class="avatar-sm" alt="" style="margin-right: 10px;">
+                                            <span style="margin-right: 5px; width: 10px; height: 10px; border-radius: 50%; background-color: #ffffff; display: inline-block; margin-top: 23px;"></span>
+                                            <span>Agent 1 <br><span style="font-size: smaller;">ACDIN -- 00:01:30</span></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="display: flex; flex-direction: column; align-items: flex-start;">
+                                        <div style="display: flex; align-items: center;">
+                                            <img src="assets/images/users/avatar-2.jpg" class="avatar-sm" alt="" style="margin-right: 10px;">
+                                            <span style="margin-right: 5px; width: 10px; height: 10px; border-radius: 50%; background-color: #ffffff; display: inline-block; margin-top: 23px;"></span>
+                                            <span>Agent 2 <br><span style="font-size: smaller;">ACDIN -- 00:01:30</span></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="display: flex; flex-direction: column; align-items: flex-start;">
+                                        <div style="display: flex; align-items: center;">
+                                            <img src="assets/images/users/avatar-2.jpg" class="avatar-sm" alt="" style="margin-right: 10px;">
+                                            <span style="margin-right: 5px; width: 10px; height: 10px; border-radius: 50%; background-color: #ffffff; display: inline-block; margin-top: 23px;"></span>
+                                            <span>Agent 3 <br><span style="font-size: smaller;">ACDIN -- 00:01:30</span></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="display: flex; flex-direction: column; align-items: flex-start;">
+                                        <div style="display: flex; align-items: center;">
+                                            <img src="assets/images/users/avatar-2.jpg" class="avatar-sm" alt="" style="margin-right: 10px;">
+                                            <span style="margin-right: 5px; width: 10px; height: 10px; border-radius: 50%; background-color: #ffffff; display: inline-block; margin-top: 23px;"></span>
+                                            <span>Agent 4 <br><span style="font-size: smaller;">ACDIN -- 00:01:30</span></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="display: flex; flex-direction: column; align-items: flex-start;">
+                                        <div style="display: flex; align-items: center;">
+                                            <img src="assets/images/users/avatar-2.jpg" class="avatar-sm" alt="" style="margin-right: 10px;">
+                                            <span style="margin-right: 5px; width: 10px; height: 10px; border-radius: 50%; background-color: #ffffff; display: inline-block; margin-top: 23px;"></span>
+                                            <span>Agent 5 <br><span style="font-size: smaller;">ACDIN -- 00:01:30</span></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>                                                      
+                        </table>
+                    </div> <!-- end table responsive -->
+                </div> <!-- end card body -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Skill and Queue Table -->
+    <div class="col-md-9">
+        <div class="card transparent-table"> <!-- Tambahkan kelas custom -->
+            <div class="col-xl-12">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table mb-0 text-white larger-text">
+                            <thead>
+                                <tr>
+                                    <th>SKILL</th>
+                                    <th>QUEUE</th>
+                                    <th>NOT READY</th>
+                                    <th>TALKING</th>
+                                    <th>READY</th>
+                                    <th>ABANDONE RATE (%)</th>
+                                    <th>SERVICE LEVEL (%)</th>
+                                    <th>ANSWERED</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Skill 1</td>
+                                    <td>5</td>
+                                    <td>3</td>
+                                    <td>2</td>
+                                    <td>0</td>
+                                    <td>10%</td>
+                                    <td>95%</td>
+                                    <td>50</td>
+                                </tr>
+                                <tr>
+                                    <td>Skill 2</td>
+                                    <td>4</td>
+                                    <td>2</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>15%</td>
+                                    <td>90%</td>
+                                    <td>45</td>
+                                </tr>
+                                <tr>
+                                    <td>Skill 3</td>
+                                    <td>6</td>
+                                    <td>4</td>
+                                    <td>2</td>
+                                    <td>0</td>
+                                    <td>20%</td>
+                                    <td>85%</td>
+                                    <td>40</td>
+                                </tr>
+                                <tr>
+                                    <td>Skill 4</td>
+                                    <td>7</td>
+                                    <td>5</td>
+                                    <td>2</td>
+                                    <td>0</td>
+                                    <td>25%</td>
+                                    <td>80%</td>
+                                    <td>35</td>
+                                </tr>
+                                <tr>
+                                    <td>Skill 5</td>
+                                    <td>3</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>5%</td>
+                                    <td>99%</td>
+                                    <td>60</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div> <!-- end table responsive -->
+                </div> <!-- end card body -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        </div>
+
+
+        <!-- end main content-->
+
+    </div>
+    <!-- END layout-wrapper -->
+
+    <!-- JAVASCRIPT -->
+    <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/libs/metismenujs/metismenujs.min.js"></script>
+    <script src="assets/libs/simplebar/simplebar.min.js"></script>
+    <script src="assets/libs/feather-icons/feather.min.js"></script>
+
+    <!-- swiper js -->
+    <script src="assets/libs/swiper/swiper-bundle.min.js"></script>
+    <!-- profile init -->
+    <script src="assets/js/pages/profile.init.js"></script>
+
+    <!-- apexcharts -->
+    <script src="assets/libs/apexcharts/apexcharts.min.js"></script>
+
+    <!-- piecharts init -->
+    <script src="assets/js/pages/template.js"></script>
+
+    <!-- app js -->
+    <script src="assets/js/app.js"></script>
+
+   <!-- apexchart -->
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script>
+    // Chart options for the first chart
+    var options1 = {
+        series: [76],
+        chart: {
+            type: 'radialBar',
+            offsetY: -20,
+            sparkline: {
+                enabled: true
+            }
+        },
+        plotOptions: {
+            radialBar: {
+                startAngle: -90,
+                endAngle: 90,
+                track: {
+                    background: "#e7e7e7",
+                    strokeWidth: '97%',
+                    margin: 5,
+                    dropShadow: {
+                        enabled: true,
+                        top: 2,
+                        left: 0,
+                        color: '#999',
+                        opacity: 1,
+                        blur: 2
+                    }
+                },
+                dataLabels: {
+                    name: {
+                        show: false
+                    },
+                    value: {
+                        offsetY: -2,
+                        fontSize: '22px',
+                        color: '#FFFFFF' // Set text color to white
+                    }
+                }
+            }
+        },
+        grid: {
+            padding: {
+                top: -10
+            }
+        },
+        fill: {
+            type: 'gradient',
+            gradient: {
+                shade: 'light',
+                shadeIntensity: 0.4,
+                inverseColors: false,
+                opacityFrom: 1,
+                opacityTo: 1,
+                stops: [0, 100],
+                colorStops: [
+                    { offset: 0, color: '#33A6A6', opacity: 1 },
+                    { offset: 100, color: '#33A6A6', opacity: 0.5 }
+                ]
+            }
+        },
+        labels: ['Average Results'],
+    };
+
+    // Render the first chart
+    var chart1 = new ApexCharts(document.querySelector("#chart1"), options1);
+    chart1.render();
+
+    // Chart options for the second chart (similar to the first one)
+    var options2 = {
+        series: [85], // Adjust series data as needed
+        chart: {
+            type: 'radialBar',
+            offsetY: -20,
+            sparkline: {
+                enabled: true
+            }
+        },
+        plotOptions: {
+            radialBar: {
+                startAngle: -90,
+                endAngle: 90,
+                track: {
+                    background: "#e7e7e7",
+                    strokeWidth: '97%',
+                    margin: 5,
+                    dropShadow: {
+                        enabled: true,
+                        top: 2,
+                        left: 0,
+                        color: '#999',
+                        opacity: 1,
+                        blur: 2
+                    }
+                },
+                dataLabels: {
+                    name: {
+                        show: false
+                    },
+                    value: {
+                        offsetY: -2,
+                        fontSize: '22px',
+                        color: '#FFFFFF' // Set text color to white
+                    }
+                }
+            }
+        },
+        grid: {
+            padding: {
+                top: -10
+            }
+        },
+        fill: {
+            type: 'gradient',
+            gradient: {
+                shade: 'light',
+                shadeIntensity: 0.4,
+                inverseColors: false,
+                opacityFrom: 1,
+                opacityTo: 1,
+                stops: [0, 100],
+                colorStops: [
+                    { offset: 0, color: '#33A6A6', opacity: 1 },
+                    { offset: 100, color: '#33A6A6', opacity: 0.5 }
+                ]
+            }
+        },
+        labels: ['Another Results'],
+    };
+
+    // Render the second chart
+    var chart2 = new ApexCharts(document.querySelector("#chart2"), options2);
+    chart2.render();
+</script>
+
+
+
+    <!-- Show bergantian Skills-->
+    <script>
+        setInterval(displayHello, 1000);
+
+        function displayHello() {
+            if (document.getElementById("a").style.display == "block") {
+                console.log("a hide");
+                console.log("b show");
+                document.getElementById("a").style.display = "none";
+                document.getElementById("b").style.display = "block";
+                document.getElementById("c").style.display = "none";
+                document.getElementById("d").style.display = "none";
+                document.getElementById("e").style.display = "none";
+                document.getElementById("f").style.display = "none";
+                document.getElementById("g").style.display = "none";
+            } else if (document.getElementById("b").style.display == "block") {
+                console.log("a hide");
+                console.log("b show");
+                document.getElementById("a").style.display = "none";
+                document.getElementById("b").style.display = "none";
+                document.getElementById("c").style.display = "block";
+                document.getElementById("d").style.display = "none";
+                document.getElementById("e").style.display = "none";
+                document.getElementById("f").style.display = "none";
+                document.getElementById("g").style.display = "none";
+            } else if (document.getElementById("c").style.display == "block") {
+                console.log("a hide");
+                console.log("b show");
+                document.getElementById("a").style.display = "none";
+                document.getElementById("b").style.display = "none";
+                document.getElementById("c").style.display = "none";
+                document.getElementById("d").style.display = "block";
+                document.getElementById("e").style.display = "none";
+                document.getElementById("f").style.display = "none";
+                document.getElementById("g").style.display = "none";
+            } else if (document.getElementById("d").style.display == "block") {
+                console.log("a hide");
+                console.log("b show");
+                document.getElementById("a").style.display = "none";
+                document.getElementById("b").style.display = "none";
+                document.getElementById("c").style.display = "none";
+                document.getElementById("d").style.display = "none";
+                document.getElementById("e").style.display = "block";
+                document.getElementById("f").style.display = "none";
+                document.getElementById("g").style.display = "none";
+            } else if (document.getElementById("e").style.display == "block") {
+                console.log("a hide");
+                console.log("b show");
+                document.getElementById("a").style.display = "none";
+                document.getElementById("b").style.display = "none";
+                document.getElementById("c").style.display = "none";
+                document.getElementById("d").style.display = "none";
+                document.getElementById("e").style.display = "none";
+                document.getElementById("f").style.display = "block";
+                document.getElementById("g").style.display = "none";
+            } else if (document.getElementById("f").style.display == "block") {
+                console.log("a hide");
+                console.log("b show");
+                document.getElementById("a").style.display = "none";
+                document.getElementById("b").style.display = "none";
+                document.getElementById("c").style.display = "none";
+                document.getElementById("d").style.display = "none";
+                document.getElementById("e").style.display = "none";
+                document.getElementById("f").style.display = "none";
+                document.getElementById("g").style.display = "block";
+            }
+            else if (document.getElementById("g").style.display == "block") {
+                console.log("a hide");
+                console.log("b show");
+                document.getElementById("a").style.display = "block";
+                document.getElementById("b").style.display = "none";
+                document.getElementById("c").style.display = "none";
+                document.getElementById("d").style.display = "none";
+                document.getElementById("e").style.display = "none";
+                document.getElementById("f").style.display = "none";
+                document.getElementById("g").style.display = "none";
+            }
+        }
+    </script>
+
+</body>
+
+<!-- Mirrored from preview.pichforest.com/dashonic/layouts/pages-profile.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 13 Oct 2022 09:33:02 GMT -->
+
+</html>
